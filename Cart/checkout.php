@@ -72,9 +72,9 @@ if(isset($_POST['placeOrderBtn']))
 </head>
 <body>
            <div class="navbar">
-               <a href="../matri.php"><img src="logo.png" class="logo"></a>
+               <a href="../Home/Index.php"><img src="./Images/logo.png" class="logo"></a>
                 <ul>
-                <li class="act"><a href="../matri.php">HOME</a></li>
+                <li class="act"><a href="../Home/Index.php">HOME</a></li>
                 <li><a href="../Blog/Blog.php">BLOG</a></li>
                 <li><a href="../Book/Book.php">BOOKS</a></li>
                 <li><a href="../Contact/Contact.php">CONTACT</a></li>
@@ -145,12 +145,12 @@ if(isset($_POST['placeOrderBtn']))
                 </div>
                 <div class="group">
                     <label for="address">Address</label>
-                    <input type="text" name="address" id="address" >
+                    <input type="text" name="address" id="address" required>
                 </div>
                 <div class="sahii">
                 <div class="group">
                     <label for="phone">Phone</label>
-                    <input type="text" name="phone" id="phone" required>
+                    <input type="number" name="phone" id="phone" required>
                 </div>
                 
                 <div class="group">

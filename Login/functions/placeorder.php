@@ -65,6 +65,6 @@ if(isset($_SESSION['auth']))
 }
 else
 {
-    header('Location: ../../matri.php');
+    header('Location: ../../Login/login.php');
 }
 ?>

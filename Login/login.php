@@ -2,7 +2,7 @@
 session_start();
 if(isset($_SESSION['auth']))
 {
-  header('Location: ../matri.php');
+  header('Location: ../Home/Index.php');
   exit();
 }
 ?>
@@ -22,9 +22,9 @@ if(isset($_SESSION['auth']))
        <div id="banner" class="background" >
 
        <div class="navbar">
-              <a href="../matri.php"><img src="logo.png" class="logo"></a>
+              <a href="../Home/Index.php"><img src="./Images/logo.png" class="logo"></a>
                 <ul>
-                <li><a href="../matri.php">HOME</a></li>
+                <li><a href="../Home/Index.php">HOME</a></li>
                 <li><a href="../Blog/Blog.php">BLOG</a></li>
                 <li><a href="../Book/Book.php">BOOKS</a></li>
                 <li><a href="../Contact/Contact.php">CONTACT</a></li>

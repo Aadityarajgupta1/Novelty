@@ -35,7 +35,7 @@ $(document).ready(function () {
 
      $.ajax({
          method: "POST",
-         url: "./Login/functions/handlecart.php",
+         url: "../Login/functions/handlecart.php",
          data: {
             "prod_id": prod_id,
             "prod_qty": qty,

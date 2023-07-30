@@ -84,7 +84,7 @@
 
 body
 {
-    background-image: linear-gradient(rgba(8, 8, 8, 0.5),rgba(8, 8, 8, 0.75)), url(background.png);
+    background-image: linear-gradient(rgba(8, 8, 8, 0.5),rgba(8, 8, 8, 0.75)), url(./Images/background.png);
     background-size: cover;
     background-repeat: no-repeat;
 }

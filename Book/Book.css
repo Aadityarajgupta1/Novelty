@@ -166,7 +166,7 @@ button.normal
 
 #page-header
 {
-    background-image: url("./b1.png");
+    background-image: url("./Images/b1.png");
     width: 100%;
     height: 50vh;
     display: flex;
@@ -407,7 +407,7 @@ button.normal
     justify-content: space-between;
     flex-wrap: wrap;
     align-items: center;
-    background-image: url("news.png");
+    background-image: url("./Images/news.png");
     background-repeat: no-repeat;
     background-position: 20% 40%;
     background-color: #56565b;

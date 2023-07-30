@@ -88,7 +88,7 @@ $(document).ready(function () {
       //   alert(cart_id);
       $.ajax({
          method: "POST",
-         url: "./Login/functions/handlecart.php",
+         url: "../Login/functions/handlecart.php",
          data: {
             "cart_id": cart_id,
             "scope": "delete"

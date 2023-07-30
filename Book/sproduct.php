@@ -24,9 +24,9 @@ if(isset($_GET['product']))
       </head>
       <body>
                  <div class="navbar" class="section-p3">
-                   <a href="../matri.php"><img src="logo.png" class="logo"></a>
+                   <a href="../Home/Index.php"><img src="./Images/logo.png" class="logo"></a>
                       <ul>
-                      <li class="act"><a href="../matri.php">HOME</a></li>
+                      <li class="act"><a href="../Home/Index.php">HOME</a></li>
                       <li><a href="../Blog/Blog.php">BLOG</a></li>
                       <li><a class="active" href="./Book.php">BOOKS</a></li>
                       <li><a href="../Contact/Contact.php">CONTACT</a></li>
@@ -198,7 +198,7 @@ if(isset($_GET['product']))
                <!-- Footer  -->
               <footer class="section-p1">
                   <div class="col">
-                      <img src="logo1.png" class="logo1" alt="">
+                      <img src="./Images/logo1.png" class="logo1" alt="">
                       <h4>Contact</h4>
                       <p><strong>Address:</strong> Lagankhel, Lalitpur (27.667803, 85.326342) </p>
                       <p><strong>Phone:</strong> (+977) 9808389105 / (+977) 9840802525 </p>
@@ -221,7 +221,7 @@ if(isset($_GET['product']))
                       <a href="#">Delivery Information</a>
                       <a href="#">Privacy policy</a>
                       <a href="#">Terms & Conditions</a>
-                      <a href="#">Contact us</a>
+                      <a href="../Contact/Contact.php">Contact us</a>
                   </div>
       
                   <div class="col">
@@ -242,7 +242,7 @@ if(isset($_GET['product']))
                       ?>
                       <a href="..\Cart\Cart.php">View cart</a>
                       <a href="#">My Wishlist</a>
-                      <a href="#">Track my order</a>
+                      <a href="../Cart/my-orders.php">Track my order</a>
                       <a href="#">Help</a>
                   </div>
       
@@ -250,11 +250,11 @@ if(isset($_GET['product']))
                       <h4>Install App</h4>
                       <p>From App Store or Google Play</p>
                       <div class="row">
-                          <a href="#"><img src="app.jpg" alt=""></a>
-                          <a href="#"><img src="play.jpg" alt=""></a>
+                          <a href="#"><img src="./Images/app.jpg" alt=""></a>
+                          <a href="#"><img src="./Images/play.jpg" alt=""></a>
                       </div>
                       <p>Secured Payment Gateway</p>
-                      <a href="#"><img src="pay.png" alt=""></a>
+                      <a href="#"><img src="./Images/pay.png" alt=""></a>
                   </div>
       
                   <div class="copyright">

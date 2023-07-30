@@ -4,7 +4,7 @@ if(isset($_SESSION['auth']))
 {
     if($_SESSION['role_as'] != 1)
     {
-        redirect("../../matri.php", "You are not authorized to access this page.");
+        redirect("../../Home/Index.php.php", "You are not authorized to access this page.");
     }
 
 }
