@@ -35,6 +35,7 @@ unset($_SESSION['message']);
                 {
                   ?>
                   <li><a href="./Login/logout.php">Logout</a></li>
+                  <li><a href="./Cart/Cart.php"><i class="fa fa-shopping-cart"></i></a></li>
                   <?php
                 }
                 else
@@ -44,7 +45,7 @@ unset($_SESSION['message']);
                   <?php
                 }
                 ?>
-                <li><a href="./Cart/Cart.php"><i class="fa fa-shopping-cart"></i></a></li>
+                
                 </ul>
 
            </div>
