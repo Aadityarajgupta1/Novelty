@@ -2,6 +2,11 @@
 session_start();
 require '../../Dashboard/configer/dbcon.php';
 
+if(!isset($_SESSION['auth']))
+{
+    header('Location: ../../matri.php');
+}
+
 if(isset($_SESSION['auth']))
 {
     if(isset($_POST['placeOrderBtn']))
