@@ -1,10 +1,11 @@
-<?
+<?php
 session_start();
+
 require '../../Dashboard/configer/dbcon.php';
 
 if(!isset($_SESSION['auth']))
 {
-    header('Location: ../../matri.php');
+    header("Location:../login.php", "Login to Continue.");;
 }
 
 if(isset($_SESSION['auth']))
