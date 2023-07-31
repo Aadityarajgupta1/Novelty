@@ -302,6 +302,11 @@ button.normal
     padding-bottom: 15px;
 }
 
+#subtotal h4
+{
+    text-align: center;
+}
+
 #coupon input
 {
     padding: 10px 20px;

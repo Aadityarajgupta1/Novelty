@@ -50,7 +50,58 @@ include('../Dashboard/middleware/authenticate.php');
            </section>
 
            <!-- Cart -->
+          <section id="cart" class="section-p1">
            
+              <table width="100%">
+             <thead>
+              <tr>
+                <td>S.N.</td>
+                <td>Tracking No.</td>
+                <td>Price</td>
+                <td>Date</td>
+                <td>View Details</td>
+              </tr>
+             </thead>
+             <tbody class="product_data">
+             <?php
+               $orders = getOrders();
+
+               if(mysqli_num_rows($orders) > 0)
+               {
+                $count = 1;
+                // $totalPrice = 0;
+                   foreach ($orders as $item)
+                   {
+                    ?>
+                    <tr>
+                    <td><?= $count ?></td>
+                    <td><?= $item['tracking_no']; ?></td>
+                    <td><?= $item['total_price']; ?></td>
+                    <td><?= $item['created_at']; ?></td>
+                    <td><a href="view-order.php?t=<?= $item['tracking_no']; ?>" class="normal">View Details</a>
+                                         
+                    </tr>
+                    <?php
+                    $count++;
+                    // $totalPrice +=  $item['selling_price'] * $item['prod_qty'];
+                    }
+                      
+                }
+               
+               else
+               {
+                ?>
+                <tr>
+                <td>No order Yet</td>
+                
+                                     
+                </tr>
+                <?php
+               }
+           ?>
+            </tbody>
+              </table>
+          </section>
           
           
           <!-- Newsletter -->

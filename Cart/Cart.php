@@ -50,10 +50,11 @@ include('../Dashboard/middleware/authenticate.php');
            </section>
 
            <!-- Cart -->
-           <section id="cart" class="section-p1">
            <div id="myReload">
+           <section id="cart" class="section-p1">
+           
               <table width="100%">
-            <thead>
+             <thead>
               <tr>
                 <td>S.N.</td>
                 <td>Product</td>
@@ -62,11 +63,18 @@ include('../Dashboard/middleware/authenticate.php');
                 <td>Quantity</td>
                 <td>Remove</td>
               </tr>
-            </thead>
+             </thead>
             
-            <?php $items = getCartItems(); 
+          
+             <?php $items = getCartItems(); 
+             $count = 1;
+             $totalPrice = 0;
+             if(mysqli_num_rows($items) > 0)
+             {
+              
                 $count = 1;
                 $totalPrice = 0;
+                
                 foreach($items as $citem)
                 {
                ?>
@@ -91,9 +99,11 @@ include('../Dashboard/middleware/authenticate.php');
             $count++;
             $totalPrice +=  $citem['selling_price'] * $citem['prod_qty'];
                 }
+              
           ?>
           
                 
+          
           </table>
           
 
@@ -109,7 +119,9 @@ include('../Dashboard/middleware/authenticate.php');
             </div>
 
             <div id="subtotal">
+            
               <h3>Cart Total</h3>
+              
               <table>
                 <tr>
                   <td>Cart Subtotal</td>
@@ -123,9 +135,35 @@ include('../Dashboard/middleware/authenticate.php');
                   <td><strong>Total</strong></td>
                   <td><strong>Rs.<?= $totalPrice ?></strong></td>
                 </tr>
+                <?php
+              }
+              else
+              {
+                ?>
+                <h4>Your cart is empty</h4>
+                
+                <?php
+              }
+            
+              ?>
               </table>
+              
+              <?php 
+             $items = getCartItems(); 
+             if(mysqli_num_rows($items) > 0)
+             {
+              ?>
               <button><a href="./checkout.php" class="normal ">Proceed to checkout</a></button>
+              <?php
+             }
+             else
+             {
+                
+             }
+             ?>
             </div>
+            </div>
+           
           </section>
           </div>
           

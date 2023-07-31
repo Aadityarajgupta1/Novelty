@@ -47,6 +47,16 @@ if(isset($_POST['placeOrderBtn']))
                 $price=  $citem['selling_price'];
                 $insert_items_query = "INSERT INTO order_items (order_id, prod_id, qty, price) VALUES ('$order_id', '$prod_id', '$prod_qty', '$price') ";
                 $insert_items_query_run = mysqli_query($con, $insert_items_query);
+
+                $product_query = "SELECT * FROM products WHERE id='$prod_id'";
+                $product_query_run = mysqli_query($con, $insert_items_query);
+
+                $product_query_run = mysqli_query($con, $product_query);
+                $current_qty = $productData['qty'];
+
+                $new_qty = $current_qty - $prod_qty;
+                $updateQty_query = "UPDATE products SET qty='$new_qty' WHERE id='$prod_id'";
+                $updateQty_query_run = mysqli_query($con, $updateQty_query);
             }
 
             $deleteCartQuery = "DELETE FROM carts WHERE user_id = '$userId'";
@@ -171,6 +181,7 @@ if(isset($_POST['placeOrderBtn']))
                         <div class="totalPrice">Rs.<?= $totalPrice ?></div>
                     </div>
                     <input type="hidden" name='payment_mode' value="COD">
+                    <input type="hidden" name='payment_id' value="-">
                     <button type="submit" class="buttonCheckout" name="placeOrderBtn">Confirm your order</button>
                 </div>
             </form>
