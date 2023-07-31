@@ -45,12 +45,15 @@ if(isset($_POST['placeOrderBtn']))
                 $prod_id=  $citem['prod_id'];
                 $prod_qty=  $citem['prod_qty'];
                 $price=  $citem['selling_price'];
-                $insert_items_query = "INSERT INTO order_items (order_id, prod_id, qty, price) VALUES
-                ('$order_id', '$prod_id', '$prod_qty', '$price') ";
+                $insert_items_query = "INSERT INTO order_items (order_id, prod_id, qty, price) VALUES ('$order_id', '$prod_id', '$prod_qty', '$price') ";
                 $insert_items_query_run = mysqli_query($con, $insert_items_query);
             }
+
+            $deleteCartQuery = "DELETE FROM carts WHERE user_id = '$userId'";
+            $deleteCartQuery_run = mysqli_query($con, $deleteCartQuery);
+
             $_SESSION['message'] = "Order placed successfully";
-            header('Location: my-orders.php');
+            header('Location: ./my-orders.php');
             die();
 
         }
@@ -145,7 +148,7 @@ if(isset($_POST['placeOrderBtn']))
                 </div>
                 <div class="group">
                     <label for="address">Address</label>
-                    <input type="text" name="address" id="address" required>
+                    <input type="text" name="address" id="address" >
                 </div>
                 <div class="sahii">
                 <div class="group">

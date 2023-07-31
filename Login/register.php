@@ -51,12 +51,12 @@ if(isset($_SESSION['auth']))
              <form action="functions/authcode.php" method="POST">
                <h2>Sign Up</h2>
                <div class="form-group">
-                 <label for="username">Username</label>
+                 <label for="username">Name</label>
                  <input type="text" id="username" name="name" required>
                </div>
                <div class="form-group">
                   <label for="phone">Phone</label>
-                  <input type="number" id="phone" name="phone" min="10" max="10" required>
+                  <input type="number" id="phone" name="phone" required>
                </div>
                <div class="form-group">
                  <label for="email">Email</label>
