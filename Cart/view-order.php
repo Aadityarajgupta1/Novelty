@@ -118,7 +118,7 @@ $data = mysqli_fetch_array($orderData);
                                 
                                 <?php
                                  $userId = $_SESSION['auth_user']['user_id'];
-                                 $order_query = "SELECT o.id as oid, o.tracking_no, o.user_id, oi.*, p.* FROM orders o, order_items oi,
+                                 $order_query = "SELECT o.id as oid, o.tracking_no, o.user_id, oi.qty as quantity, oi.*, p.* FROM orders o, order_items oi,
                                  products p WHERE o.user_id='$userId' AND oi.order_id=o.id AND p.id=oi.prod_id AND o.tracking_no='$tracking_no'";
 
                                  $order_query_run = mysqli_query($con, $order_query);
@@ -132,7 +132,7 @@ $data = mysqli_fetch_array($orderData);
                                             <td><img src="../Dashboard/main/uploads/<?= $item['image'] ?>" alt="<?= $item['name'] ?>">
                                             <?= $item['name'] ?></td>
                                             <td><?= $item['price'] ?></td>
-                                            <td><?= $item['qty'] ?></td>
+                                            <td><?= $item['quantity'] ?></td>
                                             
                                         </tr>
                      
