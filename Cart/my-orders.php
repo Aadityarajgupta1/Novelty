@@ -76,7 +76,7 @@ include('../Dashboard/middleware/authenticate.php');
                     <tr>
                     <td><?= $count ?></td>
                     <td><?= $item['tracking_no']; ?></td>
-                    <td><?= $item['total_price']; ?></td>
+                    <td>Rs.<?= $item['total_price']; ?></td>
                     <td><?= $item['created_at']; ?></td>
                     <td><a href="view-order.php?t=<?= $item['tracking_no']; ?>" class="normal">View Details</a>
                                          

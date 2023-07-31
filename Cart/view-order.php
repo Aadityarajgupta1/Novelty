@@ -145,8 +145,10 @@ $data = mysqli_fetch_array($orderData);
                         </table>
                
                         <br>
+                        
                         Total Price
                         <input type="text" name="" value="Rs.<?= $data['total_price'] ?>" disabled>
+                        
                     </form>
 		</div>
 	</div>

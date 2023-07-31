@@ -158,7 +158,7 @@ if(isset($_POST['placeOrderBtn']))
                 </div>
                 <div class="group">
                     <label for="address">Address</label>
-                    <input type="text" name="address" id="address" >
+                    <input type="text" name="address" id="address" required>
                 </div>
                 <div class="sahii">
                 <div class="group">
