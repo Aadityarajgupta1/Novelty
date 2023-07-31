@@ -106,10 +106,10 @@ $data = mysqli_fetch_array($orderData);
                         <table>
                             <thead>
                             <tr>
-                                <td>Image</td>
-                                <td>Name</td>
-                                <td>Price</td>
-                                <td>Quantity</td>
+                                <td><b>Image</b></td>
+                                <td><b>Name</b></td>
+                                <td><b>Price</b></td>
+                                <td><b>Quantity</b></td>
                             </tr>
                             </thead>
                             <tbody>
