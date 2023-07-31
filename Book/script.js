@@ -30,7 +30,8 @@ $(document).ready(function () {
 
    $('.addToCartBtn').click(function (e){
     e.preventDefault();
-    var qty = $(this).closest('.product_data').find('.input-qty').val();
+   //  var qty = $(this).closest('.product_data').find('.input-qty').val();
+   var qty = '1';
     var prod_id = $(this).val();
 
      $.ajax({
