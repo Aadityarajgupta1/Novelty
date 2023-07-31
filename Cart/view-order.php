@@ -64,12 +64,12 @@ $data = mysqli_fetch_array($orderData);
 
            </div>
 
-           <header>
 
 	    <div class="container">
+
 		   <div class="left">
            <a href="./my-orders.php" alt=""><i class="bx bx-chevron-left data"></i>Back to order</a>
-
+             
 			<h3>Delivery Address</h3>
 			<form>
 				Full name
@@ -93,10 +93,7 @@ $data = mysqli_fetch_array($orderData);
 						<input type="text" name="status" value="<?= $data['status'] == 0 ? 'Under Process' : 'Shipping';?>"disabled>
 					</label>
 				</div>
-                <br>
-                        Payment Mode
-                        <input type="text" name="" value="<?= $data['payment_mode'] ?>"disabled>
-                    
+                
                         
                         
                         
@@ -109,7 +106,8 @@ $data = mysqli_fetch_array($orderData);
                         <table>
                             <thead>
                             <tr>
-                                <td>Product</td>
+                                <td>Image</td>
+                                <td>Name</td>
                                 <td>Price</td>
                                 <td>Quantity</td>
                             </tr>
@@ -129,10 +127,10 @@ $data = mysqli_fetch_array($orderData);
                                      {
                                         ?>
                                         <tr>
-                                            <td><img src="../Dashboard/main/uploads/<?= $item['image'] ?>" alt="<?= $item['name'] ?>">
-                                            <?= $item['name'] ?></td>
-                                            <td><?= $item['price'] ?></td>
-                                            <td><?= $item['quantity'] ?></td>
+                                            <td><img src="../Dashboard/main/uploads/<?= $item['image'] ?>" alt="<?= $item['name'] ?>"></td>
+                                            <td><?= $item['name'] ?></td>
+                                            <td>Rs.<?= $item['price'] ?></td>
+                                            <td>x<?= $item['quantity'] ?></td>
                                             
                                         </tr>
                      
@@ -144,15 +142,18 @@ $data = mysqli_fetch_array($orderData);
                             </tbody>
                         </table>
                
-                        <br>
+                        <br><br>
                         
                         Total Price
                         <input type="text" name="" value="Rs.<?= $data['total_price'] ?>" disabled>
+                        <br>
+                        Payment Mode
+                        <input type="text" name="" value="<?= $data['payment_mode'] ?>"disabled>
+                    
                         
                     </form>
 		</div>
 	</div>
-</header>
 
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="../Book/sbook.js"></script>

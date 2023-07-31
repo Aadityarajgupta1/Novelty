@@ -361,6 +361,19 @@ button.normal
     text-decoration: none;
 }
 
+#cart table a
+{
+    text-decoration: none;
+    color: #000;
+    transition: 0.5s;
+}
+
+#cart table a:hover
+{
+color: #615510;
+}
+
+
 /* Newsletter */
 #newsletter
 {

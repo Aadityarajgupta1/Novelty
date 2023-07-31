@@ -146,31 +146,30 @@ button.normal
     transition: 0.3s;
 }
 
-header{
-	width: 100vw;
-	min-height: 100vh;
-	background: #dddddf;
+body{
+    background-size: cover;
+	background-image: url(./Images/background.png);
 	font-size: 1.2rem;
 	display: flex;
 	justify-content: center;
 	align-items: center;
 
 }
-.container{
-	background: rgb(255, 255, 255);
-	max-width: 800px;
-	height: 700px;
-	display: flex;
-	justify-content:space-between;
-	align-items: center;
-	padding: 0.5rem 1.5rem;
-    box-shadow: #000;
-    border-radius: 8px;
-    margin-top: 80px;
-
+.container {
+    background: rgb(255, 255, 255);
+    width: 55%;
+    height: 630px; /* Reduced the height by 100px */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.3rem 1.5rem;
+    border-radius: 12px;
+    margin-top: 90px;
+    margin-bottom: 10px;
 }
+
 .left{
-	flex-basis: 50%;
+	flex-basis: 55%;
 }
 
 .left a
@@ -180,14 +179,17 @@ header{
     font-size: 13px;
 }
 
-.left a:hover
-{
-    color: #785e1d;
-}
 
 .right{
-	flex-basis: 50%;
+	flex-basis: 60%;
+    margin-top: 0;
 }
+
+.right h3
+{
+    margin-top: 30px;
+}
+
 
 .right h3,
 .left h3
@@ -196,30 +198,58 @@ header{
     padding-bottom: 10px;
 }
 
-.right table tbody td:nth-child(1) img
+.right table tbody td:nth-child(1)
 {
-    width: 30%;
-    text-align: start;
+    width: 30px;
 }
 
-.right h3
+.right table tbody td:nth-child(1) img
 {
-    margin-top: 40px;
+    width: 40%;
+    border-radius: 8px;
+    align-items: center;
+
 }
+
+.right table thead td:nth-child(1),
+.right table thead td:nth-child(2),
+.right table thead td:nth-child(3),
+.right table thead td:nth-child(4)
+{
+    text-align: center;
+}
+
+.right table tbody td:nth-child(1),
+.right table tbody td:nth-child(2),
+.right table tbody td:nth-child(3),
+.right table tbody td:nth-child(4)
+{
+    text-align: center;
+    font-size: 13px;
+}
+
+
 
 .right table
 {
-	padding: 0.5rem 0.7rem;
+	padding:  0.7rem;
     border-collapse: collapse;
-    width: 100%;
-    margin-bottom: 60px;
+    /* width: 100%; */
+    margin-bottom: 0;
 }
 
-.right table tr td
+.right table thead tr td
 {
-    width: 120%;
-    border: 1px solid #e2e9e1;
+    border: 1px solid #bec1be;
     padding: 10px;
+    font-size: 15px;
+}
+
+.right table tbody tr td
+{
+    width: 100%;
+    border: 1px solid #bec1be;
+    padding: 3px;
     font-size: 15px;
 }
 
@@ -241,7 +271,7 @@ form input[type="text"]{
 	width: 100%;
 	padding: 0.7rem 0.7rem;
 	margin: 0.7rem 0;
-    /* border-radius: 4px; */
+    background-color: #fff;
 	outline: none;
 	
 }

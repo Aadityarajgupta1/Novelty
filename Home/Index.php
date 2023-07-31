@@ -39,7 +39,7 @@ require '../Dashboard/configer/dbcon.php';
         <?php
         } else {
         ?>
-          <li><a href="../Login/login.php">Login</a></li>
+          <li><a href="../Login/login.php"><i class="fa fa-user"></i></a></li>
         <?php
         }
 

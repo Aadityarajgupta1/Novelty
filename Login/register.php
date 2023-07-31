@@ -33,16 +33,17 @@ if(isset($_SESSION['auth']))
                 {
                   ?>
                   <li><a href="../Login/Logout/logout.php">Logout</a></li>
+                  <li><a href="../Cart/Cart.php"><i class="fa fa-shopping-cart"></i></a></li>
+
                   <?php
                 }
                 else
                 {
                   ?>
-                  <li><a class="active" href="../Login/login.php">Login</a></li>
+                  <li><a class="active" href="../Login/login.php"><i class="fa fa-user"></i></a></li>
                   <?php
                 }
                 ?>
-                <li><a href="../Cart/Cart.php"><i class="fa fa-shopping-cart"></i></a></li>
                 </ul>
            </div>
 
@@ -56,7 +57,7 @@ if(isset($_SESSION['auth']))
                </div>
                <div class="form-group">
                   <label for="phone">Phone</label>
-                  <input type="number" id="phone" name="phone" required>
+                  <input type="number" id="phone" name="phone" min="9800000000" max="9999999999" required>
                </div>
                <div class="form-group">
                  <label for="email">Email</label>

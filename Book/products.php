@@ -38,16 +38,17 @@ $cid = $category['id'];
                 {
                   ?>
                   <li><a href="../Login/Logout.php">Logout</a></li>
+                  <li><a href="../Cart/Cart.php"><i class="fa fa-shopping-cart"></i></a></li>
+
                   <?php
                 }
                 else
                 {
                   ?>
-                  <li><a href="../Login/login.php">Login</a></li>
+                  <li><a href="../Login/login.php"><i class="fa fa-user"></i></a></li>
                   <?php
                 }
                 ?>
-                <li><a href="../Cart/Cart.php"><i class="fa fa-shopping-cart"></i></a></li>
                 </ul>
 
            </div>
