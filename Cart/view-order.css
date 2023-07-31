@@ -159,14 +159,14 @@ header{
 .container{
 	background: rgb(255, 255, 255);
 	max-width: 900px;
-	min-height: 500px;
+	min-height: 600px;
 	display: flex;
 	justify-content:space-between;
 	align-items: flex-start;
 	padding: 0.5rem 1.5rem;
     box-shadow: #000;
     border-radius: 8px;
-    margin-top: 40px;
+    margin-top: 100px;
 
 }
 .left{
@@ -199,6 +199,7 @@ header{
 .right table tbody td:nth-child(1) img
 {
     width: 30%;
+    text-align: start;
 }
 
 .right h3
@@ -216,10 +217,15 @@ header{
 
 .right table tr td
 {
-    width: 80%;
+    width: 120%;
     border: 1px solid #e2e9e1;
     padding: 10px;
     font-size: 15px;
+}
+
+.right table tr:nth-child(2)
+{
+    margin-bottom: 10px;
 }
 
 form{
@@ -228,7 +234,7 @@ form{
 
 h3{
 	margin-top: 1rem;
-	color:#2c3e50;
+	color:#000;
 	}
 
 form input[type="text"]{
@@ -248,22 +254,4 @@ form input[type="text"]{
 
 #zip .f2{
 	padding-left: 5px;
-}
-#zip input[type="number"]{
-	padding: 0.5rem 0.7rem;
-	margin-left: 5px;	
-}
-input[type="submit"]{
-	width: 80%;
-	padding: 0.7rem 1.5rem;
-	background: #34495e;
-	color: white;
-	border: none;
-	outline: none;
-	margin-top: 1rem;
-	cursor: pointer;
-}
-
-input[type="submit"]:hover{
-	background: #2c3e50;
 }

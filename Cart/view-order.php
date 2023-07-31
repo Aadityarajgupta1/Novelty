@@ -73,26 +73,33 @@ $data = mysqli_fetch_array($orderData);
 			<h3>Delivery Address</h3>
 			<form>
 				Full name
-				<input type="text" name="name" value="<?= $data['name'];?>">
+				<input type="text" name="name" value="<?= $data['name'];?>" disabled>
 				Email
-				<input type="text" name="email" value="<?= $data['email'];?>">
+				<input type="text" name="email" value="<?= $data['email'];?>"disabled>
 
 				Address
-				<input type="text" name="address" value="<?= $data['address'];?>">
+				<input type="text" name="address" value="<?= $data['address'];?>"disabled>
 				
 				Phone
-				<input type="text" name="phone" value="<?= $data['phone'];?>">
+				<input type="text" name="phone" value="<?= $data['phone'];?>"disabled>
 				<div id="zip">
 					<label>
 						City
-                        <input type="text" name="city" value="<?= $data['city'];?>">
+                        <input type="text" name="city" value="<?= $data['city'];?>"disabled>
 
 					</label>
 						<label class="f2">
 						Status
-						<input type="text" name="status" value="<?= $data['status'] == 0 ? 'Under Process' : 'Shipping';?>">
+						<input type="text" name="status" value="<?= $data['status'] == 0 ? 'Under Process' : 'Shipping';?>"disabled>
 					</label>
 				</div>
+                <br>
+                        Payment Mode
+                        <input type="text" name="" value="<?= $data['payment_mode'] ?>"disabled>
+                    
+                        
+                        
+                        
 			</form>
 		</div>
 		<div class="right">
@@ -137,14 +144,9 @@ $data = mysqli_fetch_array($orderData);
                             </tbody>
                         </table>
                
-			   <br>
-                     Total Price
-                    <input type="text" name="" value="Rs.<?= $data['total_price'] ?>">
-                        
-                        Payment Mode
-                        <input type="text" name="" value="<?= $data['payment_mode'] ?>">
-                        Tracking Number
-                        <input type="text" name="" value="<?= $data['tracking_no'] ?>">
+                        <br>
+                        Total Price
+                        <input type="text" name="" value="Rs.<?= $data['total_price'] ?>" disabled>
                     </form>
 		</div>
 	</div>
