@@ -179,52 +179,6 @@ if (isset($_POST['placeOrderBtn'])) {
                 </form>
             </div>
         </div>
-<<<<<<< HEAD
-        
-    
-        <div class="right">
-            <h3>Billing Address</h3>
-            <form  method="POST">
-                <div class="group">
-                    <label for="name">Full Name</label>
-                    <input type="text" name="name" id="name" required>
-                </div>
-                <div class="group">
-                    <label for="email">Email</label>
-                    <input type="email" name="email" id="email" required>
-                </div>
-                <div class="group">
-                    <label for="address">Address</label>
-                    <input type="text" name="address" id="address" required>
-                </div>
-                <div class="sahii">
-                <div class="group">
-                    <label for="phone">Phone</label>
-                    <input type="number" name="phone" id="phone" required>
-                </div>
-                
-                <div class="group">
-                    <label for="city">City</label>
-                    <input type="text" name="city" id="city" required>
-                </div>
-                </div>
-                <div class="return">
-                    <div class="row">
-                        <div>Shipping</div>
-                        <div class="totalQuantity">Rs.0</div>
-                    </div>
-                    <div class="row">
-                        <div>Total Price</div>
-                        <div class="totalPrice">Rs.<?= $totalPrice ?></div>
-                    </div>
-                    <input type="hidden" name='payment_mode' value="COD">
-                    <input type="hidden" name='payment_id' value="-">
-                    <button type="submit" class="buttonCheckout" name="placeOrderBtn">Confirm your order</button>
-                </div>
-            </form>
-        </div>
-=======
->>>>>>> bf241cc103d1e3a0b12242ec7323910d7b4eb9d6
     </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
