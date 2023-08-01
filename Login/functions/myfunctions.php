@@ -25,7 +25,21 @@ function redirect($url, $message)
 
 }
 
+function getAllOrders()
+{
+    global $con;
+    $query = "SELECT o.*, u.name FROM orders o, users u WHERE status='0' AND o.user_id=u.id";
+    return $query_run = mysqli_query($con, $query);
+}
 
+function checkTrackingNoValid($trackingNo)
+{
+    global $con;
+
+    $query = "SELECT * FROM orders WHERE tracking_no='$trackingNo'";
+    return mysqli_query($con, $query);
+    
+}
 
 
 ?>

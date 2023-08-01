@@ -358,6 +358,16 @@ elseif(isset($_POST['delete_blog_btn']))
 
     }
 }
+elseif(isset($_POST['update_order_btn']))
+{
+    $track_no = $_POST['tracking_no'];
+    $order_status = $_POST['order_status'];
+
+    $updateOrder_query = "UPDATE orders SET status='$order_status' WHERE tracking_no='$track_no'";
+    $updateOrder_query_run = mysqli_query($con, $updateOrder_query);
+
+    redirect("view-order.php?t=$track_no", "Order status Updated Successfully");
+}
 else
 {
     header('Location: ./admin.php');
