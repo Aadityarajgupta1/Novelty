@@ -7,15 +7,15 @@ include('header.php');
         <div class="col-md-12">
             <div class="card">
                 <div class="card-header">
-                   <h4> Orders 
-                    <a href="order-history.php" class="btn btn-warning float-end"> Order History </a>
+                   <h4> Order History
+                    <a href="orders.php" class="btn btn-warning float-end"> Back </a>
                    </h4>
                 </div>
                 <div class="card-body" id="products_table">
                     <table class="table table-bordered table-striped" style="text-align: center;" border:1px solid #ddd>
                         <thead>
                             <tr>
-                                <th class="col-md-1">S.N.</th>
+                                <th class="col-md-1">Id</th>
                                 <th class="col-md-1">User</th>
                                 <th class="col-md-1">Tracking Number</th>
                                 <th class="col-md-1">Price</th>
@@ -25,11 +25,10 @@ include('header.php');
                         </thead>
                         <tbody>
                             <?php
-                            $orders = getAllOrders();
+                            $orders = getOrderHistory();
 
                             if(mysqli_num_rows($orders))
                             {
-                                $count=1;
                                 foreach($orders as $item)
                                 {
                                     ?>
@@ -45,7 +44,6 @@ include('header.php');
                                         </tr>
                                     
                                     <?php
-                                    $count++;
                                 }
                             }
                               ?>

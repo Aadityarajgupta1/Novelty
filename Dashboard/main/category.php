@@ -28,11 +28,12 @@ include('header.php');
 
                                if(mysqli_num_rows($category) > 0)
                                {
+                                $count=1;
                                  foreach($category as $item)
                                  {
                                     ?>
                                     <tr>
-                                     <td><?= $item['id']; ?></td>
+                                     <td><?= $count ?></td>
                                      <td><?= $item['name']; ?></td>
                                      <td>
                                         <img src="./uploads/<?= $item['image']; ?>" width="50px" height="50px" alt="<?= $item['name']; ?>">
@@ -52,6 +53,7 @@ include('header.php');
                                     </tr>   
 
                                     <?php
+                                    $count++;
                                  }
                                }
                                else

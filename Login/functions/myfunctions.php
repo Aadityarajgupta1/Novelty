@@ -28,7 +28,14 @@ function redirect($url, $message)
 function getAllOrders()
 {
     global $con;
-    $query = "SELECT o.*, u.name FROM orders o, users u WHERE status='0' AND o.user_id=u.id";
+    $query = "SELECT * FROM orders WHERE status='0'";
+    return $query_run = mysqli_query($con, $query);
+}
+
+function getOrderHistory()
+{
+    global $con;
+    $query = "SELECT * FROM orders WHERE status !='0' ";
     return $query_run = mysqli_query($con, $query);
 }
 
@@ -41,5 +48,8 @@ function checkTrackingNoValid($trackingNo)
     
 }
 
-
+function validateFullName($name) {
+    $pattern = '/^[a-zA-Z ]+$/';
+    return preg_match($pattern, $name);
+}
 ?>

@@ -86,12 +86,11 @@ $data = mysqli_fetch_array($orderData);
 					<label>
 						City
                         <input type="text" name="city" value="<?= $data['city'];?>"disabled>
-
-					</label>
-						<label class="f2">
-						Status
-						<input type="text" name="status" value="<?= $data['status'] == 0 ? 'Under Process' : 'Shipping';?>"disabled>
-					</label>
+                    </label>
+                    <label class="f2">
+                    Payment Mode
+                        <input type="text" name="" value="<?= $data['payment_mode'] ?>"disabled>
+                    </label>
 				</div>
                 
                         
@@ -147,8 +146,27 @@ $data = mysqli_fetch_array($orderData);
                         Total Price
                         <input type="text" name="" value="Rs.<?= $data['total_price'] ?>" disabled>
                         <br>
-                        Payment Mode
-                        <input type="text" name="" value="<?= $data['payment_mode'] ?>"disabled>
+                        
+                        <label class="f2">
+						Status
+						<input type="text" name="status" 
+                        value="
+                        <?php 
+                           if($data['status'] == 0 )
+                           {
+                             echo "Under Process";
+                           }
+                           else if($data['status'] == 1 )
+                           {
+                             echo "Completed";
+                           }
+                           else if($data['status'] == 2 )
+                           {
+                             echo "Cancelled";
+                           }
+                        ?>"
+                        disabled>
+					</label>
                     
                         
                     </form>

@@ -13,7 +13,7 @@ include('header.php');
                     <table class="table table-bordered table-striped" style="text-align: center;" border:1px solid #ddd>
                         <thead>
                             <tr>
-                                <th class="col-md-1">Id</th>
+                                <th class="col-md-1">S.N.</th>
                                 <th class="col-md-1">Name</th>
                                 <th class="col-md-1">Image</th>
                                 <th class="col-md-1">Status</th>
@@ -27,11 +27,12 @@ include('header.php');
 
                                if(mysqli_num_rows($blogs) > 0)
                                {
+                                $count=1;
                                  foreach($blogs as $item)
                                  {
                                     ?>
                                     <tr>
-                                     <td><?= $item['id']; ?></td>
+                                     <td><?= $count ?></td>
                                      <td><?= $item['name']; ?></td>
                                      <td>
                                         <img src="./uploads/<?= $item['image']; ?>" width="50px" height="50px" alt="<?= $item['name']; ?>">
@@ -50,6 +51,7 @@ include('header.php');
                                     </tr>   
 
                                     <?php
+                                    $count++;
                                  }
                                }
                                else

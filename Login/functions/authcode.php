@@ -1,5 +1,4 @@
 <?php
-session_start();
 require '../../Dashboard/configer/dbcon.php';
 require './myfunctions.php';
 
@@ -11,6 +10,19 @@ if(isset($_POST['reg_btn']))
     $password = mysqli_real_escape_string($con, $_POST['password']);
     $cpassword = mysqli_real_escape_string($con, $_POST['cpassword']);
 
+    if ($name == "" || $email == "" || $phone == "" || $password == "" || $cpassword == "")  {
+        $_SESSION['message'] = "All Fields are Mandetory";
+        header('Location: ../register.php');
+        // exit(0);
+    } else {
+
+        if (!validateFullName($name)) {
+            $_SESSION['message'] = "Please Enter a Valid name.";
+            header('Location: ../register.php');
+           
+        } else {
+        
+        
     //Check email if already exist
     $check_email_query = "SELECT email FROM users WHERE email='$email'";
     $check_email_query_run = mysqli_query($con, $check_email_query);
@@ -46,6 +58,8 @@ if(isset($_POST['reg_btn']))
         $_SESSION['message'] = "Passwords do not matched!";
         header('Location: ../register.php');
     }
+}
+}
 }
 }
 

@@ -157,7 +157,7 @@ body{
 }
 .container {
     background: rgb(255, 255, 255);
-    width: 55%;
+    width: 65%;
     height: 630px; /* Reduced the height by 100px */
     display: flex;
     justify-content: space-between;
@@ -273,6 +273,7 @@ form input[type="text"]{
 	margin: 0.7rem 0;
     background-color: #fff;
 	outline: none;
+    text-align: start;
 	
 }
 
@@ -284,4 +285,9 @@ form input[type="text"]{
 
 #zip .f2{
 	padding-left: 5px;
+}
+
+#zip .f2 input{
+	text-align: start;
+    padding-right: 20px;
 }
