@@ -277,17 +277,29 @@ form input[type="text"]{
 	
 }
 
-#zip{
+.zip{
 	display: flex;
 	margin-top: 0.5rem;
 }
 
 
-#zip .f2{
-	padding-left: 5px;
+
+.zip {
+	text-align: start;
+    width: 440px;
+}
+.zip .f1 input
+{
+    width: 215px;
 }
 
-#zip .f2 input{
-	text-align: start;
-    padding-right: 20px;
+.zip .f2 input
+{
+    width: 215px;
+}
+
+.zip .f2
+{
+    
+    margin-left: 10px;
 }

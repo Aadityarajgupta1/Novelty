@@ -82,14 +82,15 @@ $data = mysqli_fetch_array($orderData);
 				
 				Phone
 				<input type="text" name="phone" value="<?= $data['phone'];?>"disabled>
-				<div id="zip">
-					<label>
-						City
-                        <input type="text" name="city" value="<?= $data['city'];?>"disabled>
+				<div class="zip">
+					<label class="f1">
+						        City
+                    <input type="text" name="city" value="<?= $data['city'];?>"disabled>
                     </label>
                     <label class="f2">
                     Payment Mode
-                        <input type="text" name="" value="<?= $data['payment_mode'] ?>"disabled>
+                    
+                    <input type="text" name="" value="<?= $data['payment_mode'] ?>"disabled>
                     </label>
 				</div>
                 
@@ -147,11 +148,9 @@ $data = mysqli_fetch_array($orderData);
                         <input type="text" name="" value="Rs.<?= $data['total_price'] ?>" disabled>
                         <br>
                         
-                        <label class="f2">
-						Status
-						<input type="text" name="status" 
-                        value="
-                        <?php 
+						             Status
+						            <input type="text" name="status" 
+                        value="<?php 
                            if($data['status'] == 0 )
                            {
                              echo "Under Process";

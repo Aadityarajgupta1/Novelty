@@ -34,7 +34,7 @@ include('header.php');
                                 {
                                     ?>
                                         <tr>
-                                            <td><?= $item['id'];?></td>
+                                            <td><?= $count ?></td>
                                             <td><?= $item['name'];?></td>
                                             <td><?= $item['tracking_no'];?></td>
                                             <td><?= $item['total_price'];?></td>
