@@ -30,8 +30,12 @@ $(document).ready(function () {
 
    $('.addToCartBtn').click(function (e){
     e.preventDefault();
-   //  var qty = $(this).closest('.product_data').find('.input-qty').val();
-   var qty = '1';
+    var qty = $(this).closest('.product_data').find('.input-qty').val();
+   // var qty = '1';
+   if(qty<1 || qty == null)
+   {
+      qty = 1;
+   }
     var prod_id = $(this).val();
 
      $.ajax({
