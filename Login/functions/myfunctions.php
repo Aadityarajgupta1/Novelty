@@ -53,6 +53,15 @@ function validateFullName($name) {
     return preg_match($pattern, $name);
 }
 
+function validateAuthor($author) {
+    $pattern = '/^[a-zA-Z ]+$/';
+    return preg_match($pattern, $author);
+}
+
+function validateLanguage($language) {
+    $pattern = '/^[a-zA-Z ]+$/';
+    return preg_match($pattern, $language);
+}
 
 function validateAddress($address) 
 {

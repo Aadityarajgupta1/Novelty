@@ -21,23 +21,35 @@ if(isset($_POST['add_category_btn']))
     $image_ext = pathinfo($image, PATHINFO_EXTENSION);
     $filename = time().'.'.$image_ext;
 
-    $cate_query = "INSERT INTO categories (name, slug, description, meta_title, meta_description, meta_keywords, status, popular, image)
-    VALUES ('$name', '$slug', '$description', '$meta_title', '$meta_description', '$meta_keywords', '$status', '$popular', '$filename')";
-
-    $cate_query_run = mysqli_query($con, $cate_query);
-
-    if($cate_query_run)
+    if ($name !== "" && $slug !== "" && $description !== "" && $image !== "")  
     {
-        move_uploaded_file($_FILES['image']['tmp_name'], $path.'/'.$filename);
-        redirect("add-category.php", "Category Added Successfully");
+        if (!validateFullName($name)) 
+        {
+            $_SESSION['message'] = "Please Enter a Valid name.";
+            header('Location: ./add-category.php');
+        } 
+        else
+        {
+        $cate_query = "INSERT INTO categories (name, slug, description, meta_title, meta_description, meta_keywords, status, popular, image)
+        VALUES ('$name', '$slug', '$description', '$meta_title', '$meta_description', '$meta_keywords', '$status', '$popular', '$filename')";
+
+        $cate_query_run = mysqli_query($con, $cate_query);
+
+        if($cate_query_run)
+        {
+            move_uploaded_file($_FILES['image']['tmp_name'], $path.'/'.$filename);
+        }
+        else
+        {
+            redirect("add-category.php", "Something Went Wrong");
+        }
+            redirect("./add-blogs.php", "All Fields are Mandetory");
+        }
     }
     else
     {
-        redirect("add-category.php", "Something Went Wrong");
+        redirect("add-category.php", "All Fields are mandetory");
     }
-
-
-
 }
 elseif(isset($_POST['update_category_btn']))
 {
@@ -144,25 +156,77 @@ elseif(isset($_POST['add_product_btn']))
     $image_ext = pathinfo($image, PATHINFO_EXTENSION);
     $filename = time().'.'.$image_ext;
 
-    if($name != "" && $slug != "" && $description != "")
+    if($name != "" && $selling_price != "" && $description != "" && $image !== "")
     {
-      $product_query = "INSERT INTO products (category_id, name, slug, small_description, description, original_price,
-      selling_price, qty, author, page_count, weight, isbn, language,meta_title, meta_description, meta_keywords, status, trending, image) 
-      VALUES ('$category_id', '$name', '$slug', '$small_description', '$description', '$original_price', '$selling_price',
-      '$qty','$author','$page_count','$weight','$isbn','$language','$meta_title', '$meta_description', '$meta_keywords', '$status',
-      '$trending', '$filename')";
+        if (!validateLanguage($language)) 
+        {
+            $_SESSION['message'] = "Please Enter a Valid language name.";
+            header('Location: ./add-products.php');
+        } 
+        else
+        {
+        if (!validateFullName($name)) 
+        {
+            $_SESSION['message'] = "Please Enter a Valid name.";
+            header('Location: ./add-products.php');
+        } 
+        else
+        {
+            if (!validateAuthor($author)) 
+        {
+            $_SESSION['message'] = "Please Enter a Valid author name.";
+            header('Location: ./add-products.php');
+        } 
+        else
+        { 
+            if($qty >=1 )
+            {    
+                if($original_price >=1 )
+                 {
+                     if($selling_price >= $original_price )
+                     {
+                         if($weight >= 1)
+                         {
+                             $product_query = "INSERT INTO products (category_id, name, slug, small_description, description, original_price,
+                             selling_price, qty, author, page_count, weight, isbn, language,meta_title, meta_description, meta_keywords, status, trending, image) 
+                             VALUES ('$category_id', '$name', '$slug', '$small_description', '$description', '$original_price', '$selling_price',
+                             '$qty','$author','$page_count','$weight','$isbn','$language','$meta_title', '$meta_description', '$meta_keywords', '$status',
+                             '$trending', '$filename')";
 
-      $product_query_run = mysqli_query($con, $product_query);
+                             $product_query_run = mysqli_query($con, $product_query);
 
-      if($product_query_run)
-      {
-        move_uploaded_file($_FILES['image']['tmp_name'], $path.'/'.$filename);
-        redirect("./add-products.php", "Product added Successfully");
-      }
-      else
-      {
-        redirect("./add-products.php", "Something went Wrong");
-      }
+                             if($product_query_run)
+                             {
+                                 move_uploaded_file($_FILES['image']['tmp_name'], $path.'/'.$filename);
+                                 redirect("./add-products.php", "Product added Successfully");
+                             }
+                             else
+                             {
+                                 redirect("./add-products.php", "Something went Wrong");
+                             }
+                         }
+                         else
+                         {
+                            redirect("./add-products.php", "Weight is not vallid");
+                         }
+                    }
+                    else
+                    {
+                        redirect("./add-products.php", "Selling Price is not valid");
+                    }
+                }
+                else
+                {
+                    redirect("./add-products.php", "Original Price is not valid");
+                }
+            }
+            else
+            {
+                redirect("./add-products.php", "Quantity must be 1 or more.");
+            }
+        }
+        }
+    }
     }
     else
     {
@@ -272,6 +336,8 @@ elseif(isset($_POST['add_blog_btn']))
     $image_ext = pathinfo($image, PATHINFO_EXTENSION);
     $filename = time().'.'.$image_ext;
 
+    if ($name !== "" && $slug !== "" && $description !== "" && $image !== "")  
+    {
       $blog_query = "INSERT INTO blogs (name, description, status, image) 
       VALUES ('$name', '$description', '$status','$filename')";
 
@@ -287,6 +353,13 @@ elseif(isset($_POST['add_blog_btn']))
       {
         redirect("./add-blogs.php", "Something went Wrong");
       }
+    }
+    else
+    {
+        redirect("./add-blogs.php", "All Fields are Mandetory");
+
+    }
+
 }
 elseif(isset($_POST['update_blog_btn']))
 {
