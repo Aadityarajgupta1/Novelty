@@ -37,7 +37,7 @@ include('header.php');
                                             <td><?= $count ?></td>
                                             <td><?= $item['name'];?></td>
                                             <td><?= $item['tracking_no'];?></td>
-                                            <td><?= $item['total_price'];?></td>
+                                            <td>Rs.<?= $item['total_price'];?></td>
                                             <td><?= $item['created_at'];?></td>
                                             <td>
                                                 <a href="./view-order.php?t=<?=$item['tracking_no'];?>" class="btn btn-danger col-md-8">View Details</a>

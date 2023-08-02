@@ -162,7 +162,7 @@ include('../Dashboard/middleware/authenticate.php');
                 ?>
                 <a href="./Cart/Cart.php">View cart</a>
                 <a href="#">My Wishlist</a>
-                <a href="./Cart/my-orders.php">Track my order</a>
+                <a href="./my-orders.php">Track my order</a>
                 <a href="#">Help</a>
             </div>
 
