@@ -46,7 +46,7 @@ function getOrders()
     global $con;
     $userId = $_SESSION['auth_user']['user_id'];
 
-    $query = "SELECT * FROM orders WHERE user_id='$userId'";
+    $query = "SELECT * FROM orders WHERE user_id='$userId' ORDER BY id DESC";
     return $query_run = mysqli_query($con, $query);
 }
 
@@ -66,4 +66,19 @@ function checkTrackingNoValid($trackingNo)
     return mysqli_query($con, $query);
     
 }
+
+function validateFullName($name) {
+    $pattern = '/^[a-zA-Z ]+$/';
+    return preg_match($pattern, $name);
+}
+function validateCity($city) {
+    $pattern = '/^[a-zA-Z ]+$/';
+    return preg_match($pattern, $city);
+}
+
+function validateAddress($address) {
+    $pattern = '/^[a-zA-Z ]+$/';
+    return preg_match($pattern, $address);
+}
+?>
 ?>

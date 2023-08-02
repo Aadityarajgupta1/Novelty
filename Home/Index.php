@@ -220,7 +220,7 @@ require '../Dashboard/configer/dbcon.php';
     <div class="col">
       <h4>About</h4>
       <a href="#">About us</a>
-      <a href="#">Delivery Information</a>
+      <a href="../Cart/view-order.php">Delivery Information</a>
       <a href="#">Privacy policy</a>
       <a href="#">Terms & Conditions</a>
       <a href="../Contact/Contact.php">Contact us</a>

@@ -73,7 +73,7 @@ require 'header.php';
             </div>
         </div>
     </div>
-    <div class="col-xl-3 col-md-6 pr-4">
+    <div class="col-xl-3 col-md-6 mr-4">
         <div class="card bg-danger text-white mb-4 ">
             <div class="card-body">Total Products
             <?php

@@ -52,4 +52,6 @@ function validateFullName($name) {
     $pattern = '/^[a-zA-Z ]+$/';
     return preg_match($pattern, $name);
 }
+
+
 ?>

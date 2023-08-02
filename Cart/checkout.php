@@ -13,9 +13,14 @@ if (isset($_POST['placeOrderBtn'])) {
 
     if ($name == "" || $email == "" || $phone == "" || $address == "" || $city == "") {
         $_SESSION['message'] = "All Fields are Mandetory";
-        echo ('<script>alert("All data is required") </script>');
+        header('Location: ./checkout.php');
         // exit(0);
     } else {
+        if (!validateFullName($name) || !validateCity($city) || !validateAddress($address)) {
+            $_SESSION['message'] = "Please Enter Valid Information.";
+            header('Location: ./checkout.php');
+           
+        } else {
         $userId = $_SESSION['auth_user']['user_id'];
         $query = "SELECT c.id as cid, c.prod_id, c.prod_qty, p.id as pid, p.name, p.image, p.selling_price
         FROM carts c, products p WHERE c.prod_id=p.id AND c.user_id='$userId' ORDER BY c.id DESC";
@@ -60,6 +65,7 @@ if (isset($_POST['placeOrderBtn'])) {
             header('Location: ./my-orders.php');
             die();
         }
+    }
     }
 }
 ?>

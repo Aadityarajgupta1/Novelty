@@ -228,9 +228,15 @@ button.normal
     /* box-shadow: 0 10px 20px #dcdbdb55;*/
     color: #000;
 }
+
+.checkoutLayout .right
+{
+    margin-top: 0;
+}
+
 .checkoutLayout .right .return
 {
-    margin-top: 20px;
+    margin-top: 10px;
 }
 .checkoutLayout .right .return .row {
     display: flex;
