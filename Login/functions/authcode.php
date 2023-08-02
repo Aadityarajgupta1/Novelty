@@ -19,10 +19,19 @@ if(isset($_POST['reg_btn']))
         if (!validateFullName($name)) {
             $_SESSION['message'] = "Please Enter a Valid name.";
             header('Location: ../register.php');
-           
+
+            
         } else {
-        
-        
+            if(strlen($password) < 8)
+            {
+                $_SESSION['message'] = "Password must me in 8 words or more!";
+                header('Location: ../register.php');
+            }
+            else
+            {
+
+                if(preg_match('/^\d{10}$/', $phone ))
+                {
     //Check email if already exist
     $check_email_query = "SELECT email FROM users WHERE email='$email'";
     $check_email_query_run = mysqli_query($con, $check_email_query);
@@ -58,6 +67,14 @@ if(isset($_POST['reg_btn']))
         $_SESSION['message'] = "Passwords do not matched!";
         header('Location: ../register.php');
     }
+    }
+}
+else
+{
+    $_SESSION['message'] = "Phone number must have exactly 10 digits.";
+    header('Location: ../register.php');
+}
+
 }
 }
 }

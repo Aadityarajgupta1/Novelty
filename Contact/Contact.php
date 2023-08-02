@@ -142,8 +142,8 @@ session_start();
             </div>
 
             <div class="col install">
-                <h4>Install App</h4>
-                <p>From App Store or Google Play</p>
+                <h4>comming Soon</h4>
+                <p>Install from App Store or Google Play</p>
                 <div class="row">
                     <a href="#"><img src="./Images/app.jpg" alt=""></a>
                     <a href="#"><img src="./Images/play.jpg" alt=""></a>

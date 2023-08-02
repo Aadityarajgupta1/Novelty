@@ -151,8 +151,8 @@ require '../Dashboard/configer/dbcon.php';
             </div>
 
             <div class="col install">
-                <h4>Install App</h4>
-                <p>From App Store or Google Play</p>
+                <h4>Comming Soon</h4>
+                <p>Install From App Store or Google Play</p>
                 <div class="row">
                     <a href="#"><img src="./Images/app.jpg" alt=""></a>
                     <a href="#"><img src="./Images/play.jpg" alt=""></a>

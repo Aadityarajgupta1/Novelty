@@ -54,4 +54,9 @@ function validateFullName($name) {
 }
 
 
+function validateAddress($address) 
+{
+    $pattern = '/^[a-zA-Z ]+$/';
+    return preg_match($pattern, $address);
+}
 ?>

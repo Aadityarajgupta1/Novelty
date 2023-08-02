@@ -219,7 +219,7 @@ require '../Dashboard/configer/dbcon.php';
 
     <div class="col">
       <h4>About</h4>
-      <a href="#">About us</a>
+      <a href="../About/about_us.php">About us</a>
       <a href="../Cart/view-order.php">Delivery Information</a>
       <a href="#">Privacy policy</a>
       <a href="#">Terms & Conditions</a>
@@ -246,8 +246,8 @@ require '../Dashboard/configer/dbcon.php';
     </div>
 
     <div class="col install">
-      <h4>Install App</h4>
-      <p>From App Store or Google Play</p>
+      <h4>Comming Soon</h4>
+      <p>Install from App Store or Google Play</p>
       <div class="row">
         <a href="#"><img src="./Images/app.jpg" alt=""></a>
         <a href="#"><img src="./Images/play.jpg" alt=""></a>

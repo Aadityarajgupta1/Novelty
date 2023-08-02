@@ -57,7 +57,7 @@ if(isset($_SESSION['auth']))
                </div>
                <div class="form-group">
                   <label for="phone">Phone</label>
-                  <input type="number" id="phone" name="phone" min="9800000000" max="9999999999" required>
+                  <input type="number" id="phone" name="phone" required>
                </div>
                <div class="form-group">
                  <label for="email">Email</label>
