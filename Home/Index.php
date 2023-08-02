@@ -25,9 +25,9 @@ require '../Dashboard/configer/dbcon.php';
   <div id="banner" class="background">
 
     <div class="navbar">
-      <a href="./matri.php"><img src="./Images/logo.png" class="logo"></a>
+      <a href="./Index.php"><img src="./Images/logo.png" class="logo"></a>
       <ul>
-        <li><a class="active" href="./matri.php">HOME</a></li>
+        <li><a class="active" href="./Index.php">HOME</a></li>
         <li><a href="../Blog/Blog.php">BLOG</a></li>
         <li><a href="../Book/Book.php">BOOKS</a></li>
         <li><a href="../Contact/Contact.php">CONTACT</a></li>
@@ -220,7 +220,7 @@ require '../Dashboard/configer/dbcon.php';
     <div class="col">
       <h4>About</h4>
       <a href="../About/about_us.php">About us</a>
-      <a href="../Cart/view-order.php">Delivery Information</a>
+      <a href="../Cart/view-order.php?t=<?= $row['tracking_no']; ?>">Delivery Information</a>
       <a href="#">Privacy policy</a>
       <a href="#">Terms & Conditions</a>
       <a href="../Contact/Contact.php">Contact us</a>
