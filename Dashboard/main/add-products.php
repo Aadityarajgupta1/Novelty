@@ -16,7 +16,7 @@ include('header.php');
                       <div class="col-md-12">
                             <label class="mb-0" for="">Select Category</label>
                             <select name="category_id" class="form-select mb-2">
-                            <option selected></option>
+                            <option selected disabled> Select Category </option>
                                 <?php
                                 $categories = getAll("categories");
 
