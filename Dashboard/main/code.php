@@ -21,7 +21,7 @@ if(isset($_POST['add_category_btn']))
     $image_ext = pathinfo($image, PATHINFO_EXTENSION);
     $filename = time().'.'.$image_ext;
 
-    if ($name !== "" && $slug !== "" && $description !== "" && $image !== "")  
+    if ($name !== "" && $description !== "" && $image !== "")  
     {
         if (!validateFullName($name)) 
         {
@@ -30,20 +30,21 @@ if(isset($_POST['add_category_btn']))
         } 
         else
         {
-        $cate_query = "INSERT INTO categories (name, slug, description, meta_title, meta_description, meta_keywords, status, popular, image)
-        VALUES ('$name', '$slug', '$description', '$meta_title', '$meta_description', '$meta_keywords', '$status', '$popular', '$filename')";
+            $cate_query = "INSERT INTO categories (name, slug, description, meta_title, meta_description, meta_keywords, status, popular, image)
+            VALUES ('$name', '$slug', '$description', '$meta_title', '$meta_description', '$meta_keywords', '$status', '$popular', '$filename')";
 
-        $cate_query_run = mysqli_query($con, $cate_query);
+            $cate_query_run = mysqli_query($con, $cate_query);
 
-        if($cate_query_run)
-        {
-            move_uploaded_file($_FILES['image']['tmp_name'], $path.'/'.$filename);
-        }
-        else
-        {
-            redirect("add-category.php", "Something Went Wrong");
-        }
-            redirect("./add-blogs.php", "All Fields are Mandetory");
+            if($cate_query_run)
+            {
+                move_uploaded_file($_FILES['image']['tmp_name'], $path.'/'.$filename);
+            }
+            else
+            {
+                redirect("add-category.php", "Something Went Wrong");
+            }
+            redirect("add-category.php", "Category updated Successful");
+
         }
     }
     else
