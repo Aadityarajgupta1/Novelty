@@ -115,19 +115,20 @@ require 'header.php';
 
              if(mysqli_num_rows($query_run) > 0)
              {
-                $count=1;
+               
+                $totalRows = mysqli_num_rows($query_run);
                  foreach($query_run as $row)
                  {
                     ?>
                       <tr>
-                       <td><?= $count ?></td>
+                       <td><?= $totalRows?></td>
                        <td><?= $row['name']; ?></td>
                        <td><?= $row['email']; ?></td>
                        <td><?= $row['phone']; ?></td>
                        <td> <?= $row['role_as'] == 0? "User":"Admin" ?></td>
                       </tr>
                     <?php
-                    $count++;
+                   $totalRows--;
                  }
              }
              else
