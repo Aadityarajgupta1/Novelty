@@ -135,7 +135,7 @@ body
 
   #submit:disabled
   {
-    background-color: red;
+    background-color: rgb(83, 23, 23);
   }
 
   .switch-text {
