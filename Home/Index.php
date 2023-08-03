@@ -117,12 +117,12 @@ require '../Dashboard/configer/dbcon.php';
   <section id="product1" class="section-p1">
     <div class="title-text">
       <p>BOOKS</p>
-      <h1>Popular Books</h1>
+      <h1>New Arrivals</h1>
     </div>
     <div class="pro-container">
 
       <?php
-      $query = "SELECT * FROM products WHERE status='0' LIMIT 8";
+      $query = "SELECT * FROM products WHERE status='0' ORDER BY id DESC LIMIT 8 ";
       $query_run = mysqli_query($con, $query);
       $check_products = mysqli_num_rows($query_run) > 0;
 

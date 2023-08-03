@@ -4,8 +4,8 @@ require 'header.php';
 ?>
 <div class="row">
     <div class="col-xl-3 col-md-6">
-        <div class="card bg-primary text-white mb-4">
-            <div class="card-body">
+        <div class="card bg-gradient-dark text-white mb-4">
+            <div class="card-body text-white">
                 Total Users
                 <?php
                     $dash_user_query = "SELECT * FROM users";
@@ -13,7 +13,7 @@ require 'header.php';
 
                     if($user_total = mysqli_num_rows($dash_user_query_run))
                     {
-                        echo '<h4 class="mb-0">'.$user_total.'</h4>';
+                        echo '<h4 class="mb-0 text-white">'.$user_total.'</h4>';
                     }
                     else
                     {
@@ -23,12 +23,12 @@ require 'header.php';
             </div>
             <div class="card-footer d-flex align-items-center justify-content-between">
                 <a class="small text-white stretched-link" href="#">View Details</a>
-                <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                <div class="small text-white"><i class="fas fa-angle-right text-white"></i></div>
             </div>
         </div>
     </div>
     <div class="col-xl-3 col-md-6">
-        <div class="card bg-success text-white mb-4">
+        <div class="card bg-gradient-dark text-white mb-4">
             <div class="card-body">Total blogs
             <?php
                     $dash_blog_query = "SELECT * FROM blogs";
@@ -36,7 +36,7 @@ require 'header.php';
 
                     if($blog_total = mysqli_num_rows($dash_blog_query_run))
                     {
-                        echo '<h4 class="mb-0">'.$blog_total.'</h4>';
+                        echo '<h4 class="mb-0 text-white">'.$blog_total.'</h4>';
                     }
                     else
                     {
@@ -51,7 +51,7 @@ require 'header.php';
         </div>
     </div>
     <div class="col-xl-3 col-md-6">
-        <div class="card bg-info text-white mb-4">
+        <div class="card bg-gradient-dark text-white mb-4">
             <div class="card-body">Total Categories
             <?php
                     $dash_category_query = "SELECT * FROM categories";
@@ -59,7 +59,7 @@ require 'header.php';
 
                     if($category_total = mysqli_num_rows($dash_category_query_run))
                     {
-                        echo '<h4 class="mb-0">'.$category_total.'</h4>';
+                        echo '<h4 class="mb-0 text-white" >'.$category_total.'</h4>';
                     }
                     else
                     {
@@ -69,12 +69,12 @@ require 'header.php';
             </div>
             <div class="card-footer d-flex align-items-center justify-content-between">
                 <a class="small text-white stretched-link" href="./category.php">View Details</a>
-                <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                <div class="small text-white"><i class="fas fa-angle-right text-white"></i></div>
             </div>
         </div>
     </div>
     <div class="col-xl-3 col-md-6 mr-4">
-        <div class="card bg-danger text-white mb-4 ">
+        <div class="card bg-gradient-dark text-white mb-4 ">
             <div class="card-body">Total Products
             <?php
                     $dash_product_query = "SELECT * FROM products";
@@ -82,7 +82,7 @@ require 'header.php';
 
                     if($product_total = mysqli_num_rows($dash_product_query_run))
                     {
-                        echo '<h4 class="mb-0">'.$product_total.'</h4>';
+                        echo '<h4 class="mb-0 text-white">'.$product_total.'</h4>';
                     }
                     else
                     {
@@ -92,7 +92,7 @@ require 'header.php';
             </div>
             <div class="card-footer d-flex align-items-center justify-content-between">
                 <a class="small text-white stretched-link" href="./products.php">View Details</a>
-                <div class="small text-white"><i class="fas fa-angle-right"></i></div>
+                <div class="small text-white"><i class="fas fa-angle-right text-white"></i></div>
             </div>
         </div>
     </div>

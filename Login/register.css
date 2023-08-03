@@ -87,8 +87,8 @@ body
     max-width: 600px;
     margin: 25px auto;
     padding: 40px;
-    background-color:#fff;
-    border-radius: 5px;
+    background-color:#ffffff;
+    border-radius: 15px;
     box-shadow: 0 2px 5px rgba(94, 93, 93, 0.1);
   }
   
@@ -131,6 +131,11 @@ body
   
   .btn:hover {
     background-color: #363a3e;
+  }
+
+  #submit:disabled
+  {
+    background-color: red;
   }
 
   .switch-text {

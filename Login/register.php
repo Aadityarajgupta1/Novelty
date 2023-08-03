@@ -57,11 +57,13 @@ if(isset($_SESSION['auth']))
                </div>
                <div class="form-group">
                   <label for="phone">Phone</label>
-                  <input type="number" id="phone" name="phone" required>
+                  <input type="number" id="phone" name="phone" onInput="checkPhone()" required>
+                 <span id="check-phone"></span>
                </div>
                <div class="form-group">
                  <label for="email">Email</label>
-                 <input type="email" id="email" name="email" required>
+                 <input type="email" id="email" name="email" onInput="checkEmail()" required>
+                 <span id="check-email"></span>
                </div>
                <div class="form-group">
                   <label for="password">Password</label>
@@ -80,12 +82,59 @@ if(isset($_SESSION['auth']))
                   } ?>
                   
                   
-                  <button type="submit" name="reg_btn" class="btn">Register</button>
+                  <button type="submit" id="submit" name="reg_btn" class="btn">Register</button>
              </form>
              
                <p class="switch-text">Already have an account? <a href="../Login/login.php">Sign in</a></p>
             
           </div>
 
+          <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+          <script>
+            function checkEmail()
+            {
+               jQuery.ajax({
+               url: "./functions/checkAvailability.php",
+               data: 'email='+$("#email").val(),
+               type: "POST",
+               success:function(data){
+                $("#check-email").html(data);
+               },
+               error:function (){}
+               });
+            }
+
+            $(document).ready(function() {
+            // Attach a blur event listener to the email input
+            $("#email").blur(function() {
+            // Hide the email availability message
+            $("#check-email").html("");
+            });
+            });
+          </script>
+
+          <script>
+            function checkPhone()
+            {
+               jQuery.ajax({
+               url: "./functions/checkAvailability.php",
+               data: 'phone='+$("#phone").val(),
+               type: "POST",
+               success:function(data){
+                $("#check-phone").html(data);
+               },
+               error:function (){}
+               });
+            }
+
+            $(document).ready(function() {
+            // Attach a blur event listener to the email input
+            $("#phone").blur(function() {
+            // Hide the email availability message
+            $("#check-phone").html("");
+            });
+            });
+          </script>
+   
   </body>
 </html>

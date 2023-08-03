@@ -151,7 +151,7 @@ if (isset($_POST['placeOrderBtn'])) {
                     </div>
                     <div class="group">
                         <label for="email">Email</label>
-                        <input type="email" name="email" id="email" required>
+                        <input type="email" id="email" name="email" onInput="checkEmail()" required>
                     </div>
                     <div class="group">
                         <label for="address">Address</label>
@@ -187,7 +187,7 @@ if (isset($_POST['placeOrderBtn'])) {
     </div>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="../Book/sbook.js"></script>
+    <script src="../Book/sbook.js"></script> 
 </body>
 
 </html>
