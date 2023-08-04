@@ -13,6 +13,7 @@ require '../Dashboard/configer/dbcon.php';
 <head>
   <title>Novelty.com</title>
   <link rel="stylesheet" href="Style.css">
+  <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link href="https://fonts.googleapis.com/css? family=kaushan+script|popping&display=swap" rel="stylesheet" />
   <!-- <link href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" rel="stylesheet"/> -->
@@ -31,23 +32,57 @@ require '../Dashboard/configer/dbcon.php';
         <li><a href="../Blog/Blog.php">BLOG</a></li>
         <li><a href="../Book/Book.php">BOOKS</a></li>
         <li><a href="../Contact/Contact.php">CONTACT</a></li>
-        <?php
-        if (isset($_SESSION['auth'])) {
-        ?>
-          <li><a href="../Login/logout.php">Logout</a></li>
-          <li><a href="../Cart/Cart.php"><i class="fa fa-shopping-cart"></i></a></li>
-        <?php
-        } else {
-        ?>
-          <li><a href="../Login/login.php"><i class="fa fa-user"></i></a></li>
-        <?php
-        }
-
-        ?>
-
-
+        <li><a onclick="toggleMenu()"><i class="fa fa-user"></i></a>&nbsp;</li>
       </ul>
-
+      <!-- <img src="Images/profile.png" class="user-pic" onclick="toggleMenu()"> -->
+          <div class="sub-menu-wrap" id="subMenu">
+            <div class="sub-menu">
+              <div class="user-info">
+                <img src="./Images/user.png" alt="Image">
+                <h3>User name</h3>
+              </div>
+              <hr>
+              <a href="#" class="sub-menu-link">
+                <img src="Images/profile.png">
+                <p>Manage Profile</p>
+                <span><i class="bx bx-chevron-right data"></i></span>
+              </a>
+              <a href="../Cart/Cart.php" class="sub-menu-link">
+                <img src="Images/cart.png">
+                <p>Cart</p>
+                <span><i class="bx bx-chevron-right data"></i></span>
+              </a>
+              <a href="../Cart/my-orders.php" class="sub-menu-link">
+                <img src="Images/order.png">
+                <p>Track my Order</p>
+                <span><i class="bx bx-chevron-right data"></i></span>
+              </a>
+              <?php 
+                if(isset($_SESSION['auth']))
+                {
+                  ?>
+                  <a href="../Login/logout.php" class="sub-menu-link">
+                  <img src="Images/logout.png">
+                  <p>Logout</p>
+                  <span><i class="bx bx-chevron-right data"></i></span>
+                  </a>
+                  <?php
+                }
+                else
+                {
+                  ?>
+                  <a href="../Login/login.php" class="sub-menu-link">
+                  <img src="Images/login.png">
+                  <p>Login</p>
+                  <span><i class="bx bx-chevron-right data"></i></span>
+                  </a>
+                  <?php
+                }
+                ?>
+              
+            </div>
+          </div>
+  
     </div>
 
     <div class="content">
@@ -261,11 +296,23 @@ require '../Dashboard/configer/dbcon.php';
     </div>
   </footer>
 
+<script>
+    let subMenu = document.getElementById("subMenu");
 
+    function toggleMenu()
+    {
+      console.log("Function called");
+      subMenu.classList.toggle("open-menu");
+    }
+  </script>
 
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  
   <script src="../Book/sbook.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+  
+
 </body>
 
 </html>

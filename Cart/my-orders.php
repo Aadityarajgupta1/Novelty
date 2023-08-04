@@ -15,31 +15,65 @@ include('../Dashboard/middleware/authenticate.php');
     <link rel="stylesheet" href="./Cart.css">
 </head>
 <body>
-           <div class="navbar">
-               <a href="../Home/Index.php"><img src="./Images/logo.png" class="logo"></a>
-                <ul>
-                <li class="act"><a href="../Home/Index.php">HOME</a></li>
-                <li><a href="../Blog/Blog.php">BLOG</a></li>
-                <li><a href="../Book/Book.php">BOOKS</a></li>
-                <li><a href="../Contact/Contact.php">CONTACT</a></li>
-                <?php 
+<div class="navbar">
+      <a href="../Home/Index.php"><img src="./Images/logo.png" class="logo"></a>
+      <ul>
+        <li><a  href="../Home/Index.php">HOME</a></li>
+        <li><a href="../Blog/Blog.php">BLOG</a></li>
+        <li><a href="../Book/Book.php">BOOKS</a></li>
+        <li><a href="../Contact/Contact.php">CONTACT</a></li>
+        <li><a class="active" onclick="toggleMenu()"><i class="fa fa-user"></i></a>&nbsp;</li>
+      </ul>
+      <!-- <img src="Images/profile.png" class="user-pic" onclick="toggleMenu()"> -->
+          <div class="sub-menu-wrap" id="subMenu">
+            <div class="sub-menu">
+              <div class="user-info">
+                <img src="./Images/user.png" alt="Image">
+                <h3>User name</h3>
+              </div>
+              <hr>
+              <a href="#" class="sub-menu-link">
+                <img src="Images/profile.png">
+                <p>Manage Profile</p>
+                <span><i class="bx bx-chevron-right data"></i></span>
+              </a>
+              <a href="../Cart/Cart.php" class="sub-menu-link">
+                <img src="Images/cart.png">
+                <p>Cart</p>
+                <span><i class="bx bx-chevron-right data"></i></span>
+              </a>
+              <a href="../Cart/my-orders.php" class="sub-menu-link">
+                <img src="Images/order.png">
+                <p>Track my Order</p>
+                <span><i class="bx bx-chevron-right data"></i></span>
+              </a>
+              <?php 
                 if(isset($_SESSION['auth']))
                 {
                   ?>
-                  <li><a href="../Login/logout.php">Logout</a></li>
+                  <a href="../Login/logout.php" class="sub-menu-link">
+                  <img src="Images/logout.png">
+                  <p>Logout</p>
+                  <span><i class="bx bx-chevron-right data"></i></span>
+                  </a>
                   <?php
                 }
                 else
                 {
                   ?>
-                  <li><a href="../Login/login.php">Login</a></li>
+                  <a href="../Login/login.php" class="sub-menu-link">
+                  <img src="Images/login.png">
+                  <p>Login</p>
+                  <span><i class="bx bx-chevron-right data"></i></span>
+                  </a>
                   <?php
                 }
                 ?>
-                <li><a class="active" href="./Cart.php"><i class="fa fa-shopping-cart"></i></a></li>
-                </ul>
-
-           </div>
+              
+            </div>
+          </div>
+  
+    </div>
 
            <!-- Heading -->
            <section id="page-header">
@@ -181,6 +215,16 @@ include('../Dashboard/middleware/authenticate.php');
                 <p>2023, Aadi - Novelty Pvt. Ltd.</p>
             </div>
         </footer>
+
+        <script>
+    let subMenu = document.getElementById("subMenu");
+
+    function toggleMenu()
+    {
+      console.log("Function called");
+      subMenu.classList.toggle("open-menu");
+    }
+  </script>
 
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="../Book/sbook.js"></script>

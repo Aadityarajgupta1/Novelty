@@ -7,37 +7,71 @@ session_start();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Novelty</title>
+    <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css? family=kaushan+script|popping&display=swap" rel="stylesheet"/>
     <link rel="stylesheet" href="./Contact.css">
 </head>
 <body>
-           <div class="navbar">
-                <a href="../Home/Index.php"><img src="./Images/logo.png" class="logo"></a>
-                <ul>
-                <li class="act"><a href="../Home/Index.php">HOME</a></li>
-                <li><a href="../Blog/Blog.php">BLOG</a></li>
-                <li><a href="../Book/Book.php">BOOKS</a></li>
-                <li><a class="active" href="./Contact.php">CONTACT</a></li>
-                <?php 
+<div class="navbar">
+      <a href="../Home/Index.php"><img src="./Images/logo.png" class="logo"></a>
+      <ul>
+        <li><a  href="../Home/Index.php">HOME</a></li>
+        <li><a href="../Blog/Blog.php">BLOG</a></li>
+        <li><a href="../Book/Book.php">BOOKS</a></li>
+        <li><a class="active" href="../Contact/Contact.php">CONTACT</a></li>
+        <li><a onclick="toggleMenu()"><i class="fa fa-user"></i></a>&nbsp;</li>
+      </ul>
+      <!-- <img src="Images/profile.png" class="user-pic" onclick="toggleMenu()"> -->
+          <div class="sub-menu-wrap" id="subMenu">
+            <div class="sub-menu">
+              <div class="user-info">
+                <img src="./Images/user.png" alt="Image">
+                <h3>User name</h3>
+              </div>
+              <hr>
+              <a href="#" class="sub-menu-link">
+                <img src="Images/profile.png">
+                <p>Manage Profile</p>
+                <span><i class="bx bx-chevron-right data"></i></span>
+              </a>
+              <a href="../Cart/Cart.php" class="sub-menu-link">
+                <img src="Images/setting.png">
+                <p>Cart</p>
+                <span><i class="bx bx-chevron-right data"></i></span>
+              </a>
+              <a href="../Cart/my-orders.php" class="sub-menu-link">
+                <img src="Images/order.png">
+                <p>Track my Order</p>
+                <span><i class="bx bx-chevron-right data"></i></span>
+              </a>
+              <?php 
                 if(isset($_SESSION['auth']))
                 {
                   ?>
-                  <li><a href="../Login/logout.php">Logout</a></li>
-                  <li><a href="../Cart/Cart.php"><i class="fa fa-shopping-cart"></i></a></li>
-
+                  <a href="../Login/logout.php" class="sub-menu-link">
+                  <img src="Images/logout.png">
+                  <p>Logout</p>
+                  <span><i class="bx bx-chevron-right data"></i></span>
+                  </a>
                   <?php
                 }
                 else
                 {
                   ?>
-                  <li><a href="../Login/login.php"><i class="fa fa-user"></i></a></li>
+                  <a href="../Login/login.php" class="sub-menu-link">
+                  <img src="Images/login.png">
+                  <p>Login</p>
+                  <span><i class="bx bx-chevron-right data"></i></span>
+                  </a>
                   <?php
                 }
                 ?>
-                </ul>
-
-           </div>
+              
+            </div>
+          </div>
+  
+    </div>
 
            <!-- Heading -->
            <section id="page-header">
@@ -156,5 +190,15 @@ session_start();
                 <p>2023, Aadi - Novelty Pvt. Ltd.</p>
             </div>
         </footer>
+
+        <script>
+    let subMenu = document.getElementById("subMenu");
+
+    function toggleMenu()
+    {
+      console.log("Function called");
+      subMenu.classList.toggle("open-menu");
+    }
+  </script>
 </body>
 </html>

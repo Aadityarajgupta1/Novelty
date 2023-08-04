@@ -23,33 +23,65 @@ if(isset($_GET['product']))
           
       </head>
       <body>
-                 <div class="navbar" class="section-p3">
-                   <a href="../Home/Index.php"><img src="./Images/logo.png" class="logo"></a>
-                      <ul>
-                      <li class="act"><a href="../Home/Index.php">HOME</a></li>
-                      <li><a href="../Blog/Blog.php">BLOG</a></li>
-                      <li><a class="active" href="./Book.php">BOOKS</a></li>
-                      <li><a href="../Contact/Contact.php">CONTACT</a></li>
-                      <?php 
-                      if(isset($_SESSION['auth']))
-                      {
-                        ?>
-                        <li><a href="../Login/Logout.php">Logout</a></li>
-                        <li><a href="../Cart/Cart.php"><i class="fa fa-shopping-cart"></i></a></li>
-
-                        <?php
-                      }
-                      else
-                      {
-                        ?>
-                        <li><a href="../Login/login.php"><i class="fa fa-user"></i></a></li>
-                        <?php
-                      }
-                      ?>
-                      </ul>
-      
-                 </div>
-      
+      <div class="navbar">
+      <a href="../Home/Index.php"><img src="./Images/logo.png" class="logo"></a>
+      <ul>
+        <li><a  href="../Home/Index.php">HOME</a></li>
+        <li><a href="../Blog/Blog.php">BLOG</a></li>
+        <li><a class="active" href="../Book/Book.php">BOOKS</a></li>
+        <li><a href="../Contact/Contact.php">CONTACT</a></li>
+        <li><a  onclick="toggleMenu()"><i class="fa fa-user"></i></a>&nbsp;</li>
+      </ul>
+      <!-- <img src="Images/profile.png" class="user-pic" onclick="toggleMenu()"> -->
+          <div class="sub-menu-wrap" id="subMenu">
+            <div class="sub-menu">
+              <div class="user-info">
+                <img src="./Images/user.png" alt="Image">
+                <h3>User name</h3>
+              </div>
+              <hr>
+              <a href="#" class="sub-menu-link">
+                <img src="Images/profile.png">
+                <p>Manage Profile</p>
+                <span><i class="bx bx-chevron-right data"></i></span>
+              </a>
+              <a href="../Cart/Cart.php" class="sub-menu-link">
+                <img src="Images/cart.png">
+                <p>Cart</p>
+                <span><i class="bx bx-chevron-right data"></i></span>
+              </a>
+              <a href="../Cart/my-orders.php" class="sub-menu-link">
+                <img src="Images/order.png">
+                <p>Track my Order</p>
+                <span><i class="bx bx-chevron-right data"></i></span>
+              </a>
+              <?php 
+                if(isset($_SESSION['auth']))
+                {
+                  ?>
+                  <a href="../Login/logout.php" class="sub-menu-link">
+                  <img src="Images/logout.png">
+                  <p>Logout</p>
+                  <span><i class="bx bx-chevron-right data"></i></span>
+                  </a>
+                  <?php
+                }
+                else
+                {
+                  ?>
+                  <a href="../Login/login.php" class="sub-menu-link">
+                  <img src="Images/login.png">
+                  <p>Login</p>
+                  <span><i class="bx bx-chevron-right data"></i></span>
+                  </a>
+                  <?php
+                }
+                ?>
+              
+            </div>
+          </div>
+  
+    </div>
               
                  <!-- Single product -->
                  <section id="prodetails" class="section-p2  background  product_data">
@@ -276,6 +308,16 @@ else
     echo "Something went Wrong";
 }
 ?>
+
+        <script>
+        let subMenu = document.getElementById("subMenu");
+
+          function toggleMenu()
+           {
+          console.log("Function called");
+             subMenu.classList.toggle("open-menu");
+          }
+          </script>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="./sbook.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
