@@ -72,23 +72,23 @@ $data = mysqli_fetch_array($orderData);
              
 			<h3>Delivery Address</h3>
 			<form>
-				Full name
+				<b>Full name</b>
 				<input type="text" name="name" value="<?= $data['name'];?>" disabled>
-				Email
+				<b>Email</b>
 				<input type="text" name="email" value="<?= $data['email'];?>"disabled>
 
-				Address
+				<b>Address</b>
 				<input type="text" name="address" value="<?= $data['address'];?>"disabled>
 				
-				Phone
+				<b>Phone</b>
 				<input type="text" name="phone" value="<?= $data['phone'];?>"disabled>
 				<div class="zip">
 					<label class="f1">
-						        City
+						        <b>City</b>
                     <input type="text" name="city" value="<?= $data['city'];?>"disabled>
                     </label>
                     <label class="f2">
-                    Payment Mode
+                    <b>Payment Mode</b>
                     
                     <input type="text" name="" value="<?= $data['payment_mode'] ?>"disabled>
                     </label>
@@ -144,11 +144,11 @@ $data = mysqli_fetch_array($orderData);
                
                         <br><br>
                         
-                        Total Price
+                        <b>Total Price</b>
                         <input type="text" name="" value="Rs.<?= $data['total_price'] ?>" disabled>
                         <br>
                         
-						             Status
+						             <b>Status</b>
 						            <input type="text" name="status" 
                         value="<?php 
                            if($data['status'] == 0 )
@@ -165,14 +165,34 @@ $data = mysqli_fetch_array($orderData);
                            }
                         ?>"
                         disabled>
-					</label>
-                    
-                        
+					             </label>
                     </form>
 		</div>
 	</div>
+  <div class="btn-1">
+  <button data-modal-target="#modal"><i class="bx bx-user"></i></button>
+  <div class="modal" id="modal">
+    <div class="modal-header">
+      <div class="title"><p>Hello!! <b><?= $data['name'] ?></b></p></div>
+      <button data-close-button class="close-button">&times;</button>
+    </div>
+    <div class="modal-body">
+      <p>If you wish to cancel your order, please message us:</p>
+      <p><span>YOUR NAME < space >TRACKING_NUMBER < space > CANCEL</span></p>
+      <p>and send it to:  <span>9808389105 / 9840802525</span></p>
+
+      <p>We are here to help! Feel free to reach out.</p>
+    </div>
+  </div>
+  <div id="overlay"></div>
+</div>
+  
+
+
 
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="../Book/sbook.js"></script>
+        <script src="./view-order.js"></script>
+        
 </body>
 </html>

@@ -113,7 +113,7 @@ if(isset($_SESSION['auth']))
             });
           </script>
 
-          <script>
+          <!-- <script>
             function checkPhone()
             {
                jQuery.ajax({
@@ -134,7 +134,7 @@ if(isset($_SESSION['auth']))
             $("#check-phone").html("");
             });
             });
-          </script>
+          </script> -->
    
   </body>
 </html>

@@ -85,10 +85,10 @@ session_start();
                 <h4>Sign up for Newsletter</h4>
                 <p>Get E-mail updates about our latest shop and <span class="span2">special offers</span>.</p>
               </div>
-              <div class="form">
-                <input type="text" placeholder="Your Email Address">
-                <button class="normal">Sign up</button>
-              </div>
+              <form class="form" action="../Login/functions/newsLetter.php" method="POST">
+      <input type="email" name="email" placeholder="Your Email Address">
+      <button type="submit" name="news_btn" class="normal">Sign up</button>
+    </form>
              </section>
 
          <!-- Footer  -->
