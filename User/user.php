@@ -1,8 +1,19 @@
+<?php
+session_start();
+if(!isset($_SESSION['auth']))
+{
+  header('Location: ../Login/login.php');
+  exit();
+}
+else
+{
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Novelty</title>
+	<title>Account Settings UI Design</title>
 	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css? family=kaushan+script|popping&display=swap" rel="stylesheet"/>
@@ -26,7 +37,7 @@
                 <h3>User name</h3>
               </div>
               <hr>
-              <a href="./user.php" class="sub-menu-link">
+              <a href="#" class="sub-menu-link">
                 <img src="Images/profile.png">
                 <p>Manage Profile</p>
                 <span><i class="bx bx-chevron-right data"></i></span>
@@ -77,6 +88,8 @@
       subMenu.classList.toggle("open-menu");
     }
   </script>
-
+<?php 
+}
+?>
 </body>
 </html>

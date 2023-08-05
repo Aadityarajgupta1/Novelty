@@ -46,7 +46,6 @@ $(document).ready(function () {
               title: 'Wow',
               text: "Product Added to Cart!",
               icon: 'info',
-              showCancelButton: true,
               confirmButtonColor: '#3085d6',
               cancelButtonColor: '#d33',
               confirmButtonText: 'Okay!'
@@ -56,7 +55,6 @@ $(document).ready(function () {
               title: 'Exist',
               text: "Product Already on cart!",
               icon: 'info',
-              showCancelButton: true,
               confirmButtonColor: '#3085d6',
               cancelButtonColor: '#d33',
               confirmButtonText: 'Okay!'
@@ -66,7 +64,6 @@ $(document).ready(function () {
               title: 'Warning',
               text: "Login to Continue!",
               icon: 'Warning',
-              showCancelButton: true,
               confirmButtonColor: '#3085d6',
               cancelButtonColor: '#d33',
               confirmButtonText: 'Okay!'

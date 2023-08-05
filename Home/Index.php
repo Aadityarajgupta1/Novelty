@@ -246,7 +246,7 @@ require '../Dashboard/configer/dbcon.php';
       <p>Get E-mail updates about our latest shop and <span class="span2">special offers</span>.</p>
     </div>
     <form class="form" action="../Login/functions/newsLetter.php" method="POST">
-      <input type="email" name="email" placeholder="Your Email Address">
+      <input type="email" name="email" placeholder="Your Email Address" required>
       <button type="submit" name="news_btn" class="normal">Sign up</button>
     </form>
   </section>

@@ -109,7 +109,6 @@ if(isset($_SESSION['auth']))
 
     function toggleMenu()
     {
-      console.log("Function called");
       subMenu.classList.toggle("open-menu");
     }
   </script>
