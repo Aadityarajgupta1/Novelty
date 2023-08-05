@@ -1,27 +1,15 @@
-<?php
-session_start();
-if(isset($_SESSION['auth']))
-{
-  header('Location: ../Home/Index.php');
-  exit();
-}
-?>
-<html>
-     <head>
-        <title>Novelty.com</title>
-        <link rel="stylesheet" href="login.css">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-        <link href="https://fonts.googleapis.com/css? family=kaushan+script|popping&display=swap" rel="stylesheet"/>
-        <!-- <link href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" rel="stylesheet"/> -->
-       
-       
-     </head>
-
-   <body>
-
-       <div id="banner" class="background" >
-
-       <div class="navbar">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Novelty</title>
+	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://fonts.googleapis.com/css? family=kaushan+script|popping&display=swap" rel="stylesheet"/>
+	<link rel="stylesheet" type="text/css" href="user.css">
+</head>
+<body>
+<div class="navbar">
       <a href="../Home/Index.php"><img src="./Images/logo.png" class="logo"></a>
       <ul>
         <li><a  href="../Home/Index.php">HOME</a></li>
@@ -38,7 +26,7 @@ if(isset($_SESSION['auth']))
                 <h3>User name</h3>
               </div>
               <hr>
-              <a href="../User/user.php" class="sub-menu-link">
+              <a href="./user.php" class="sub-menu-link">
                 <img src="Images/profile.png">
                 <p>Manage Profile</p>
                 <span><i class="bx bx-chevron-right data"></i></span>
@@ -78,33 +66,9 @@ if(isset($_SESSION['auth']))
               
             </div>
           </div>
-  
-    </div>
+	
 
-           <div class="card-body">
-             <form action="functions/authcode.php" method="POST">
-               <h2>Sign In</h2>
-                 <div class="form-group">
-                <label for="username">Email</label>
-                <input type="text" id="username" name="email" required>
-                 </div>
-                 <div class="form-group">
-                   <label for="password">Password</label>
-                   <input type="password" id="password" name="password" required>
-                 </div>
-                 <?php if(isset($_SESSION['message'])){ ?>
-                  <p class="alert"></p> <?= $_SESSION['message']; ?>
-                  <?php
-                  unset($_SESSION['message']);
-                  } ?>
-                 <div class="form-group">
-                 <button type="submit" name="log_btn" class="btn">Login</button>
-              </form>
-              <p class="switch-text">Don't have an account? <a href="../Login/register.php">Sign up</a></p>
-           </div>
-
-
-           <script>
+    <script>
     let subMenu = document.getElementById("subMenu");
 
     function toggleMenu()
@@ -113,5 +77,6 @@ if(isset($_SESSION['auth']))
       subMenu.classList.toggle("open-menu");
     }
   </script>
+
 </body>
 </html>

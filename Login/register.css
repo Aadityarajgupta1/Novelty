@@ -33,7 +33,7 @@
     position: absolute;
     top: 100%;
     right: 0;
-    width: 320px;
+    width: 340px;
     max-height: 0px;
     overflow: hidden;
     transition: max-height 0.5s;
@@ -179,7 +179,6 @@
 .navbar li a:hover,
 .navbar li a.active
 {
-    color: #fefa01;
     transition: 0.3s;
 }
 

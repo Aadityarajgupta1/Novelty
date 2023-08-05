@@ -38,7 +38,7 @@ if(isset($_SESSION['auth']))
                 <h3>User name</h3>
               </div>
               <hr>
-              <a href="#" class="sub-menu-link">
+              <a href="../User/user.php" class="sub-menu-link">
                 <img src="Images/profile.png">
                 <p>Manage Profile</p>
                 <span><i class="bx bx-chevron-right data"></i></span>

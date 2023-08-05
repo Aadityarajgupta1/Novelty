@@ -26,6 +26,7 @@ require '../Dashboard/configer/dbcon.php';
   <div id="banner" class="background">
 
     <div class="navbar">
+      
       <a href="./Index.php"><img src="./Images/logo.png" class="logo"></a>
       <ul>
         <li><a class="active" href="./Index.php">HOME</a></li>
@@ -36,13 +37,30 @@ require '../Dashboard/configer/dbcon.php';
       </ul>
       <!-- <img src="Images/profile.png" class="user-pic" onclick="toggleMenu()"> -->
           <div class="sub-menu-wrap" id="subMenu">
+          <?php
+          if(isset($_SESSION['auth']))
+          {          
+          ?>
             <div class="sub-menu">
               <div class="user-info">
-                <img src="./Images/user.png" alt="Image">
-                <h3>User name</h3>
+                <img src="./Images/Novelty.png" alt="Image">
+                <h4><?= $_SESSION['name']; ?></h4>
               </div>
+              <?php
+              }
+              else
+              {
+                ?>
+                <div class="sub-menu">
+                <div class="user-info">
+                <img src="./Images/Novelty.png" alt="Image">
+                <h3>Hello Guest</h3>
+              </div>
+              <?php
+              }
+               ?>
               <hr>
-              <a href="#" class="sub-menu-link">
+              <a href="../User/user.php" class="sub-menu-link">
                 <img src="Images/profile.png">
                 <p>Manage Profile</p>
                 <span><i class="bx bx-chevron-right data"></i></span>
