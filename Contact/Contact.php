@@ -53,7 +53,7 @@ session_start();
                 <span><i class="bx bx-chevron-right data"></i></span>
               </a>
               <a href="../Cart/Cart.php" class="sub-menu-link">
-                <img src="Images/setting.png">
+                <img src="Images/cart.png">
                 <p>Cart</p>
                 <span><i class="bx bx-chevron-right data"></i></span>
               </a>

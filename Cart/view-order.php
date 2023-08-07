@@ -114,7 +114,8 @@ $data = mysqli_fetch_array($orderData);
           </div>
   
     </div>
-
+ 
+<div class="head-container">
 	    <div class="container">
 
 		   <div class="left">
@@ -218,7 +219,9 @@ $data = mysqli_fetch_array($orderData);
 					             </label>
                     </form>
 		</div>
+   
 	</div>
+ 
   <div class="btn-1">
   <button data-modal-target="#modal"><i class="bx bx-user"></i></button>
   <div class="modal" id="modal">
@@ -236,8 +239,7 @@ $data = mysqli_fetch_array($orderData);
   </div>
   <div id="overlay"></div>
 </div>
-  
-
+                          </div>
 <script>
     let subMenu = document.getElementById("subMenu");
 

@@ -190,3 +190,73 @@
     left: 2px;
     transition: 0.3s;
 }
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 105%;
+    height: 105%;
+    background-size: cover;
+    background-image: url(./Images/background.png); /* Adjust the image path */
+    filter: blur(8px); /* Apply the blur effect */
+    z-index: -1;
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 1rem 0;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 90vh;
+}
+
+.profile-card {
+    background-color: #fff;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin-top: 70px;
+    width: 700px;
+    height: 500px;
+}
+
+.profile-card img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    margin-bottom: 1rem;
+}
+
+.profile-card h2 {
+    margin: 0;
+    font-size: 24px;
+    color: #333;
+}
+
+.sub-text {
+    margin: 0.5rem 0;
+    color: #777;
+    font-size: 14px;
+}
+
+.edit-button {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.edit-button:hover {
+    background-color: #555;
+}

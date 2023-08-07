@@ -171,6 +171,7 @@ $cid = $category['id'];
                             <div class="pro">
                                <div class="des">
                                 <img src="../Dashboard/main/uploads/<?= $item['image']; ?>" alt="Product Image">
+                                <br><br>
                                 <span><?= $item['name']; ?></span>
                                 <h5><?= $item['author']; ?></h5>
                                 <div class="star">

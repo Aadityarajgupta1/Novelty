@@ -23,7 +23,6 @@ require '../Dashboard/configer/dbcon.php';
 
 <body>
 
-  <div id="banner" class="background">
 
     <div class="navbar">
       
@@ -102,13 +101,14 @@ require '../Dashboard/configer/dbcon.php';
           </div>
   
     </div>
+    
+    <div id="banner" class="background">
 
     <div class="content">
       <h1>WE ARE EVERYTHING YOU NEED</h1>
-      <p>We offers a diverse range of products across multiple categories, providing a one-stop-shop for all your shopping needs.<br> With a user-friendly interface and secure payment gateway, enjoy a seamless shopping experience<br> and excellent customer service.</p>
+      <p>We offers a diverse range of books across multiple categories, providing a one-stop-shop for all your Literary Desires.<br> With a user-friendly interface and secure payment gateway, enjoy a seamless shopping experience<br> and excellent customer service.</p>
 
     </div>
-
   </div>
 
   <section id="feature">

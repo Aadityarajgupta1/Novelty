@@ -105,12 +105,13 @@ if(isset($_GET['product']))
                   <div class="single-pro-image">
                   <h5><a href="./Book.php"><i class="bx bx-chevron-left data"></i> Back to Books</a></h5>
                       <div class="khatra">
-                      <img src="../Dashboard/main/uploads/<?= $product['image']; ?>" width="100%" alt="Single Image"> 
+                      <img src="../Dashboard/main/uploads/<?= $product['image']; ?>" width="100%" alt="Single Image"> <br>
                       </div> 
                       <h4>Genres: </h4>
                       <p><?= $product['meta_description'] ?></p>
                   </div>
                     <div class="single-pro-details">
+                      <div><h6><?= $product['meta_keywords'] ?></h6></div>
                       <h2><?= $product['name'] ?></h2>
                       <p class="h5">By: <?= $product['author'] ?></p>
                       
@@ -192,7 +193,8 @@ if(isset($_GET['product']))
             <div class="pro-container">
            
               <?php
-              $query = "SELECT * FROM products WHERE status='0' LIMIT 8";
+              $current_product_slug = $product['slug'];;
+              $query = "SELECT * FROM products WHERE status='0' ORDER BY id DESC LIMIT 8";
               $query_run = mysqli_query($con, $query);
               $check_products = mysqli_num_rows($query_run) > 0;
 
@@ -200,6 +202,8 @@ if(isset($_GET['product']))
               {
                   while($row = mysqli_fetch_array($query_run))
                   {
+                    if ($row['slug'] !== $current_product_slug)
+                    {
                     ?>
                     <a href="./sproduct.php?product=<?=$row['slug'];?>">
                     <div class="pro">
@@ -222,6 +226,7 @@ if(isset($_GET['product']))
                     <?php
                     
                   }
+                }
               }
               else
               {

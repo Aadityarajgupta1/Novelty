@@ -9,6 +9,7 @@ if(isset($_SESSION['auth']))
 <html>
      <head>
         <title>Novelty.com</title>
+        <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
         <link rel="stylesheet" href="register.css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <link href="https://fonts.googleapis.com/css? family=kaushan+script|popping&display=swap" rel="stylesheet"/>
@@ -34,8 +35,8 @@ if(isset($_SESSION['auth']))
           <div class="sub-menu-wrap" id="subMenu">
             <div class="sub-menu">
               <div class="user-info">
-                <img src="./Images/user.png" alt="Image">
-                <h3>User name</h3>
+                <img src="./Images/Novelty.png" alt="Image">
+                <h3>Hello Guest</h3>
               </div>
               <hr>
               <a href="../User/user.php" class="sub-menu-link">

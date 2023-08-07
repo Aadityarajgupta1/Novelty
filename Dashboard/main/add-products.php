@@ -70,7 +70,7 @@ include('header.php');
                         </div>
                         <div class="col-md-3">
                             <label class="mb-0" for="">Slug</label>
-                            <input type="text" name="slug" class="form-control mb-2">
+                            <input type="text" name="" class="form-control mb-2">
                         </div>   
                         <div class="col-md-3">
                             <label class="mb-0" for="">Status</label><br>
@@ -102,7 +102,7 @@ include('header.php');
                             <input type="text" name="meta_title" class="form-control mb-2">
                         </div>
                         <div class="col-md-12">
-                            <label class="mb-0" for="">Meta Description</label>
+                            <label class="mb-0" for="">Genres</label>
                             <textarea rows="3" name="meta_description" class="form-control mb-2"></textarea>
                         </div>
                         <div class="col-md-12">

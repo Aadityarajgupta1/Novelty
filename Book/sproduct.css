@@ -559,7 +559,7 @@ button.normal
     width: 140px;
     height: 83vh;
     /* background-color: #f4f5f1; */
-    border-radius: 8px;
+    border-radius: 50%;
 }
 
 #prodetails .single-pro-side .single-pro-sideBar1 .single-pro-sideBar:nth-child(1)
@@ -577,7 +577,7 @@ button.normal
 
 #prodetails .single-pro-side .single-pro-sideBar1 .single-pro-sideBar i
 {
-    border-radius: 50px;
+    border-radius: 50%;
     background-color: #d0d2d2;
     padding: 10px;
     margin-bottom: 5px;

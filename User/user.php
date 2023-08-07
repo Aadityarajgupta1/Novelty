@@ -1,5 +1,6 @@
 <?php
-session_start();
+require '../Dashboard/configer/dbcon.php';
+include('../Login/functions/userMyfunctions.php'); 
 if(!isset($_SESSION['auth']))
 {
   header('Location: ../Login/login.php');
@@ -13,7 +14,8 @@ else
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Account Settings UI Design</title>
+	<title>Novelty</title>
+  <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
 	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css? family=kaushan+script|popping&display=swap" rel="stylesheet"/>
@@ -31,11 +33,28 @@ else
       </ul>
       <!-- <img src="Images/profile.png" class="user-pic" onclick="toggleMenu()"> -->
           <div class="sub-menu-wrap" id="subMenu">
+           <?php
+          if(isset($_SESSION['auth']))
+          {          
+          ?>
             <div class="sub-menu">
               <div class="user-info">
-                <img src="./Images/user.png" alt="Image">
-                <h3>User name</h3>
+                <img src="./Images/Novelty.png" alt="Image">
+                <h4><?= $_SESSION['name']; ?></h4>
               </div>
+              <?php
+              }
+              else
+              {
+                ?>
+                <div class="sub-menu">
+                <div class="user-info">
+                <img src="./Images/Novelty.png" alt="Image">
+                <h3>Hello Guest</h3>
+              </div>
+              <?php
+              }
+               ?>
               <hr>
               <a href="#" class="sub-menu-link">
                 <img src="Images/profile.png">
@@ -77,8 +96,18 @@ else
               
             </div>
           </div>
-	
-
+              </div>
+              
+    <main>
+        <div class="profile-card">
+            <img src="./Images/user.png" alt="Profile Image">
+            <h2>Admin</h2>
+           
+            
+        </div>
+        
+    </main>
+   
     <script>
     let subMenu = document.getElementById("subMenu");
 

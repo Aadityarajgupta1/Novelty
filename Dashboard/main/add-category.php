@@ -19,7 +19,7 @@ include('header.php');
                         </div>
                         <div class="col-md-6">
                             <label for="">Slug</label>
-                            <input type="text" name="slug" class="form-control">
+                            <input type="text" name="" class="form-control">
                         </div>
                         <div class="col-md-12">
                             <label for="">Description</label>

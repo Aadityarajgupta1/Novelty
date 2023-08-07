@@ -1,6 +1,8 @@
 <?php
 include('../Login/functions/userMyfunctions.php');
 include('../Dashboard/middleware/authenticate.php');
+
+    
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -10,7 +12,6 @@ include('../Dashboard/middleware/authenticate.php');
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Novelty</title>
   <link href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css' rel='stylesheet'>
-
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link href="https://fonts.googleapis.com/css? family=kaushan+script|popping&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="./Cart.css">
@@ -132,8 +133,9 @@ include('../Dashboard/middleware/authenticate.php');
             <tbody class="product_data">
               <tr>
                 <td><?= $count ?></td>
-                <td><a href="../Book/sproduct.php?product=<?= $citem['name'] ?>"><?= $citem['name'] ?></a></td>
-                <td><a href="../Book/sproduct.php?product=<?= $citem['name'] ?>"><img src="../Dashboard/main/uploads/<?= $citem['image'] ?>" alt="Image"></a></td>
+                <!-- ../Book/sproduct.php?product=<?= $citem['slug'] ?> -->
+                <td><a href=""><?= $citem['name'] ?></a></td>
+                <td><a href=""><img src="../Dashboard/main/uploads/<?= $citem['image'] ?>" alt="Image"></a></td>
                 <td>Rs.<?= $citem['selling_price'] ?>
                   <input type="hidden" class="prodId" value="<?= $citem['prod_id'] ?>">
                 </td>

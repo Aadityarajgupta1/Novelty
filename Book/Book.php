@@ -150,7 +150,7 @@ include('../Login/functions/userMyfunctions.php');
                     <div class="pro">
                       
                     <img src="../Dashboard/main/uploads/<?= $row['image']; ?>" alt="All Images">
-                     
+                     <br>
                     <div class="des">
                         <span><?php echo $row['name']; ?></span>
                         <h5><?php echo $row['author']; ?></h5>

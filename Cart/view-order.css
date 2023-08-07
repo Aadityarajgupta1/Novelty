@@ -255,15 +255,24 @@ button.normal
     transition: 0.3s;
 }
 
-body{
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 110%;
+    height: 105%;
     background-size: cover;
-	background-image: url(./Images/background.png);
-	font-size: 1.2rem;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-
+    background-image: url(./Images/background.png); /* Adjust the image path */
+    filter: blur(8px); /* Apply the blur effect */
+    z-index: -1;
 }
+
+.head-container
+{
+    display: flex;
+}
+
 .container {
     background: rgb(255, 255, 255);
     width: 65%;
@@ -274,8 +283,7 @@ body{
     padding: 0.3rem 1.5rem;
     border-radius: 12px;
     margin-top: 90px;
-    margin-bottom: 10px;
-    position: fixed;
+    margin-left: 290px;
 }
 
 .left{
@@ -497,8 +505,8 @@ form input[type="text"]{
 }
 
 .btn-1 {
-    margin-top: 650px;
-    margin-left: 1390px;
+    margin-left: 175px;
+    margin-top: 667px;
 }
 
 .btn-1 button {
@@ -517,3 +525,4 @@ form input[type="text"]{
 .btn-1 button:hover {
     transform: scale(1.1);
 }
+
