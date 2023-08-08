@@ -176,7 +176,13 @@ if (isset($_POST['placeOrderBtn'])) {
                     $totalPrice = 0;
                     foreach ($items as $citem) {
                     ?>
-                        <a href="../Book/sproduct.php?product=<?= $citem['name'] ?>">
+                    <?php
+                require '../Dashboard/configer/dbcon.php';
+                $product = "Select * from products where id =".$citem['prod_id'];
+                $result = mysqli_query($con, $product);
+                $row = mysqli_fetch_assoc($result);
+                ?>
+                        <a href="../Book/sproduct.php?product=<?= $row['slug'] ?>">
                             <div class="item">
                                 <img src="../Dashboard/main/uploads/<?= $citem['image'] ?>">
                                 <div class="info">

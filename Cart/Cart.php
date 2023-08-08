@@ -129,7 +129,13 @@ include('../Dashboard/middleware/authenticate.php');
               <tr>
                 <td><?= $count ?></td>
                 <!-- ../Book/sproduct.php?product=<?= $citem['slug'] ?> -->
-                <td><a href=""><?= $citem['name'] ?></a></td>
+                <?php
+                require '../Dashboard/configer/dbcon.php';
+                $product = "Select * from products where id =".$citem['prod_id'];
+                $result = mysqli_query($con, $product);
+                $row = mysqli_fetch_assoc($result);
+                ?>
+                <td><a href="../Book/sproduct.php?product=<?= $row['slug']; ?>"><?= $citem['name'] ?></a></td>
                 <td><a href=""><img src="../Dashboard/main/uploads/<?= $citem['image'] ?>" alt="Image"></a></td>
                 <td>Rs.<?= $citem['selling_price'] ?>
                   <input type="hidden" class="prodId" value="<?= $citem['prod_id'] ?>">
