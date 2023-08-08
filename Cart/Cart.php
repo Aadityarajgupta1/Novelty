@@ -1,8 +1,6 @@
 <?php
 include('../Login/functions/userMyfunctions.php');
 include('../Dashboard/middleware/authenticate.php');
-
-    
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -117,8 +115,6 @@ include('../Dashboard/middleware/authenticate.php');
             <td>Remove</td>
           </tr>
         </thead>
-
-
         <?php $items = getCartItems();
         $count = 1;
         $totalPrice = 0;
