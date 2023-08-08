@@ -27,7 +27,6 @@ include('../Dashboard/middleware/authenticate.php');
         <li><a href="../Contact/Contact.php">CONTACT</a></li>
         <li><a class="active" onclick="toggleMenu()"><i class="fa fa-user"></i></a>&nbsp;</li>
       </ul>
-      <!-- <img src="Images/profile.png" class="user-pic" onclick="toggleMenu()"> -->
           <div class="sub-menu-wrap" id="subMenu">
           <?php
           if(isset($_SESSION['auth']))

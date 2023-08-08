@@ -97,16 +97,47 @@ else
             </div>
           </div>
               </div>
-              
-    <main>
-        <div class="profile-card">
-            <img src="./Images/user.png" alt="Profile Image">
-            <h2>Admin</h2>
+              <div class="container">
+        <div class="checkoutLayout">
            
-            
+
+
+            <div class="right">
+                <h3>Manage Your Profile</h3>
+                <form action="../Login/functions/authcode.php" method="POST">
+                    <div class="group">
+                        <label for="name">Full Name</label>
+                        <input type="text" name="name" id="name" value="" required>
+                    </div>
+                    <div class="group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" onInput="checkEmail()" required>
+                    </div>
+                    <div class="group">
+                        <label for="address">Address</label>
+                        <input type="text" name="address" id="address">
+                    </div>
+                    <div class="sahii">
+                        <div class="group">
+                            <label for="phone">Phone</label>
+                            <input type="number" name="phone" id="phone" required>
+                        </div>
+
+                        <div class="group">
+                            <label for="city">City</label>
+                            <input type="text" name="city" id="city" required>
+                        </div>
+                    </div>
+                    <div class="return">
+                        </div>
+                        <button type="submit" class="buttonCheckout" name="placeOrderBtn">Update</button>
+                    </div>
+                </form>
+            </div>
         </div>
-        
-    </main>
+    </div>
+
+
    
     <script>
     let subMenu = document.getElementById("subMenu");

@@ -203,60 +203,128 @@ body::before {
     z-index: -1;
 }
 
-header {
-    background-color: #333;
-    color: #fff;
-    text-align: center;
-    padding: 1rem 0;
-}
 
-main {
-    display: flex;
-    justify-content: center;
+.container {
+    margin-top: 110px;
+    margin-left: 420px;
     align-items: center;
-    min-height: 90vh;
+    transition: transform 1s;
 }
 
-.profile-card {
+.checkoutLayout {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 50px;
+    padding: 20px;
+    margin-top: 80px;
+}
+
+.checkoutLayout .right {
     background-color: #fff;
-    padding: 2rem;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-right: 75px;
+    border-radius: 20px;
+    padding: 40px;
+    color: #000;
+    box-shadow: 0 10px 20px #94949455;
+}
+
+.checkoutLayout .right h3 {
+    margin-bottom: 15px;
+    font-size: 20px;
     text-align: center;
-    margin-top: 70px;
-    width: 700px;
-    height: 500px;
 }
 
-.profile-card img {
-    width: 120px;
-    height: 120px;
-    border-radius: 50%;
-    margin-bottom: 1rem;
+.checkoutLayout .right input
+{
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 
-.profile-card h2 {
-    margin: 0;
-    font-size: 24px;
-    color: #333;
+.checkoutLayout .right .return {
+    border-top: 1px solid #d7d8dc;
 }
 
-.sub-text {
-    margin: 0.5rem 0;
-    color: #777;
-    font-size: 14px;
+.checkoutLayout form h1,
+.checkoutLayout form .group:nth-child(-n+3) {
+    grid-column-start: 1;
+    grid-column-end: 3;
 }
 
-.edit-button {
-    background-color: #333;
-    color: #fff;
+.checkoutLayout form input,
+.checkoutLayout form select {
+    width: 100%;
+    padding: 15px 20px;
+    box-sizing: border-box;
+    border-radius: 13px;
+    margin-top: 5px;
+    margin-bottom: 10px;
     border: none;
-    padding: 0.5rem 1rem;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s;
+    border: 1px solid #c9c8c8;
+    background-color: #ffffff;
+    /* box-shadow: 0 10px 20px #dcdbdb55;*/
+    color: #000;
 }
 
-.edit-button:hover {
-    background-color: #555;
+.checkoutLayout .right
+{
+    margin-top: 0;
 }
+
+.checkoutLayout .right .return
+{
+    margin-top: 10px;
+}
+.checkoutLayout .right .return .row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 10px;
+}
+
+.checkoutLayout .right .sahii
+{
+    display: flex;
+    flex: 1;
+    padding: 10px 0;
+}
+
+.checkoutLayout .right .sahii .group:nth-child(1)
+{
+    position: sticky;
+    
+}
+.checkoutLayout .right .sahii .group:nth-child(1) input
+{
+    width: 275px;
+}
+.checkoutLayout .right .sahii .group:nth-child(2)
+{
+    margin-left: 30px;
+}
+.checkoutLayout .right .sahii .group:nth-child(2) input
+{
+    width: 275px;
+}
+
+.checkoutLayout .right .return .row div:nth-child(2) {
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.buttonCheckout {
+    width: 100%;
+    height: 40px;
+    border: none;
+    border-radius: 20px;
+    background-color: #b7aa7c;
+    margin-top: 30px;
+    font-weight: bold;
+    color: #fff;
+    cursor: pointer;
+    transition: all ease 0.5s;
+}
+
+.buttonCheckout:hover {
+    transform: scale(1.02);
+}
+
