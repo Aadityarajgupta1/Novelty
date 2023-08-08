@@ -124,4 +124,65 @@ if(isset($_POST['log_btn']))
     }
 }
 
+if(isset($_POST['updateUserBtn']))
+{   
+    $user_id = $_SESSION['auth_user']['user_id'];
+    $name = mysqli_real_escape_string($con, $_POST['name']);
+    $phone = mysqli_real_escape_string($con, $_POST['phone']);
+    $email = mysqli_real_escape_string($con, $_POST['email']);
+    $address = mysqli_real_escape_string($con, $_POST['address']);
+    $city = mysqli_real_escape_string($con, $_POST['city']);
+
+    if ($name == "" || $email == "" || $phone == "")  {
+        $_SESSION['message'] = "All Fields are Mandetory";
+        header('Location: ../../User/user.php');
+        // exit(0);
+    } else {
+
+        if (!validateFullName($name)) {
+            $_SESSION['message'] = "Please Enter a Valid name.";
+            header('Location: ../../User/user.php');
+        } else 
+            {
+
+                if(preg_match('/^\d{10}$/', $phone ))
+                {
+                //Check email if already exist
+                $check_email_query = "SELECT email FROM users WHERE email='$email'";
+                $check_email_query_run = mysqli_query($con, $check_email_query);
+
+
+                if(mysqli_num_rows($check_email_query_run) > 0)
+                {
+                  $_SESSION['message'] = "Email Already Registered";
+                  header('Location: ../../User/user.php');
+                }
+                else
+                {
+                     //Insert user data
+                      $insert_query = "UPDATE users SET name='$name', email='$email', address='$address', phone='$phone', city='$city' WHERE id='$user_id'";
+                      $insert_query_run = mysqli_query($con, $insert_query);
+
+                     if($insert_query_run)
+                     {
+                          $_SESSION['message'] = "Profile Updated successfully";
+                          header('Location: ../../User/user.php');
+                     }
+                     else
+                     {
+                          $_SESSION['message'] = "Something went wrong";
+                          header('Location: ../../User/user.php');
+                     }
+
+                }
+            }
+            else
+            {
+                $_SESSION['message'] = "Phone number must have exactly 10 digits.";
+                header('Location: ../../User/user.php');
+            }
+
+        }
+     }
+}
 ?>

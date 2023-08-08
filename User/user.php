@@ -31,7 +31,6 @@ else
         <li><a href="../Contact/Contact.php">CONTACT</a></li>
         <li><a class="active" onclick="toggleMenu()"><i class="fa fa-user"></i></a>&nbsp;</li>
       </ul>
-      <!-- <img src="Images/profile.png" class="user-pic" onclick="toggleMenu()"> -->
           <div class="sub-menu-wrap" id="subMenu">
            <?php
           if(isset($_SESSION['auth']))
@@ -106,11 +105,11 @@ else
             <div class="right">
                 <h3>Manage Your Profile</h3>
                 <?php
- require '../Dashboard/configer/dbcon.php';
- $product = "Select * from users where id =".$_SESSION['id'];
- $result = mysqli_query($con, $product);
- $row = mysqli_fetch_assoc($result);
-?>
+            require '../Dashboard/configer/dbcon.php';
+            $product = "Select * from users where id =".$_SESSION['id'];
+            $result = mysqli_query($con, $product);
+             $row = mysqli_fetch_assoc($result);
+             ?>
                 <form action="../Login/functions/authcode.php" method="POST">
                     <div class="group">
                         <label for="name">Full Name</label>
@@ -122,7 +121,7 @@ else
                     </div>
                     <div class="group">
                         <label for="address">Address</label>
-                        <input type="text" name="address"  id="address">
+                        <input type="text" name="address" value="<?php echo $row['address']; ?>" id="address"required>
                     </div>
                     <div class="sahii">
                         <div class="group">
@@ -132,12 +131,12 @@ else
 
                         <div class="group">
                             <label for="city">City</label>
-                            <input type="text" name="city" id="city" required>
+                            <input type="text" name="city" value="<?php echo $row['city']; ?>" id="city" required>
                         </div>
                     </div>
                     <div class="return">
                         </div>
-                        <button type="submit" class="buttonCheckout" name="placeOrderBtn">Update</button>
+                        <button type="submit" class="buttonCheckout" name="updateUserBtn">Update</button>
                     </div>
                 </form>
             </div>

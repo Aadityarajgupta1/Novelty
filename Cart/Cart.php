@@ -136,7 +136,7 @@ include('../Dashboard/middleware/authenticate.php');
                 $row = mysqli_fetch_assoc($result);
                 ?>
                 <td><a href="../Book/sproduct.php?product=<?= $row['slug']; ?>"><?= $citem['name'] ?></a></td>
-                <td><a href=""><img src="../Dashboard/main/uploads/<?= $citem['image'] ?>" alt="Image"></a></td>
+                <td><a href="../Book/sproduct.php?product=<?= $row['slug']; ?>"><img src="../Dashboard/main/uploads/<?= $citem['image'] ?>" alt="Image"></a></td>
                 <td>Rs.<?= $citem['selling_price'] ?>
                   <input type="hidden" class="prodId" value="<?= $citem['prod_id'] ?>">
                 </td>
