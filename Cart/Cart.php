@@ -152,12 +152,7 @@ include('../Dashboard/middleware/authenticate.php');
           }
 
           ?>
-
-
-
       </table>
-
-
     </section>
 
     <section id="cart-add" class="section-p1">
@@ -193,7 +188,6 @@ include('../Dashboard/middleware/authenticate.php');
 
         <?php
         }
-
         ?>
         </table>
 

@@ -15,7 +15,8 @@ if (isset($_POST['placeOrderBtn'])) {
         $_SESSION['message'] = "All Fields are Mandetory";
         header('Location: ./checkout.php');
         // exit(0);
-    } else {
+    } 
+    else {
         if (!validateFullName($name) || !validateCity($city) || !validateAddress($address)) {
             $_SESSION['message'] = "Please Enter Valid Information.";
             header('Location: ./checkout.php');
