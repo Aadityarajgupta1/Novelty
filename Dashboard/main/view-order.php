@@ -38,31 +38,31 @@ $data = mysqli_fetch_array($orderData);
 </head>
 <body>
 
-	    <div class="container">
+	<div class="container">
 
-		   <div class="left">
+		<div class="left">
            <a href="./orders.php" alt=""><i class="bx bx-chevron-left data"></i>Back to order</a>
              
 			<h3>Delivery Address</h3>
 			<form>
-				Full name
+				<b>Full name</b>
 				<input type="text" name="name" value="<?= $data['name'];?>" disabled>
-				Email
+				<b>Email</b>
 				<input type="text" name="email" value="<?= $data['email'];?>"disabled>
 
-				Address
+				<b>Address</b>
 				<input type="text" name="address" value="<?= $data['address'];?>"disabled>
 				
-				Phone
+				<b>Phone</b>
 				<input type="text" name="phone" value="<?= $data['phone'];?>"disabled>
 				<div id="zip">
 					<label>
-						City
+						<b>City</b>
                         <input type="text" name="city" value="<?= $data['city'];?>"disabled>
 
 					</label>
 						<label class="f2">
-                        Payment Mode
+                       <b>Payment Mode</b>
                         <input type="text" name="" value="<?= $data['payment_mode'] ?>"disabled>
 						
 					</label>
@@ -117,10 +117,10 @@ $data = mysqli_fetch_array($orderData);
                
                         <br><br>
                         
-                        Total Price
+                        <b>Total Price</b>
                         <input type="text" name="" value="Rs.<?= $data['total_price'] ?>" disabled>
                         <br>
-                        Status
+                        <b>Status</b>
                         
                             <input type="hidden" name="tracking_no" value="<?= $data['tracking_no'] ?>">
                         <select name="order_status">
@@ -131,14 +131,9 @@ $data = mysqli_fetch_array($orderData);
 
                         <button type="submit" class="normal" name="update_order_btn">Update</button>
                         
-
-                        
-                    
-                        
                     </form>
 		</div>
 	</div>
-
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="../Book/sbook.js"></script>
 </body>

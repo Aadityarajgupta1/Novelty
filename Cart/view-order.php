@@ -38,33 +38,84 @@ $data = mysqli_fetch_array($orderData);
     <link rel="stylesheet" href="./view-order.css">
 </head>
 <body>
-           <div class="navbar">
-               <a href="../Home/Index.php"><img src="./Images/logo.png" class="logo"></a>
-                <ul>
-                <li class="act"><a href="../Home/Index.php">HOME</a></li>
-                <li><a href="../Blog/Blog.php">BLOG</a></li>
-                <li><a href="../Book/Book.php">BOOKS</a></li>
-                <li><a href="../Contact/Contact.php">CONTACT</a></li>
-                <?php 
+<div class="navbar">
+      <a href="../Home/Index.php"><img src="./Images/logo.png" class="logo"></a>
+      <ul>
+        <li><a  href="../Home/Index.php">HOME</a></li>
+        <li><a href="../Blog/Blog.php">BLOG</a></li>
+        <li><a href="../Book/Book.php">BOOKS</a></li>
+        <li><a href="../Contact/Contact.php">CONTACT</a></li>
+        <li><a class="active" onclick="toggleMenu()"><i class="fa fa-user"></i></a>&nbsp;</li>
+      </ul>
+      <!-- <img src="Images/profile.png" class="user-pic" onclick="toggleMenu()"> -->
+          <div class="sub-menu-wrap" id="subMenu">
+          <?php
+          if(isset($_SESSION['auth']))
+          {          
+          ?>
+            <div class="sub-menu">
+              <div class="user-info">
+                <img src="./Images/Novelty.png" alt="Image">
+                <h4><?= $_SESSION['name']; ?></h4>
+              </div>
+              <?php
+              }
+              else
+              {
+                ?>
+                <div class="sub-menu">
+                <div class="user-info">
+                <img src="./Images/Novelty.png" alt="Image">
+                <h3>Hello Guest</h3>
+              </div>
+              <?php
+              }
+               ?>
+              <hr>
+              <a href="../User/user.php" class="sub-menu-link">
+                <img src="Images/profile.png">
+                <p>Manage Profile</p>
+                <span><i class="bx bx-chevron-right data"></i></span>
+              </a>
+              <a href="../Cart/Cart.php" class="sub-menu-link">
+                <img src="Images/cart.png">
+                <p>Cart</p>
+                <span><i class="bx bx-chevron-right data"></i></span>
+              </a>
+              <a href="../Cart/my-orders.php" class="sub-menu-link">
+                <img src="Images/order.png">
+                <p>Track my Order</p>
+                <span><i class="bx bx-chevron-right data"></i></span>
+              </a>
+              <?php 
                 if(isset($_SESSION['auth']))
                 {
                   ?>
-                  <li><a href="../Login/logout.php">Logout</a></li>
+                  <a href="../Login/logout.php" class="sub-menu-link">
+                  <img src="Images/logout.png">
+                  <p>Logout</p>
+                  <span><i class="bx bx-chevron-right data"></i></span>
+                  </a>
                   <?php
                 }
                 else
                 {
                   ?>
-                  <li><a href="../Login/login.php">Login</a></li>
+                  <a href="../Login/login.php" class="sub-menu-link">
+                  <img src="Images/login.png">
+                  <p>Login</p>
+                  <span><i class="bx bx-chevron-right data"></i></span>
+                  </a>
                   <?php
                 }
                 ?>
-                <li><a class="active" href="./Cart.php"><i class="fa fa-shopping-cart"></i></a></li>
-                </ul>
-
-           </div>
-
-
+              
+            </div>
+          </div>
+  
+    </div>
+ 
+<div class="head-container">
 	    <div class="container">
 
 		   <div class="left">
@@ -72,23 +123,23 @@ $data = mysqli_fetch_array($orderData);
              
 			<h3>Delivery Address</h3>
 			<form>
-				Full name
+				<b>Full name</b>
 				<input type="text" name="name" value="<?= $data['name'];?>" disabled>
-				Email
+				<b>Email</b>
 				<input type="text" name="email" value="<?= $data['email'];?>"disabled>
 
-				Address
+				<b>Address</b>
 				<input type="text" name="address" value="<?= $data['address'];?>"disabled>
 				
-				Phone
+				<b>Phone</b>
 				<input type="text" name="phone" value="<?= $data['phone'];?>"disabled>
 				<div class="zip">
 					<label class="f1">
-						        City
+						        <b>City</b>
                     <input type="text" name="city" value="<?= $data['city'];?>"disabled>
                     </label>
                     <label class="f2">
-                    Payment Mode
+                    <b>Payment Mode</b>
                     
                     <input type="text" name="" value="<?= $data['payment_mode'] ?>"disabled>
                     </label>
@@ -144,11 +195,11 @@ $data = mysqli_fetch_array($orderData);
                
                         <br><br>
                         
-                        Total Price
+                        <b>Total Price</b>
                         <input type="text" name="" value="Rs.<?= $data['total_price'] ?>" disabled>
                         <br>
                         
-						             Status
+						             <b>Status</b>
 						            <input type="text" name="status" 
                         value="<?php 
                            if($data['status'] == 0 )
@@ -165,14 +216,44 @@ $data = mysqli_fetch_array($orderData);
                            }
                         ?>"
                         disabled>
-					</label>
-                    
-                        
+					             </label>
                     </form>
 		</div>
+   
 	</div>
+ 
+  <div class="btn-1">
+  <button data-modal-target="#modal"><i class="bx bx-user"></i></button>
+  <div class="modal" id="modal">
+    <div class="modal-header">
+      <div class="title"><p>Hello!! <b><?= $_SESSION['name'] ?></b></p></div>
+      <button data-close-button class="close-button">&times;</button>
+    </div>
+    <div class="modal-body">
+      <p>If you wish to cancel your order, please message us:</p>
+      <p><span>NAME < space > TRACKING_NUMBER  < space > CANCEL</span></p>
+      <p>and send it to:  <span>9808389105 / 9840802525</span></p>
+
+      <p>We are here to help! Feel free to reach out.</p>
+    </div>
+  </div>
+  <div id="overlay"></div>
+</div>
+                          </div>
+<script>
+    let subMenu = document.getElementById("subMenu");
+
+    function toggleMenu()
+    {
+      console.log("Function called");
+      subMenu.classList.toggle("open-menu");
+    }
+  </script>
+
 
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="../Book/sbook.js"></script>
+        <script src="./view-order.js"></script>
+        
 </body>
 </html>

@@ -84,29 +84,82 @@ if (isset($_POST['placeOrderBtn'])) {
 </head>
 
 <body>
-    <div class="navbar">
-        <a href="../Home/Index.php"><img src="./Images/logo.png" class="logo"></a>
-        <ul>
-            <li class="act"><a href="../Home/Index.php">HOME</a></li>
-            <li><a href="../Blog/Blog.php">BLOG</a></li>
-            <li><a href="../Book/Book.php">BOOKS</a></li>
-            <li><a href="../Contact/Contact.php">CONTACT</a></li>
-            <?php
-            if (isset($_SESSION['auth'])) {
-            ?>
-                <li><a href="../Login/logout.php">Logout</a></li>
-            <?php
-            } else {
-            ?>
-                <li><a href="../Login/login.php">Login</a></li>
-            <?php
-            }
-            ?>
-            <li><a class="active" href="./Cart.php"><i class="fa fa-shopping-cart"></i></a></li>
-        </ul>
-
+<div class="navbar">
+      <a href="../Home/Index.php"><img src="./Images/logo.png" class="logo"></a>
+      <ul>
+        <li><a  href="../Home/Index.php">HOME</a></li>
+        <li><a href="../Blog/Blog.php">BLOG</a></li>
+        <li><a href="../Book/Book.php">BOOKS</a></li>
+        <li><a href="../Contact/Contact.php">CONTACT</a></li>
+        <li><a class="active" onclick="toggleMenu()"><i class="fa fa-user"></i></a>&nbsp;</li>
+      </ul>
+      <!-- <img src="Images/profile.png" class="user-pic" onclick="toggleMenu()"> -->
+          <div class="sub-menu-wrap" id="subMenu">
+          <?php
+          if(isset($_SESSION['auth']))
+          {          
+          ?>
+            <div class="sub-menu">
+              <div class="user-info">
+                <img src="./Images/Novelty.png" alt="Image">
+                <h4><?= $_SESSION['name']; ?></h4>
+              </div>
+              <?php
+              }
+              else
+              {
+                ?>
+                <div class="sub-menu">
+                <div class="user-info">
+                <img src="./Images/Novelty.png" alt="Image">
+                <h3>Hello Guest</h3>
+              </div>
+              <?php
+              }
+               ?>
+              <hr>
+              <a href="../User/user.php" class="sub-menu-link">
+                <img src="Images/profile.png">
+                <p>Manage Profile</p>
+                <span><i class="bx bx-chevron-right data"></i></span>
+              </a>
+              <a href="../Cart/Cart.php" class="sub-menu-link">
+                <img src="Images/cart.png">
+                <p>Cart</p>
+                <span><i class="bx bx-chevron-right data"></i></span>
+              </a>
+              <a href="../Cart/my-orders.php" class="sub-menu-link">
+                <img src="Images/order.png">
+                <p>Track my Order</p>
+                <span><i class="bx bx-chevron-right data"></i></span>
+              </a>
+              <?php 
+                if(isset($_SESSION['auth']))
+                {
+                  ?>
+                  <a href="../Login/logout.php" class="sub-menu-link">
+                  <img src="Images/logout.png">
+                  <p>Logout</p>
+                  <span><i class="bx bx-chevron-right data"></i></span>
+                  </a>
+                  <?php
+                }
+                else
+                {
+                  ?>
+                  <a href="../Login/login.php" class="sub-menu-link">
+                  <img src="Images/login.png">
+                  <p>Login</p>
+                  <span><i class="bx bx-chevron-right data"></i></span>
+                  </a>
+                  <?php
+                }
+                ?>
+              
+            </div>
+          </div>
+  
     </div>
-
 
 
     <!-- Cart -->
@@ -151,7 +204,7 @@ if (isset($_POST['placeOrderBtn'])) {
                     </div>
                     <div class="group">
                         <label for="email">Email</label>
-                        <input type="email" name="email" id="email" required>
+                        <input type="email" id="email" name="email" onInput="checkEmail()" required>
                     </div>
                     <div class="group">
                         <label for="address">Address</label>
@@ -186,8 +239,17 @@ if (isset($_POST['placeOrderBtn'])) {
         </div>
     </div>
 
+    <script>
+    let subMenu = document.getElementById("subMenu");
+
+    function toggleMenu()
+    {
+      console.log("Function called");
+      subMenu.classList.toggle("open-menu");
+    }
+  </script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="../Book/sbook.js"></script>
+    <script src="../Book/sbook.js"></script> 
 </body>
 
 </html>

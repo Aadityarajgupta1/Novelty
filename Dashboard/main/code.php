@@ -6,13 +6,15 @@ include('../../Login/functions/myfunctions.php');
 if(isset($_POST['add_category_btn']))
 {
     $name = $_POST['name'];
-    $slug = $_POST['slug'];
     $description = $_POST['description'];
     $meta_title = $_POST['meta_title'];
     $meta_description = $_POST['meta_description'];
     $meta_keywords = $_POST['meta_keywords'];
     $status = isset($_POST['status']) ? '1' : '0';
     $popular = isset($_POST['popular']) ? '1' : '0';
+
+    $slug = "aadii".rand(1111,9999).substr($phone,2);
+
 
     $image = $_FILES['image']['name'];
 
@@ -21,7 +23,7 @@ if(isset($_POST['add_category_btn']))
     $image_ext = pathinfo($image, PATHINFO_EXTENSION);
     $filename = time().'.'.$image_ext;
 
-    if ($name !== "" && $slug !== "" && $description !== "" && $image !== "")  
+    if ($name !== "" && $description !== "")  
     {
         if (!validateFullName($name)) 
         {
@@ -30,20 +32,21 @@ if(isset($_POST['add_category_btn']))
         } 
         else
         {
-        $cate_query = "INSERT INTO categories (name, slug, description, meta_title, meta_description, meta_keywords, status, popular, image)
-        VALUES ('$name', '$slug', '$description', '$meta_title', '$meta_description', '$meta_keywords', '$status', '$popular', '$filename')";
+            $cate_query = "INSERT INTO categories (name, slug, description, meta_title, meta_description, meta_keywords, status, popular, image)
+            VALUES ('$name', '$slug', '$description', '$meta_title', '$meta_description', '$meta_keywords', '$status', '$popular', '$filename')";
 
-        $cate_query_run = mysqli_query($con, $cate_query);
+            $cate_query_run = mysqli_query($con, $cate_query);
 
-        if($cate_query_run)
-        {
-            move_uploaded_file($_FILES['image']['tmp_name'], $path.'/'.$filename);
-        }
-        else
-        {
-            redirect("add-category.php", "Something Went Wrong");
-        }
-            redirect("./add-blogs.php", "All Fields are Mandetory");
+            if($cate_query_run)
+            {
+                move_uploaded_file($_FILES['image']['tmp_name'], $path.'/'.$filename);
+            }
+            else
+            {
+                redirect("add-category.php", "Something Went Wrong");
+            }
+            redirect("add-category.php", "Category updated Successful");
+
         }
     }
     else
@@ -132,7 +135,6 @@ elseif(isset($_POST['add_product_btn']))
 {
     $category_id = $_POST['category_id'];
     $name = $_POST['name'];
-    $slug = $_POST['slug'];
     $small_description = mysqli_real_escape_string($con, $_POST['small_description']);
     $description = mysqli_real_escape_string($con, $_POST['description']);
     $original_price = $_POST['original_price'];
@@ -149,10 +151,12 @@ elseif(isset($_POST['add_product_btn']))
     $status = isset($_POST['status']) ? '1' : '0';
     $trending = isset($_POST['trending']) ? '1' : '0';
 
+    $slug = "aadi".rand(1111,9999).substr($phone,2)."book";
+
     $image = $_FILES['image']['name'];
 
     $path = "./uploads";
-
+    
     $image_ext = pathinfo($image, PATHINFO_EXTENSION);
     $filename = time().'.'.$image_ext;
 
@@ -161,13 +165,6 @@ elseif(isset($_POST['add_product_btn']))
         if (!validateLanguage($language)) 
         {
             $_SESSION['message'] = "Please Enter a Valid language name.";
-            header('Location: ./add-products.php');
-        } 
-        else
-        {
-        if (!validateFullName($name)) 
-        {
-            $_SESSION['message'] = "Please Enter a Valid name.";
             header('Location: ./add-products.php');
         } 
         else
@@ -224,7 +221,7 @@ elseif(isset($_POST['add_product_btn']))
             {
                 redirect("./add-products.php", "Quantity must be 1 or more.");
             }
-        }
+        
         }
     }
     }
@@ -439,7 +436,7 @@ elseif(isset($_POST['update_order_btn']))
     $updateOrder_query = "UPDATE orders SET status='$order_status' WHERE tracking_no='$track_no'";
     $updateOrder_query_run = mysqli_query($con, $updateOrder_query);
 
-    redirect("view-order.php?t=$track_no", "Order status Updated Successfully");
+    redirect("orders.php", "Order status Updated Successfully");
 }
 else
 {

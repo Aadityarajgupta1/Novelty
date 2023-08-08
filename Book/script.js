@@ -42,11 +42,32 @@ $(document).ready(function () {
        },
        success: function (response) {
            if (response == 201) {
-               alert("Product added to cart");
+            Swal.fire({
+              title: 'Wow',
+              text: "Product Added to Cart!",
+              icon: 'info',
+              confirmButtonColor: '#3085d6',
+              cancelButtonColor: '#d33',
+              confirmButtonText: 'Okay!'
+            });
            } else if (response == "Existing") {
-               alert("Product already on cart");
+            Swal.fire({
+              title: 'Exist',
+              text: "Product Already on cart!",
+              icon: 'info',
+              confirmButtonColor: '#3085d6',
+              cancelButtonColor: '#d33',
+              confirmButtonText: 'Okay!'
+            });
            } else if (response == 401) {
-               alert("Login to continue");
+            Swal.fire({
+              title: 'Warning',
+              text: "Login to Continue!",
+              icon: 'Warning',
+              confirmButtonColor: '#3085d6',
+              cancelButtonColor: '#d33',
+              confirmButtonText: 'Okay!'
+            });
            } else if (response == 500) {
                alert("Something went wrong");
            }

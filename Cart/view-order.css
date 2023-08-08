@@ -88,15 +88,105 @@ button.normal
     left: 0;
 }
 
+.sub-menu-wrap
+{
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: 340px;
+    max-height: 0px;
+    overflow: hidden;
+    transition: max-height 0.5s;
+}
+
+.sub-menu-wrap.open-menu
+{
+    max-height: 400px;
+}
+
+.sub-menu
+{
+    background: #fff;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 10px;
+}
+
+.user-info
+{
+    display: flex;
+    align-items: center;
+}
+
+.user-info h3
+{
+    font-weight: 500;
+}
+
+.user-info img
+{
+    width: 60px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+.sub-menu hr
+{
+    border: 0;
+    height: 1px;
+    width: 100%;
+    background: #ccc;
+    margin: 15px 0 10px;
+}
+
+.sub-menu-link
+{
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: #525252;
+    margin: 12px 0;
+}
+
+.sub-menu-link p
+{
+    width: 100%;
+}
+
+.sub-menu-link img
+{
+    width: 40px;
+    background-color: #e5e5e5;
+    border-radius: 50%;
+    padding: 8px;
+    margin-right: 15px;
+}
+
+.sub-menu-link span
+{
+    font-size: 22px;
+    transition: transform 0.5s;
+}
+
+.sub-menu-link:hover span
+{
+    transform: translateX(5px);
+}
+
+.sub-menu-link:hover p
+{
+    font-weight: 600;
+}
 
 .logo
 {
     width: 100px;
     cursor: pointer;
-    margin-top: 5%;
+    margin-top: 1%;
     margin-left: 75%;
     
 }
+
 .logo1
 {
     width: 100px;
@@ -111,10 +201,28 @@ button.normal
     display: inline-flex;
     margin: 0 30px;
     position: relative;
+    
+}
+.navbar ul li.user-pic
+{
+    width: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    margin-left: 30px;
 }
 
-.navbar ul li a
+.navbar ul li a 
 {
+    cursor: pointer;
+    text-decoration: none;
+    color: #faf8f8;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.navbar ul li i
+{
+    cursor: pointer;
     text-decoration: none;
     color: #faf8f8;
     text-transform: uppercase;
@@ -126,10 +234,11 @@ button.normal
     width: 40%;
 }
 
+.navbar ul li i:hover,
+.navbar li i.active
 .navbar li a:hover,
 .navbar li a.active
 {
-    color: #ffd700;
     transition: 0.3s;
 }
 
@@ -146,15 +255,24 @@ button.normal
     transition: 0.3s;
 }
 
-body{
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 110%;
+    height: 105%;
     background-size: cover;
-	background-image: url(./Images/background.png);
-	font-size: 1.2rem;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-
+    background-image: url(./Images/background.png); /* Adjust the image path */
+    filter: blur(8px); /* Apply the blur effect */
+    z-index: -1;
 }
+
+.head-container
+{
+    display: flex;
+}
+
 .container {
     background: rgb(255, 255, 255);
     width: 65%;
@@ -165,12 +283,22 @@ body{
     padding: 0.3rem 1.5rem;
     border-radius: 12px;
     margin-top: 90px;
-    margin-bottom: 10px;
+    margin-left: 290px;
 }
 
 .left{
 	flex-basis: 55%;
 }
+
+.left form input
+{
+    font-weight: 580;
+} 
+
+.right form input
+{
+    font-weight: 580;
+} 
 
 .left a
 {
@@ -303,3 +431,98 @@ form input[type="text"]{
     
     margin-left: 10px;
 }
+
+*, *::after, *::before {
+    box-sizing: border-box;
+}
+
+.modal {
+    position: fixed;
+    top: 80%;
+    left: 81%;
+    transform: translate(-50%, -50%) scale(0);
+    transition: 200ms ease-in-out;
+    border-radius: 15px;
+    z-index: 10;
+    background-color: #fff;
+    width: 400px;
+    max-width: 80%;
+    text-align: center;
+}
+
+.modal.active {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+.modal-header {
+    padding: 10px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid black;
+}
+
+.modal-header .title {
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.modal-header .close-button {
+    cursor: pointer;
+    border: none;
+    outline: none;
+    background: none;
+    color: #000;
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.modal-body {
+    padding: 10px 15px;
+}
+
+.modal-body span
+{
+    font-size: 12px;
+    font-weight: 700;
+}
+
+#overlay {
+    position: fixed;
+    opacity: 0;
+    transition: 200ms ease-in-out;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(30, 29, 29, 0.5);
+    pointer-events: none;
+}
+
+#overlay.active {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.btn-1 {
+    margin-left: 175px;
+    margin-top: 667px;
+}
+
+.btn-1 button {
+    font-weight: 500;
+    cursor: pointer;
+    border-radius: 50%;
+    padding: 10px;
+    width: 50px;
+    height: 50px;
+    background-color: #716337;
+    transition: transform 0.5s, color 0.5s;
+    color: #fff;
+    border: none;
+}
+
+.btn-1 button:hover {
+    transform: scale(1.1);
+}
+

@@ -38,7 +38,6 @@ function getCartItems()
     $query = "SELECT c.id as cid, c.prod_id, c.prod_qty, p.id as pid, p.name, p.image, p.selling_price
     FROM carts c, products p WHERE c.prod_id=p.id AND c.user_id='$user_id' ORDER BY c.id DESC";
     return $query_run = mysqli_query($con, $query);
-
 }
 
 function getOrders()
@@ -80,5 +79,4 @@ function validateAddress($address) {
     $pattern = '/^[a-zA-Z ]+$/';
     return preg_match($pattern, $address);
 }
-?>
 ?>

@@ -23,45 +23,95 @@ if(isset($_GET['product']))
           
       </head>
       <body>
-                 <div class="navbar" class="section-p3">
-                   <a href="../Home/Index.php"><img src="./Images/logo.png" class="logo"></a>
-                      <ul>
-                      <li class="act"><a href="../Home/Index.php">HOME</a></li>
-                      <li><a href="../Blog/Blog.php">BLOG</a></li>
-                      <li><a class="active" href="./Book.php">BOOKS</a></li>
-                      <li><a href="../Contact/Contact.php">CONTACT</a></li>
-                      <?php 
-                      if(isset($_SESSION['auth']))
-                      {
-                        ?>
-                        <li><a href="../Login/Logout.php">Logout</a></li>
-                        <li><a href="../Cart/Cart.php"><i class="fa fa-shopping-cart"></i></a></li>
-
-                        <?php
-                      }
-                      else
-                      {
-                        ?>
-                        <li><a href="../Login/login.php"><i class="fa fa-user"></i></a></li>
-                        <?php
-                      }
-                      ?>
-                      </ul>
-      
-                 </div>
-      
+      <div class="navbar">
+      <a href="../Home/Index.php"><img src="./Images/logo.png" class="logo"></a>
+      <ul>
+        <li><a  href="../Home/Index.php">HOME</a></li>
+        <li><a href="../Blog/Blog.php">BLOG</a></li>
+        <li><a class="active" href="../Book/Book.php">BOOKS</a></li>
+        <li><a href="../Contact/Contact.php">CONTACT</a></li>
+        <li><a  onclick="toggleMenu()"><i class="fa fa-user"></i></a>&nbsp;</li>
+      </ul>
+      <!-- <img src="Images/profile.png" class="user-pic" onclick="toggleMenu()"> -->
+          <div class="sub-menu-wrap" id="subMenu">
+          <?php
+          if(isset($_SESSION['auth']))
+          {          
+          ?>
+            <div class="sub-menu">
+              <div class="user-info">
+                <img src="./Images/Novelty.png" alt="Image">
+                <h4><?= $_SESSION['name']; ?></h4>
+              </div>
+              <?php
+              }
+              else
+              {
+                ?>
+                <div class="sub-menu">
+                <div class="user-info">
+                <img src="./Images/Novelty.png" alt="Image">
+                <h3>Hello Guest</h3>
+              </div>
+              <?php
+              }
+               ?>
+              <hr>
+              <a href="../User/user.php" class="sub-menu-link">
+                <img src="Images/profile.png">
+                <p>Manage Profile</p>
+                <span><i class="bx bx-chevron-right data"></i></span>
+              </a>
+              <a href="../Cart/Cart.php" class="sub-menu-link">
+                <img src="Images/cart.png">
+                <p>Cart</p>
+                <span><i class="bx bx-chevron-right data"></i></span>
+              </a>
+              <a href="../Cart/my-orders.php" class="sub-menu-link">
+                <img src="Images/order.png">
+                <p>Track my Order</p>
+                <span><i class="bx bx-chevron-right data"></i></span>
+              </a>
+              <?php 
+                if(isset($_SESSION['auth']))
+                {
+                  ?>
+                  <a href="../Login/logout.php" class="sub-menu-link">
+                  <img src="Images/logout.png">
+                  <p>Logout</p>
+                  <span><i class="bx bx-chevron-right data"></i></span>
+                  </a>
+                  <?php
+                }
+                else
+                {
+                  ?>
+                  <a href="../Login/login.php" class="sub-menu-link">
+                  <img src="Images/login.png">
+                  <p>Login</p>
+                  <span><i class="bx bx-chevron-right data"></i></span>
+                  </a>
+                  <?php
+                }
+                ?>
+              
+            </div>
+          </div>
+  
+    </div>
               
                  <!-- Single product -->
                  <section id="prodetails" class="section-p2  background  product_data">
                   <div class="single-pro-image">
                   <h5><a href="./Book.php"><i class="bx bx-chevron-left data"></i> Back to Books</a></h5>
                       <div class="khatra">
-                      <img src="../Dashboard/main/uploads/<?= $product['image']; ?>" width="100%" alt="Single Image"> 
+                      <img src="../Dashboard/main/uploads/<?= $product['image']; ?>" width="100%" alt="Single Image"> <br>
                       </div> 
                       <h4>Genres: </h4>
                       <p><?= $product['meta_description'] ?></p>
                   </div>
                     <div class="single-pro-details">
+                      <div><h6><?= $product['meta_keywords'] ?></h6></div>
                       <h2><?= $product['name'] ?></h2>
                       <p class="h5">By: <?= $product['author'] ?></p>
                       
@@ -143,7 +193,8 @@ if(isset($_GET['product']))
             <div class="pro-container">
            
               <?php
-              $query = "SELECT * FROM products WHERE status='0' LIMIT 8";
+              $current_product_slug = $product['slug'];;
+              $query = "SELECT * FROM products WHERE status='0' ORDER BY id DESC LIMIT 8";
               $query_run = mysqli_query($con, $query);
               $check_products = mysqli_num_rows($query_run) > 0;
 
@@ -151,6 +202,8 @@ if(isset($_GET['product']))
               {
                   while($row = mysqli_fetch_array($query_run))
                   {
+                    if ($row['slug'] !== $current_product_slug)
+                    {
                     ?>
                     <a href="./sproduct.php?product=<?=$row['slug'];?>">
                     <div class="pro">
@@ -173,6 +226,7 @@ if(isset($_GET['product']))
                     <?php
                     
                   }
+                }
               }
               else
               {
@@ -190,10 +244,10 @@ if(isset($_GET['product']))
                       <h4>Sign up for Newsletter</h4>
                       <p>Get E-mail updates about our latest shop and <span class="span2">special offers</span>.</p>
                     </div>
-                    <div class="form">
-                      <input type="text" placeholder="Your Email Address">
-                      <button class="normal">Sign up</button>
-                    </div>
+                    <form class="form" action="../Login/functions/newsLetter.php" method="POST">
+                    <input type="email" name="email" placeholder="Your Email Address">
+                    <button type="submit" name="news_btn" class="normal">Sign up</button>
+                    </form>
               </section>
       
                <!-- Footer  -->
@@ -276,8 +330,19 @@ else
     echo "Something went Wrong";
 }
 ?>
+
+        <script>
+        let subMenu = document.getElementById("subMenu");
+
+          function toggleMenu()
+           {
+          console.log("Function called");
+             subMenu.classList.toggle("open-menu");
+          }
+          </script>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="./sbook.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 </body>
 </html>

@@ -49,15 +49,36 @@ $(document).ready(function () {
          success: function (response){
             if(response == 201)
             {
-               alert("Product added to cart");
+               Swal.fire({
+                  title: 'Wow',
+                  text: "Product Added to Cart!",
+                  icon: 'info',
+                  confirmButtonColor: '#3085d6',
+                  cancelButtonColor: '#d33',
+                  confirmButtonText: 'Okay!'
+                });
             }
             else if(response == "Existing")
             {
-               alert("Product alredy on cart");
+               Swal.fire({
+                  title: 'Exist',
+                  text: "Product Already on cart!",
+                  icon: 'info',
+                  confirmButtonColor: '#3085d6',
+                  cancelButtonColor: '#d33',
+                  confirmButtonText: 'Okay!'
+                });
             }
             else if(response == 401)
             {
-               alert("Login to continue");
+               Swal.fire({
+                  title: 'Warning',
+                  text: "Login to Continue!",
+                  icon: 'Warning',
+                  confirmButtonColor: '#3085d6',
+                  cancelButtonColor: '#d33',
+                  confirmButtonText: 'Okay!'
+                });
             }
             else if(response == 500)
             {
@@ -102,7 +123,14 @@ $(document).ready(function () {
          {
             if(response == 200)
             {
-               alert("Product deleted from cart");
+               Swal.fire({
+                  title: 'Warning',
+                  text: "Product Deleted from cart!",
+                  icon: 'Warning',
+                  confirmButtonColor: '#3085d6',
+                  cancelButtonColor: '#d33',
+                  confirmButtonText: 'Okay!'
+                });
                $('#myReload').load(location.href + " #myReload");
             }
             else

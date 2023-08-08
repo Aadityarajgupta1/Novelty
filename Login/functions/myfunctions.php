@@ -49,12 +49,12 @@ function checkTrackingNoValid($trackingNo)
 }
 
 function validateFullName($name) {
-    $pattern = '/^[a-zA-Z ]+$/';
+    $pattern = '/^[a-zA-Z][a-zA-Z\s.\'-]*$/';
     return preg_match($pattern, $name);
 }
 
-function validateAuthor($author) {
-    $pattern = '/^[a-zA-Z ]+$/';
+function validateAuthor($author) {    
+    $pattern = '/^[a-zA-Z][a-zA-Z\s.\'-]*$/';
     return preg_match($pattern, $author);
 }
 
@@ -65,7 +65,7 @@ function validateLanguage($language) {
 
 function validateAddress($address) 
 {
-    $pattern = '/^[a-zA-Z ]+$/';
+    $pattern = '/^[a-zA-Z][a-zA-Z\s]*$/';
     return preg_match($pattern, $address);
 }
 ?>

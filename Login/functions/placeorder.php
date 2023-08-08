@@ -5,7 +5,7 @@ require '../../Dashboard/configer/dbcon.php';
 
 if(!isset($_SESSION['auth']))
 {
-    header("Location:../login.php", "Login to Continue.");;
+    redirect("Location:../login.php", "Login to Continue.");
 }
 
 if(isset($_SESSION['auth']))

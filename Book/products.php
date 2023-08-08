@@ -26,32 +26,82 @@ $cid = $category['id'];
     
 </head>
 <body>
-           <div class="navbar">
-             <a href="../Home/Index.php"><img src="./Images/logo.png" class="logo"></a>
-                <ul>
-                <li class="act"><a href="../Home/Index.php">HOME</a></li>
-                <li><a href="../Blog/Blog.php">BLOG</a></li>
-                <li><a class="active" href="./Book.php">BOOKS</a></li>
-                <li><a href="../Contact/Contact.php">CONTACT</a></li>
-                <?php 
+<div class="navbar">
+      <a href="../Home/Index.php"><img src="./Images/logo.png" class="logo"></a>
+      <ul>
+        <li><a  href="../Home/Index.php">HOME</a></li>
+        <li><a href="../Blog/Blog.php">BLOG</a></li>
+        <li><a class="active" href="../Book/Book.php">BOOKS</a></li>
+        <li><a href="../Contact/Contact.php">CONTACT</a></li>
+        <li><a  onclick="toggleMenu()"><i class="fa fa-user"></i></a>&nbsp;</li>
+      </ul>
+      <!-- <img src="Images/profile.png" class="user-pic" onclick="toggleMenu()"> -->
+          <div class="sub-menu-wrap" id="subMenu">
+          <?php
+          if(isset($_SESSION['auth']))
+          {          
+          ?>
+            <div class="sub-menu">
+              <div class="user-info">
+                <img src="./Images/Novelty.png" alt="Image">
+                <h4><?= $_SESSION['name']; ?></h4>
+              </div>
+              <?php
+              }
+              else
+              {
+                ?>
+                <div class="sub-menu">
+                <div class="user-info">
+                <img src="./Images/Novelty.png" alt="Image">
+                <h3>Hello Guest</h3>
+              </div>
+              <?php
+              }
+               ?>
+              <hr>
+              <a href="../User/user.php" class="sub-menu-link">
+                <img src="Images/profile.png">
+                <p>Manage Profile</p>
+                <span><i class="bx bx-chevron-right data"></i></span>
+              </a>
+              <a href="../Cart/Cart.php" class="sub-menu-link">
+                <img src="Images/cart.png">
+                <p>Cart</p>
+                <span><i class="bx bx-chevron-right data"></i></span>
+              </a>
+              <a href="../Cart/my-orders.php" class="sub-menu-link">
+                <img src="Images/order.png">
+                <p>Track my Order</p>
+                <span><i class="bx bx-chevron-right data"></i></span>
+              </a>
+              <?php 
                 if(isset($_SESSION['auth']))
                 {
                   ?>
-                  <li><a href="../Login/Logout.php">Logout</a></li>
-                  <li><a href="../Cart/Cart.php"><i class="fa fa-shopping-cart"></i></a></li>
-
+                  <a href="../Login/logout.php" class="sub-menu-link">
+                  <img src="Images/logout.png">
+                  <p>Logout</p>
+                  <span><i class="bx bx-chevron-right data"></i></span>
+                  </a>
                   <?php
                 }
                 else
                 {
                   ?>
-                  <li><a href="../Login/login.php"><i class="fa fa-user"></i></a></li>
+                  <a href="../Login/login.php" class="sub-menu-link">
+                  <img src="Images/login.png">
+                  <p>Login</p>
+                  <span><i class="bx bx-chevron-right data"></i></span>
+                  </a>
                   <?php
                 }
                 ?>
-                </ul>
-
-           </div>
+              
+            </div>
+          </div>
+  
+    </div>
 
            <!-- Heading -->
            <section id="page-header">
@@ -121,6 +171,7 @@ $cid = $category['id'];
                             <div class="pro">
                                <div class="des">
                                 <img src="../Dashboard/main/uploads/<?= $item['image']; ?>" alt="Product Image">
+                                <br><br>
                                 <span><?= $item['name']; ?></span>
                                 <h5><?= $item['author']; ?></h5>
                                 <div class="star">
@@ -170,10 +221,10 @@ $cid = $category['id'];
                 <h4>Sign up for Newsletter</h4>
                 <p>Get E-mail updates about our latest shop and <span class="span2">special offers</span>.</p>
               </div>
-              <div class="form">
-                <input type="text" placeholder="Your Email Address">
-                <button class="normal">Sign up</button>
-              </div>
+              <form class="form" action="../Login/functions/newsLetter.php" method="POST">
+              <input type="email" name="email" placeholder="Your Email Address">
+               <button type="submit" name="news_btn" class="normal">Sign up</button>
+              </form>
         </section>
 
          <!-- Footer  -->
@@ -255,9 +306,21 @@ else
     echo "Something went Wrong";
 }
 ?>
+        <script>
+    let subMenu = document.getElementById("subMenu");
+
+    function toggleMenu()
+    {
+      console.log("Function called");
+      subMenu.classList.toggle("open-menu");
+    }
+  </script>
+
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="./script.js"></script>
         <script src="./Book.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 
 </body>
 </html>

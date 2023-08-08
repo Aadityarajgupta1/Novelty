@@ -98,6 +98,8 @@ if(isset($_POST['log_btn']))
         $useremail = $userdata['email'];
         $role_as = $userdata['role_as'];
 
+        $_SESSION['name'] = $username;
+
         $_SESSION['auth_user'] = [
             'user_id' => $userid,
             'name' => $username,
