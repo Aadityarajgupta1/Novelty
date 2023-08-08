@@ -99,6 +99,7 @@ if(isset($_POST['log_btn']))
         $role_as = $userdata['role_as'];
 
         $_SESSION['name'] = $username;
+        $_SESSION['id'] = $userid;
 
         $_SESSION['auth_user'] = [
             'user_id' => $userid,
