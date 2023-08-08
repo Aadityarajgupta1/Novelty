@@ -35,7 +35,8 @@ else
           <div class="sub-menu-wrap" id="subMenu">
            <?php
           if(isset($_SESSION['auth']))
-          {          
+          {
+           
           ?>
             <div class="sub-menu">
               <div class="user-info">
@@ -104,23 +105,29 @@ else
 
             <div class="right">
                 <h3>Manage Your Profile</h3>
+                <?php
+ require '../Dashboard/configer/dbcon.php';
+ $product = "Select * from users where id =".$_SESSION['id'];
+ $result = mysqli_query($con, $product);
+ $row = mysqli_fetch_assoc($result);
+?>
                 <form action="../Login/functions/authcode.php" method="POST">
                     <div class="group">
                         <label for="name">Full Name</label>
-                        <input type="text" name="name" id="name" value="" required>
+                        <input type="text" name="name" id="name" value="<?php echo $row['name']; ?>" required>
                     </div>
                     <div class="group">
                         <label for="email">Email</label>
-                        <input type="email" id="email" name="email" onInput="checkEmail()" required>
+                        <input type="email" id="email" name="email" value="<?php echo $row['email']; ?>" onInput="checkEmail()" required>
                     </div>
                     <div class="group">
                         <label for="address">Address</label>
-                        <input type="text" name="address" id="address">
+                        <input type="text" name="address"  id="address">
                     </div>
                     <div class="sahii">
                         <div class="group">
                             <label for="phone">Phone</label>
-                            <input type="number" name="phone" id="phone" required>
+                            <input type="number" value="<?php echo $row['phone']; ?>" name="phone" id="phone" required>
                         </div>
 
                         <div class="group">
