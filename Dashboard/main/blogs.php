@@ -47,6 +47,7 @@ include('header.php');
                                      <form action="./code.php" method="POST">
                                      <input type="hidden" name="blog_id" value="<?= $item['id']; ?>">
                                      <button type="submit" class="btn btn-danger col-md-6" name="delete_blog_btn">Delete</button>
+                                        </form>
                                      </td>
                                     </tr>   
 
