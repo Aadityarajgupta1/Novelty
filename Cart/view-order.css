@@ -282,7 +282,7 @@ body::before {
     align-items: center;
     padding: 0.3rem 1.5rem;
     border-radius: 12px;
-    margin-top: 90px;
+    margin-top: 100px;
     margin-left: 290px;
 }
 
@@ -505,8 +505,8 @@ form input[type="text"]{
 }
 
 .btn-1 {
-    margin-left: 175px;
-    margin-top: 667px;
+    margin-left: 183px;
+    margin-top: 685px;
 }
 
 .btn-1 button {

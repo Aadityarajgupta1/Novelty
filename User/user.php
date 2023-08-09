@@ -117,7 +117,7 @@ else
                     </div>
                     <div class="group">
                         <label for="email">Email</label>
-                        <input type="email" id="email" name="email" value="<?php echo $row['email']; ?>" onInput="checkEmail()" required>
+                        <input type="email" id="email"  value="<?php echo $row['email']; ?>" disabled>
                     </div>
                     <div class="group">
                         <label for="address">Address</label>
