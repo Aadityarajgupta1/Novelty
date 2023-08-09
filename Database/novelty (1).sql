@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 09, 2023 at 03:38 PM
+-- Generation Time: Aug 09, 2023 at 04:36 PM
 -- Server version: 10.4.27-MariaDB
 -- PHP Version: 8.2.0
 
@@ -70,7 +70,8 @@ INSERT INTO `carts` (`id`, `user_id`, `prod_id`, `prod_qty`, `created_at`) VALUE
 (262, 36, 41, 1, '2023-08-05 17:28:12'),
 (263, 36, 35, 1, '2023-08-05 17:28:14'),
 (267, 36, 36, 1, '2023-08-05 17:29:44'),
-(268, 36, 42, 1, '2023-08-06 14:58:36');
+(268, 36, 42, 1, '2023-08-06 14:58:36'),
+(304, 34, 50, 1, '2023-08-09 13:57:09');
 
 -- --------------------------------------------------------
 
@@ -274,7 +275,7 @@ INSERT INTO `products` (`id`, `category_id`, `name`, `slug`, `small_description`
 (53, 53, 'The Fault in Our Stars', 'aadi4168book', 'The multi-million #1 bestseller, now a major motion picture starring Shailene Woodley and Ansel Elgort. \"I fell in love the way you fall asleep: slowly, then all at once.\"Despite the tumor-shrinking medical miracle that has bought her a few years, Hazel has never been anything but terminal, her final chapter inscribed upon diagnosis. But when a gorgeous plot twist named Augustus Waters suddenly appears at Cancer Kid Support Group, Hazel\'s story is about to be completely rewritten.Insightful, bold, irreverent, and raw, The Fault in Our Stars is award-winning author John Green\'s most ambitious and heartbreaking work yet, brilliantly exploring the funny, thrilling, and tragic business of being alive and in love.', 'The multi-million #1 bestseller, now a major motion picture starring Shailene Woodley and Ansel Elgort. \"I fell in love the way you fall asleep: slowly, then all at once.\"Despite the tumor-shrinking medical miracle that has bought her a few years, Hazel has never been anything but terminal, her final chapter inscribed upon diagnosis. But when a gorgeous plot twist named Augustus Waters suddenly appears at Cancer Kid Support Group, Hazel\'s story is about to be completely rewritten.Insightful, bold, irreverent, and raw, The Fault in Our Stars is award-winning author John Green\'s most ambitious and heartbreaking work yet, brilliantly exploring the funny, thrilling, and tragic business of being alive and in love.', 300, 638, '1691432344.jpg', 300, 'John Green', '316 Pages', '245g', '9780141345659', 'English', 0, 0, '', 'Paper Back', 'Fiction and Literature,\r\nDrama,\r\nRomance,\r\nYoung Adult', '2023-08-07 18:19:04'),
 (54, 54, 'PSYCHOLOGY OF MONEY', 'aadi7806book', 'Timeless lessons on wealth, greed, and happiness doing well with money isn’t necessarily about what you know. It’s about how you behave. And behavior is hard to teach, even to really smart people. How to manage money, invest it, and make business decisions are typically considered to involve a lot of mathematical calculations, where data and formulae tell us exactly what to do.', 'Timeless lessons on wealth, greed, and happiness doing well with money isn’t necessarily about what you know. It’s about how you behave. And behavior is hard to teach, even to really smart people. How to manage money, invest it, and make business decisions are typically considered to involve a lot of mathematical calculations, where data and formulae tell us exactly what to do.', 500, 638, '1691434557.jfif', 300, 'Morgan. Housel', '242 Pages', '225g', '9789390166268', 'English', 0, 0, '', 'Paper back', 'Business,\r\nBusiness and Investing,\r\nFinance,\r\nEconomics,\r\nInvesting,\r\nSelf Improvement and Relationships,\r\nSelf Help,\r\nHistory, Biography, and Social Science', '2023-08-07 18:54:35'),
 (55, 54, 'Kaizen', 'aadi3866book', 'Perfect for fans of Ikigai and Marie Kondo, Kaizen is the step-by-step Japanese way to bring positive changes into your life.', 'Perfect for fans of Ikigai and Marie Kondo, Kaizen is the step-by-step Japanese way to bring positive changes into your life.', 500, 958, '1691434676.jfif', 299, 'Sarah Harvey', '288 Pages', '460g', '9781529005356', 'English', 0, 0, '', 'Hard Cover', 'Self Improvement and Relationships,\r\nSelf Help,\r\nHistory, Biography, and Social Science,\r\nPsychology,\r\nSpirituality and Philosophy', '2023-08-07 18:57:56'),
-(56, 54, 'The Little Book of Hygge', 'aadi7507book', '**THE INTERNATIONAL, NEW YORK TIMES and SUNDAY TIMES BESTSELLER, WITH OVER A MILLION COPIES SOLD AROUND THE WORLD** Guaranteed to bring warmth and comfort into your life, The Little Book of Hygge is the book we all need! Denmark has an international reputation for being one of the happiest nations in the world, and hygge is widely recognised to be the magic ingredient to this happiness. Hygge has been described as everything from \"cosines of the soul\" to \"the pursuit of everyday pleasures\". The Little Book of Hygge is the book we all need right now, guaranteed to bring warmth and comfort into your life. Hooga? Hhyooguh? Heurgh? It is not really important how you choose to pronounce or even spell \'hygge\'.', '**THE INTERNATIONAL, NEW YORK TIMES and SUNDAY TIMES BESTSELLER, WITH OVER A MILLION COPIES SOLD AROUND THE WORLD** Guaranteed to bring warmth and comfort into your life, The Little Book of Hygge is the book we all need! Denmark has an international reputation for being one of the happiest nations in the world, and hygge is widely recognized to be the magic ingredient to this happiness. Hygge has been described as everything from \"cosines of the soul\" to \"the pursuit of everyday pleasures\".', 500, 958, '1691434816.png', 300, 'Meik Wiking', '287 Pages', '499g', '9780241283912', 'English', 0, 0, '', 'Hard Cover', 'Self Improvement and Relationships,\r\nSelf Help,\r\nHistory, Biography, and Social Science,\r\nPsychology,\r\nSpirituality and Philosophy', '2023-08-07 19:00:16'),
+(56, 54, 'The Little Book of Hygge', 'aadi7507book', 'THE INTERNATIONAL, NEW YORK TIMES and SUNDAY TIMES BESTSELLER, WITH OVER A MILLION COPIES SOLD AROUND THE WORLD** Guaranteed to bring warmth and comfort into your life, The Little Book of Hygge is the book we all need! Denmark has an international reputation for being one of the happiest nations in the world, and hygge is widely recognised to be the magic ingredient to this happiness. Hygge has been described as everything from \"cosines of the soul\" to \"the pursuit of everyday pleasures\". The Little Book of Hygge is the book we all need right now, guaranteed to bring warmth and comfort into your life. Hooga? Hhyooguh? Heurgh? It is not really important how you choose to pronounce or even spell \'hygge\'.', 'THE INTERNATIONAL, NEW YORK TIMES and SUNDAY TIMES BESTSELLER, WITH OVER A MILLION COPIES SOLD AROUND THE WORLD** Guaranteed to bring warmth and comfort into your life, The Little Book of Hygge is the book we all need! Denmark has an international reputation for being one of the happiest nations in the world, and hygge is widely recognized to be the magic ingredient to this happiness. Hygge has been described as everything from \"cosines of the soul\" to \"the pursuit of everyday pleasures\".', 500, 958, '1691434816.png', 300, 'Meik Wiking', '287 Pages', '499g', '9780241283912', 'English', 0, 0, '', 'Hard Cover', 'Self Improvement and Relationships,\r\nSelf Help,\r\nHistory, Biography, and Social Science,\r\nPsychology,\r\nSpirituality and Philosophy', '2023-08-07 19:00:16'),
 (57, 54, 'Thinking Fast and Slow', 'aadi5336book', 'The phenomenal New York TimesBestseller by Nobel Prize-winner Daniel Kahneman, Thinking Fast and Slowoffers a whole new look at the way our minds work, and how we make decisions. Why is there more chance we\'ll believe something if it\'s in a bold type face? Why are judges more likely to deny parole before lunch? Why do we assume a good-looking person will be more competent? The answer lies in the two ways we make choices- fast, intuitive thinking, and slow, rational thinking.', 'The phenomenal New York TimesBestseller by Nobel Prize-winner Daniel Kahneman, Thinking Fast and Slowoffers a whole new look at the way our minds work, and how we make decisions. Why is there more chance we\'ll believe something if it\'s in a bold type face? Why are judges more likely to deny parole before lunch? Why do we assume a good-looking person will be more competent? The answer lies in the two ways we make choices- fast, intuitive thinking, and slow, rational thinking.', 700, 1118, '1691435046.jfif', 300, 'Daniel Kahneman', '499 Pages', '390g', '9780141033570', 'English', 0, 0, '', 'Hard Cover', 'Business,\r\nBusiness and Investing,\r\nEconomics,\r\nSelf Improvement and Relationships,\r\nSelf Help,\r\nHistory, Biography, and Social Science,\r\nPsychology,\r\nLearning and Reference', '2023-08-07 19:04:06'),
 (58, 53, 'Looking for Alaska', 'aadi3937book', 'Before. Miles “Pudge” Halter is done with his safe life at home. His whole life has been one big non-event, and his obsession with famous last words has only made him crave “the Great Perhaps” even more (Francois Rabelais, poet). He heads off to the sometimes crazy and anything-but-boring world of Culver Creek Boarding School, and his life becomes the opposite of safe. Because down the hall is Alaska Young. The gorgeous, clever, funny, sexy, self-destructive, screwed up, and utterly fascinating Alaska Young. ', 'Before. Miles “Pudge” Halter is done with his safe life at home. His whole life has been one big non-event, and his obsession with famous last words has only made him crave “the Great Perhaps” even more (Francois Rabelais, poet). He heads off to the sometimes crazy and anything-but-boring world of Culver Creek Boarding School, and his life becomes the opposite of safe. Because down the hall is Alaska Young. The gorgeous, clever, funny, sexy, self-destructive, screwed up, and utterly fascinating Alaska Young. ', 200, 560, '1691435474.jpg', 299, 'John Green', '288 Pages', '230g', '9780008384128', 'English', 0, 0, '', 'Jacketed', 'Fiction and Literature,\r\nRomance,\r\nYoung Adult', '2023-08-07 19:11:14'),
 (59, 53, 'Everything, Everything', 'aadi8821book', 'Maddy is allergic to the world; stepping outside the sterile sanctuary of her home could kill her. But then Olly moves in next door. And just like that, Maddy realizes there\'s more to life than just being alive. You only get one chance at first love. And Maddy is ready to risk everything, everything to see where it leads. \'Powerful, lovely, heart-wrenching, and so absorbing I devoured it in one sitting\' – Jennifer Niven, author of All the Bright Places And don\'t miss Nicola Yoon\'s #1 New York Times bestseller The Sun Is Also a Star, in which two teens are brought together just when the universe is sending them in opposite directions.', 'Maddy is allergic to the world; stepping outside the sterile sanctuary of her home could kill her. But then Olly moves in next door. And just like that, Maddy realizes there\'s more to life than just being alive. You only get one chance at first love. And Maddy is ready to risk everything, everything to see where it leads. \'Powerful, lovely, heart-wrenching, and so absorbing I devoured it in one sitting\' – Jennifer Niven, author of All the Bright Places And don\'t miss Nicola Yoon\'s #1 New York Times bestseller The Sun Is Also a Star, in which two teens are brought together just when the universe is sending them in opposite directions.', 300, 638, '1691435613.jpg', 300, 'Nicola Yoon', '306 Pages', '260g', '9780552574235', 'English', 0, 0, '', 'Jacketed', 'Fiction and Literature,\r\nRomance,\r\nYoung Adult', '2023-08-07 19:13:33'),
@@ -333,8 +334,8 @@ ALTER TABLE `blogs`
 --
 ALTER TABLE `carts`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `user` (`user_id`),
-  ADD KEY `prod` (`prod_id`);
+  ADD KEY `prod` (`prod_id`),
+  ADD KEY `for` (`user_id`);
 
 --
 -- Indexes for table `categories`
@@ -352,7 +353,8 @@ ALTER TABLE `news`
 -- Indexes for table `orders`
 --
 ALTER TABLE `orders`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `forie` (`user_id`);
 
 --
 -- Indexes for table `order_items`
@@ -360,14 +362,14 @@ ALTER TABLE `orders`
 ALTER TABLE `order_items`
   ADD PRIMARY KEY (`id`),
   ADD KEY `For` (`prod_id`),
-  ADD KEY `order` (`order_id`);
+  ADD KEY `foreign` (`order_id`);
 
 --
 -- Indexes for table `products`
 --
 ALTER TABLE `products`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `Foreign` (`category_id`);
+  ADD KEY `fori` (`category_id`);
 
 --
 -- Indexes for table `users`
@@ -389,7 +391,7 @@ ALTER TABLE `blogs`
 -- AUTO_INCREMENT for table `carts`
 --
 ALTER TABLE `carts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=304;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=305;
 
 --
 -- AUTO_INCREMENT for table `categories`
@@ -426,6 +428,34 @@ ALTER TABLE `products`
 --
 ALTER TABLE `users`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `carts`
+--
+ALTER TABLE `carts`
+  ADD CONSTRAINT `for` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+
+--
+-- Constraints for table `orders`
+--
+ALTER TABLE `orders`
+  ADD CONSTRAINT `forie` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+
+--
+-- Constraints for table `order_items`
+--
+ALTER TABLE `order_items`
+  ADD CONSTRAINT `foreign` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`);
+
+--
+-- Constraints for table `products`
+--
+ALTER TABLE `products`
+  ADD CONSTRAINT `fori` FOREIGN KEY (`category_id`) REFERENCES `categories` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
