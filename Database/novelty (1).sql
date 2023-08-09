@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 09, 2023 at 04:36 PM
+-- Generation Time: Aug 09, 2023 at 04:59 PM
 -- Server version: 10.4.27-MariaDB
--- PHP Version: 8.2.0
+-- PHP Version: 8.1.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -57,21 +57,6 @@ CREATE TABLE `carts` (
   `prod_qty` int(11) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `carts`
---
-
-INSERT INTO `carts` (`id`, `user_id`, `prod_id`, `prod_qty`, `created_at`) VALUES
-(206, 38, 37, 1, '2023-08-02 09:33:37'),
-(227, 40, 36, 1, '2023-08-02 17:43:20'),
-(228, 40, 39, 1, '2023-08-02 17:44:27'),
-(261, 36, 37, 1, '2023-08-05 17:28:07'),
-(262, 36, 41, 1, '2023-08-05 17:28:12'),
-(263, 36, 35, 1, '2023-08-05 17:28:14'),
-(267, 36, 36, 1, '2023-08-05 17:29:44'),
-(268, 36, 42, 1, '2023-08-06 14:58:36'),
-(304, 34, 50, 1, '2023-08-09 13:57:09');
 
 -- --------------------------------------------------------
 
@@ -148,23 +133,6 @@ CREATE TABLE `orders` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `orders`
---
-
-INSERT INTO `orders` (`id`, `tracking_no`, `user_id`, `name`, `email`, `phone`, `address`, `city`, `total_price`, `payment_mode`, `payment_id`, `status`, `comments`, `created_at`) VALUES
-(54, 'aadi404908389105', 40, 'Aaditya Raj Gupta', 'aaditya@gmail.com', '9808389105', 'Thankot', 'Kathmandu', 3900, 'COD', '-', 2, NULL, '2023-08-02 17:27:02'),
-(55, 'aadi871708389105', 41, 'Aaditya Gupta', 'aaditya999@gmail.com', '9808389105', 'Thankot', 'Kathmandu', 4400, 'COD', '-', 1, NULL, '2023-08-03 03:21:47'),
-(56, 'aadi160608061736', 42, 'Yurika Tiwari', 'yurika@gmail.com', '9808061736', 'Gabahal', 'Lalitpur', 3300, 'COD', '-', 1, NULL, '2023-08-03 06:29:49'),
-(57, 'aadi959008389105', 34, 'Aaditya Gupta', 'aditya@gmail.com', '9808389105', 'Thankot', 'Kathmandu', 6900, 'COD', '-', 1, NULL, '2023-08-03 18:50:03'),
-(58, 'aadi624408389105', 36, 'Aaditya Gupta', 'guptaaaditya999@gmail.com', '9808389105', 'Thankot', 'Kathmandu', 1600, 'COD', '-', 1, NULL, '2023-08-04 13:04:32'),
-(59, 'aadi462808457685', 34, 'Yurika Tiwari', 'yurika@gmail.com', '9808457685', 'Gabahal', 'Lalitput', 3700, 'COD', '-', 1, NULL, '2023-08-04 14:06:30'),
-(60, 'aadi675808389105', 33, 'Aaditya Gupta', 'guptaaaditya999@gmail.com', '9808389105', 'Thankot', 'Kathmandu', 1700, 'COD', '-', 1, NULL, '2023-08-05 15:28:43'),
-(61, 'aadi440018576772', 44, 'Rajan Jaishwal', 'rajan@gmail.com', '9818576772', 'Thankot', 'Kathmandu', 6800, 'COD', '-', 1, NULL, '2023-08-06 15:45:19'),
-(62, 'aadi804908389105', 34, 'Aaditya Gupta', 'aaditya@gmail.com', '9808389105', 'Thankot', 'Kathmandu', 4338, 'COD', '-', 1, NULL, '2023-08-07 19:43:03'),
-(63, 'aadi955323532684', 35, 'Nisha Ghimire', 'nisha@gmail.com', '9823532684', 'Chapagaun', 'Lalitpur', 4790, 'COD', '-', 1, NULL, '2023-08-08 13:37:36'),
-(64, 'aadi384308389105', 34, 'Sushmita Shreevastav', 'sushmita@gmail.com', '9808389105', 'Thankot', 'Kathmandu', 4478, 'COD', '-', 0, NULL, '2023-08-09 13:20:22');
-
 -- --------------------------------------------------------
 
 --
@@ -179,56 +147,6 @@ CREATE TABLE `order_items` (
   `price` int(191) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `order_items`
---
-
-INSERT INTO `order_items` (`id`, `order_id`, `prod_id`, `qty`, `price`, `created_at`) VALUES
-(202, 54, 38, 1, 700, '2023-08-02 17:27:02'),
-(203, 54, 36, 4, 400, '2023-08-02 17:27:02'),
-(204, 54, 42, 1, 700, '2023-08-02 17:27:02'),
-(205, 54, 37, 1, 900, '2023-08-02 17:27:02'),
-(206, 55, 41, 2, 1500, '2023-08-03 03:21:47'),
-(207, 55, 39, 1, 600, '2023-08-03 03:21:47'),
-(208, 55, 36, 1, 400, '2023-08-03 03:21:47'),
-(209, 55, 35, 1, 400, '2023-08-03 03:21:47'),
-(210, 56, 40, 1, 1000, '2023-08-03 06:29:49'),
-(211, 56, 39, 1, 600, '2023-08-03 06:29:49'),
-(212, 56, 35, 1, 400, '2023-08-03 06:29:49'),
-(213, 56, 37, 1, 900, '2023-08-03 06:29:49'),
-(214, 56, 36, 1, 400, '2023-08-03 06:29:49'),
-(215, 57, 38, 1, 700, '2023-08-03 18:50:03'),
-(216, 57, 35, 1, 400, '2023-08-03 18:50:03'),
-(217, 57, 36, 1, 400, '2023-08-03 18:50:03'),
-(218, 57, 39, 5, 600, '2023-08-03 18:50:03'),
-(219, 57, 41, 1, 1500, '2023-08-03 18:50:03'),
-(220, 57, 37, 1, 900, '2023-08-03 18:50:03'),
-(221, 58, 38, 1, 700, '2023-08-04 13:04:32'),
-(222, 58, 37, 1, 900, '2023-08-04 13:04:32'),
-(223, 59, 38, 1, 700, '2023-08-04 14:06:30'),
-(224, 59, 42, 1, 700, '2023-08-04 14:06:30'),
-(225, 59, 40, 1, 1000, '2023-08-04 14:06:30'),
-(226, 59, 35, 1, 400, '2023-08-04 14:06:30'),
-(227, 59, 37, 1, 900, '2023-08-04 14:06:30'),
-(228, 60, 35, 1, 400, '2023-08-05 15:28:43'),
-(229, 60, 36, 1, 400, '2023-08-05 15:28:43'),
-(230, 60, 37, 1, 900, '2023-08-05 15:28:43'),
-(231, 61, 40, 4, 1000, '2023-08-06 15:45:19'),
-(232, 61, 41, 1, 1500, '2023-08-06 15:45:20'),
-(233, 61, 36, 1, 400, '2023-08-06 15:45:20'),
-(234, 61, 37, 1, 900, '2023-08-06 15:45:20'),
-(235, 62, 47, 1, 638, '2023-08-07 19:43:03'),
-(236, 62, 46, 1, 1200, '2023-08-07 19:43:03'),
-(237, 62, 45, 5, 500, '2023-08-07 19:43:03'),
-(238, 63, 51, 3, 958, '2023-08-08 13:37:36'),
-(239, 63, 50, 1, 1278, '2023-08-08 13:37:36'),
-(240, 63, 47, 1, 638, '2023-08-08 13:37:36'),
-(241, 64, 60, 1, 1122, '2023-08-09 13:20:22'),
-(242, 64, 58, 1, 560, '2023-08-09 13:20:22'),
-(243, 64, 55, 1, 958, '2023-08-09 13:20:22'),
-(244, 64, 46, 1, 1200, '2023-08-09 13:20:22'),
-(245, 64, 47, 1, 638, '2023-08-09 13:20:22');
 
 -- --------------------------------------------------------
 
@@ -334,8 +252,8 @@ ALTER TABLE `blogs`
 --
 ALTER TABLE `carts`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `prod` (`prod_id`),
-  ADD KEY `for` (`user_id`);
+  ADD KEY `for` (`user_id`),
+  ADD KEY `forn` (`prod_id`);
 
 --
 -- Indexes for table `categories`
@@ -361,8 +279,8 @@ ALTER TABLE `orders`
 --
 ALTER TABLE `order_items`
   ADD PRIMARY KEY (`id`),
-  ADD KEY `For` (`prod_id`),
-  ADD KEY `foreign` (`order_id`);
+  ADD KEY `foreign` (`order_id`),
+  ADD KEY `frn` (`prod_id`);
 
 --
 -- Indexes for table `products`
@@ -437,7 +355,8 @@ ALTER TABLE `users`
 -- Constraints for table `carts`
 --
 ALTER TABLE `carts`
-  ADD CONSTRAINT `for` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`);
+  ADD CONSTRAINT `for` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`),
+  ADD CONSTRAINT `forn` FOREIGN KEY (`prod_id`) REFERENCES `products` (`id`);
 
 --
 -- Constraints for table `orders`
@@ -449,7 +368,8 @@ ALTER TABLE `orders`
 -- Constraints for table `order_items`
 --
 ALTER TABLE `order_items`
-  ADD CONSTRAINT `foreign` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`);
+  ADD CONSTRAINT `foreign` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`),
+  ADD CONSTRAINT `frn` FOREIGN KEY (`prod_id`) REFERENCES `products` (`id`);
 
 --
 -- Constraints for table `products`
