@@ -114,6 +114,16 @@ elseif(isset($_POST['delete_category_btn']))
     $category_data = mysqli_fetch_array($category_query_run);
     $image = $category_data['image'];
 
+    $count = "SELECT COUNT(*) AS count FROM products WHERE category_id='$category_id'";
+    $related_check_result = mysqli_query($con, $count);
+    $row = mysqli_fetch_assoc($related_check_result);
+    $related_count = $row['count'];
+
+    if ($related_count > 0)
+    {
+        redirect("./category.php", "This category is being used in products.");
+    }
+
     $delete_query = "DELETE FROM categories WHERE id='$category_id'";
     $delete_query_run = mysqli_query($con, $delete_query);
 
