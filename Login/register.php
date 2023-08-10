@@ -13,9 +13,6 @@ if(isset($_SESSION['auth']))
         <link rel="stylesheet" href="register.css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <link href="https://fonts.googleapis.com/css? family=kaushan+script|popping&display=swap" rel="stylesheet"/>
-        <!-- <link href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" rel="stylesheet"/> -->
-       
-       
      </head>
 
    <body>
@@ -102,7 +99,7 @@ if(isset($_SESSION['auth']))
                </div>
                <div class="form-group">
                   <label for="password">Password</label>
-                  <input type="password" id="password" name="password" required>
+                  <input type="password" id="password" name="password">
                </div>
                <div class="form-group">
                   <label for="confirm_password">Confirm Password</label>
@@ -111,7 +108,7 @@ if(isset($_SESSION['auth']))
 
 
                   <?php if(isset($_SESSION['message'])){ ?>
-                  <p class="alert"></p> <?= $_SESSION['message']; ?>
+                  <?= $_SESSION['message']; ?>
                   <?php
                   unset($_SESSION['message']);
                   } ?>
@@ -126,14 +123,14 @@ if(isset($_SESSION['auth']))
 
 
           <script>
-    let subMenu = document.getElementById("subMenu");
+            let subMenu = document.getElementById("subMenu");
 
-    function toggleMenu()
-    {
-      console.log("Function called");
-      subMenu.classList.toggle("open-menu");
-    }
-  </script>
+            function toggleMenu()
+            {
+              console.log("Function called");
+              subMenu.classList.toggle("open-menu");
+            }
+          </script>
 
           <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
           <script>

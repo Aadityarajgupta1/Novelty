@@ -70,6 +70,7 @@ function validateFullName($name) {
     $pattern = '/^[a-zA-Z ]+$/';
     return preg_match($pattern, $name);
 }
+
 function validateCity($city) {
     $pattern = '/^[a-zA-Z ]+$/';
     return preg_match($pattern, $city);

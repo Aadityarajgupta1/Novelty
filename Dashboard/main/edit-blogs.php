@@ -44,7 +44,7 @@ include('header.php');
                             
                             <div class="col-md-6">
                                 <label for="">Status</label>
-                                <input type="checkbox" <?= $data['status'] ? "checked" : "" ?> name="status">
+                                <input type="checkbox" <?= $data['status'] ? "" : "checked" ?> name="status">
                             </div>
                             <div class="col-md-12">
                                 <button type="submit" class="btn btn-primary" name="update_blog_btn">Update</button>

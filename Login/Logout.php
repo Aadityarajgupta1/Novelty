@@ -8,5 +8,4 @@ if(isset($_SESSION['auth']))
 }
 
 header('Location: ..\Home\Index.php');
-
 ?>
