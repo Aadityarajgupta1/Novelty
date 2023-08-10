@@ -29,8 +29,11 @@ $(document).ready(function()
                     }
                     else if(response == 500)
                     {
-                        swal("Error!", "Something went Wrong", "Error");
+                        swal("Error!", "Something went Wrong", "error");
 
+                    }
+                    else{
+                        swal("Error!", "Other table is using this data", "error");
                     }
                 }
               });
