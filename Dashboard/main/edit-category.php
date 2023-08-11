@@ -59,11 +59,11 @@ include('header.php');
                             </div>
                             <div class="col-md-6">
                                 <label for="">Status</label>
-                                <input type="checkbox" <?= $data['status'] ? "checked" : "" ?> name="status">
+                                <input type="checkbox" <?= $data['status'] ? "" : "checked" ?> name="status">
                             </div>
                             <div class="col-md-6">
                                 <label for="">Popular</label>
-                                <input type="checkbox" <?= $data['popular'] ? "checked" : "" ?> name="popular">
+                                <input type="checkbox" <?= $data['popular'] ? "" : "checked" ?> name="popular">
                             </div>
                             <div class="col-md-12">
                                 <button type="submit" class="btn btn-primary" name="update_category_btn">Update</button>

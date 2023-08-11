@@ -10,10 +10,10 @@ if(isset($_POST['add_category_btn']))
     $meta_title = $_POST['meta_title'];
     $meta_description = $_POST['meta_description'];
     $meta_keywords = $_POST['meta_keywords'];
-    $status = isset($_POST['status']) ? '1' : '0';
-    $popular = isset($_POST['popular']) ? '1' : '0';
+    $status = isset($_POST['status']) ? '0' : '1';
+    $popular = isset($_POST['popular']) ? '0' : '1';
 
-    $slug = "aadii".rand(1111,9999).substr($phone,2);
+    $slug = "aadii".rand(1111,9999).substr($name, 0, 4);
 
 
     $image = $_FILES['image']['name'];
@@ -63,8 +63,8 @@ elseif(isset($_POST['update_category_btn']))
     $meta_title = $_POST['meta_title'];
     $meta_description = $_POST['meta_description'];
     $meta_keywords = $_POST['meta_keywords'];
-    $status = isset($_POST['status']) ? '1' : '0';
-    $popular = isset($_POST['popular']) ? '1' : '0';
+    $status = isset($_POST['status']) ? '0' : '1';
+    $popular = isset($_POST['popular']) ? '0' : '1';
 
     $new_image = $_FILES['image']['name'];
     $old_image = $_POST['$old_image'];
@@ -158,8 +158,8 @@ elseif(isset($_POST['add_product_btn']))
     $meta_title = $_POST['meta_title'];
     $meta_description = mysqli_real_escape_string($con, $_POST['meta_description']);
     $meta_keywords = mysqli_real_escape_string($con, $_POST['meta_keywords']);
-    $status = isset($_POST['status']) ? '1' : '0';
-    $trending = isset($_POST['trending']) ? '1' : '0';
+    $status = isset($_POST['status']) ? '0' : '1';
+    $trending = isset($_POST['trending']) ? '0' : '1';
 
     $slug = "aadi".rand(1111,9999).substr($phone,2)."book";
 
@@ -259,8 +259,8 @@ elseif(isset($_POST['update_product_btn']))
     $meta_title = $_POST['meta_title'];
     $meta_description = mysqli_real_escape_string($con, $_POST['meta_description']);
     $meta_keywords = mysqli_real_escape_string($con, $_POST['meta_keywords']);
-    $status = isset($_POST['status']) ? '1' : '0';
-    $trending = isset($_POST['trending']) ? '1' : '0';
+    $status = isset($_POST['status']) ? '0' : '1';
+    $trending = isset($_POST['trending']) ? '0' : '1';
 
     $path = "./uploads";
 
@@ -334,7 +334,7 @@ elseif(isset($_POST['add_blog_btn']))
 {
     $name = $_POST['name'];
     $description = mysqli_real_escape_string($con, $_POST['description']);
-    $status = isset($_POST['status']) ? '1' : '0';
+    $status = isset($_POST['status']) ? '0' : '1';
 
     $image = $_FILES['image']['name'];
 
@@ -373,7 +373,7 @@ elseif(isset($_POST['update_blog_btn']))
     $blog_id = $_POST['blog_id'];
     $name = $_POST['name'];
     $description = mysqli_real_escape_string($con, $_POST['description']);
-    $status = isset($_POST['status']) ? '1' : '0';
+    $status = isset($_POST['status']) ? '0' : '1';
 
     $path = "./uploads";
 

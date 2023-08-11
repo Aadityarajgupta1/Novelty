@@ -91,11 +91,11 @@ include('header.php');
                             </div>                           
                             <div class="col-md-3">
                                 <label class="mb-0" for="">Status</label><br>
-                                <input type="checkbox" <?= $data['status'] == '0' ? '' : 'checked'?> name="status">
+                                <input type="checkbox" <?= $data['status'] == '0' ? 'checked' : ''?> name="status">
                             </div>
                             <div class="col-md-3">
                                 <label class="mb-0" for="">Trending</label><br>
-                                <input type="checkbox" <?= $data['trending'] == '0' ? '' : 'checked'?> name="trending">
+                                <input type="checkbox" <?= $data['trending'] == '0' ? 'checked' : ''?> name="trending">
                             </div>
                             <div class="col-md-3">
                             <label class="mb-0" for="">Page Count</label>
