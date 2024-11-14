@@ -1,20 +1,20 @@
 $(document).ready(function () {
 
-    $('.increment-btn').click(function (e) {
+   $('.increment-btn').click(function (e) {
          e.preventDefault();
 
          var qty = $(this).closest('.product_data').find('.input-qty').val();
          
          var value = parseInt(qty, 10);
          value = isNaN(value) ? 0 : value;
-         if(value < 10)
+         if(value < 20)
          {
             value++;
             $(this).closest('.product_data').find('.input-qty').val(value);
          }
-    });
+   });
 
-    $('.decrement-btn').click(function (e) {
+   $('.decrement-btn').click(function (e) {
         e.preventDefault();
 
         var qty = $(this).closest('.product_data').find('.input-qty').val();
@@ -29,16 +29,16 @@ $(document).ready(function () {
    });
 
    $('.addToCartBtn').click(function (e){
-    e.preventDefault();
-    var qty = $(this).closest('.product_data').find('.input-qty').val();
-   // var qty = '1';
-   if(qty<1 || qty == null)
-   {
-      qty = 1;
-   }
-    var prod_id = $(this).val();
+      e.preventDefault();
+      var qty = $(this).closest('.product_data').find('.input-qty').val();
+      // var qty = '1';
+      if(qty<1 || qty == null)
+      {
+         qty = 1;
+      }
+      var prod_id = $(this).val();
 
-     $.ajax({
+      $.ajax({
          method: "POST",
          url: "../Login/functions/handlecart.php",
          data: {
@@ -52,10 +52,9 @@ $(document).ready(function () {
                Swal.fire({
                   title: 'Wow',
                   text: "Product Added to Cart!",
-                  icon: 'info',
                   confirmButtonColor: '#3085d6',
                   cancelButtonColor: '#d33',
-                  confirmButtonText: 'Okay!'
+                  confirmButtonText: 'Okay'
                 });
             }
             else if(response == "Existing")
@@ -63,10 +62,9 @@ $(document).ready(function () {
                Swal.fire({
                   title: 'Exist',
                   text: "Product Already on cart!",
-                  icon: 'info',
                   confirmButtonColor: '#3085d6',
                   cancelButtonColor: '#d33',
-                  confirmButtonText: 'Okay!'
+                  confirmButtonText: 'Okay'
                 });
             }
             else if(response == 401)
@@ -74,7 +72,6 @@ $(document).ready(function () {
                Swal.fire({
                   title: 'Warning',
                   text: "Login to Continue!",
-                  icon: 'Warning',
                   confirmButtonColor: '#3085d6',
                   cancelButtonColor: '#d33',
                   confirmButtonText: 'Okay!'
@@ -85,7 +82,6 @@ $(document).ready(function () {
                alert("Something went wrong");
             }
          }
-
      });
    });
 
@@ -126,7 +122,6 @@ $(document).ready(function () {
                Swal.fire({
                   title: 'Warning',
                   text: "Product Deleted from cart!",
-                  icon: 'Warning',
                   confirmButtonColor: '#3085d6',
                   cancelButtonColor: '#d33',
                   confirmButtonText: 'Okay!'

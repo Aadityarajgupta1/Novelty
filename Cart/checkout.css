@@ -310,8 +310,9 @@ button.normal
 
 .checkoutLayout .right input
 {
-    margin-top: 10px;
+    margin-top: 8px;
     margin-bottom: 10px;
+    border-radius: 40px;
 }
 
 .checkoutLayout .right .return {
@@ -390,7 +391,7 @@ button.normal
     height: 40px;
     border: none;
     border-radius: 20px;
-    background-color: #b7aa7c;
+    background-color: #ad9d65;
     margin-top: 30px;
     font-weight: bold;
     color: #fff;
@@ -399,6 +400,23 @@ button.normal
 }
 
 .buttonCheckout:hover {
+    transform: scale(1.02);
+}
+
+.buttonCheckout1 {
+    width: 100%;
+    height: 40px;
+    border: none;
+    border-radius: 20px;
+    background-color: #d104fa;
+    margin-top: 10px;
+    font-weight: bold;
+    color: #fff;
+    cursor: pointer;
+    transition: all ease 0.5s;
+}
+
+.buttonCheckout1:hover {
     transform: scale(1.02);
 }
 

@@ -25,6 +25,15 @@ if(isset($_POST['add_category_btn']))
 
     if ($name !== "" && $description !== "")  
     {
+            $check_name_query = "SELECT name FROM categories WHERE name='$name'";
+            $check_name_query_run = mysqli_query($con, $check_name_query);
+            if (mysqli_num_rows($check_name_query_run) > 0)
+            {
+                $_SESSION['message'] = "Category already Exist.";
+                header('Location: ./add-category.php');
+            }
+            else
+            {
         if (!validateFullName($name)) 
         {
             $_SESSION['message'] = "Please Enter a Valid name.";
@@ -49,6 +58,7 @@ if(isset($_POST['add_category_btn']))
 
         }
     }
+}
     else
     {
         redirect("add-category.php", "All Fields are mandetory");
@@ -140,9 +150,7 @@ elseif(isset($_POST['delete_category_btn']))
         redirect("./category.php", "Something went Wrong");
 
     }
-}
-elseif(isset($_POST['add_product_btn']))
-{
+} elseif (isset($_POST['add_product_btn'])) {
     $category_id = $_POST['category_id'];
     $name = $_POST['name'];
     $small_description = mysqli_real_escape_string($con, $_POST['small_description']);
@@ -161,82 +169,65 @@ elseif(isset($_POST['add_product_btn']))
     $status = isset($_POST['status']) ? '0' : '1';
     $trending = isset($_POST['trending']) ? '0' : '1';
 
-    $slug = "aadi".rand(1111,9999).substr($phone,2)."book";
+    $slug = "aadi" . rand(1111, 9999) . substr($phone, 2) . "book";
 
     $image = $_FILES['image']['name'];
 
     $path = "./uploads";
-    
-    $image_ext = pathinfo($image, PATHINFO_EXTENSION);
-    $filename = time().'.'.$image_ext;
 
-    if($name != "" && $selling_price != "" && $description != "" && $image !== "")
-    {
-        if (!validateLanguage($language)) 
-        {
-            $_SESSION['message'] = "Please Enter a Valid language name.";
+    $image_ext = pathinfo($image, PATHINFO_EXTENSION);
+    $filename = time() . '.' . $image_ext;
+
+    if ($name != "" && $selling_price != "" && $description != "" && $image !== "") {
+        $check_name1_query = "SELECT name FROM products WHERE name='$name' AND author='$author'";
+        $check_name1_query_run = mysqli_query($con, $check_name1_query);
+        if (mysqli_num_rows($check_name1_query_run) > 0) {
+            $_SESSION['message'] = "Book already Exist.";
             header('Location: ./add-products.php');
-        } 
-        else
-        {
-            if (!validateAuthor($author)) 
-        {
-            $_SESSION['message'] = "Please Enter a Valid author name.";
-            header('Location: ./add-products.php');
-        } 
-        else
-        { 
-            if($qty >=1 )
-            {    
-                if($original_price >=1 )
-                 {
-                     if($selling_price >= $original_price )
-                     {
-                         if($weight >= 1)
-                         {
-                             $product_query = "INSERT INTO products (category_id, name, slug, small_description, description, original_price,
+        } else {
+            if (!validateLanguage($language)) {
+                $_SESSION['message'] = "Please Enter a Valid language name.";
+                header('Location: ./add-products.php');
+            } else {
+                if (!validateAuthor($author)) {
+                    $_SESSION['message'] = "Please Enter a Valid author name.";
+                    header('Location: ./add-products.php');
+                } else {
+                    if ($qty >= 1) {
+                        if ($original_price >= 1) {
+                            if ($selling_price >= $original_price) {
+                                if ($weight >= 1) {
+                                    $product_query = "INSERT INTO products (category_id, name, slug, small_description, description, original_price,
                              selling_price, qty, author, page_count, weight, isbn, language,meta_title, meta_description, meta_keywords, status, trending, image) 
                              VALUES ('$category_id', '$name', '$slug', '$small_description', '$description', '$original_price', '$selling_price',
                              '$qty','$author','$page_count','$weight','$isbn','$language','$meta_title', '$meta_description', '$meta_keywords', '$status',
                              '$trending', '$filename')";
 
-                             $product_query_run = mysqli_query($con, $product_query);
+                                    $product_query_run = mysqli_query($con, $product_query);
 
-                             if($product_query_run)
-                             {
-                                 move_uploaded_file($_FILES['image']['tmp_name'], $path.'/'.$filename);
-                                 redirect("./add-products.php", "Product added Successfully");
-                             }
-                             else
-                             {
-                                 redirect("./add-products.php", "Something went Wrong");
-                             }
-                         }
-                         else
-                         {
-                            redirect("./add-products.php", "Weight is not vallid");
-                         }
+                                    if ($product_query_run) {
+                                        move_uploaded_file($_FILES['image']['tmp_name'], $path . '/' . $filename);
+                                        redirect("./add-products.php", "Product added Successfully");
+                                    } else {
+                                        redirect("./add-products.php", "Something went Wrong");
+                                    }
+                                } else {
+                                    redirect("./add-products.php", "Weight is not vallid");
+                                }
+                            } else {
+                                redirect("./add-products.php", "Selling Price is not valid");
+                            }
+                        } else {
+                            redirect("./add-products.php", "Original Price is not valid");
+                        }
+                    } else {
+                        redirect("./add-products.php", "Quantity must be 1 or more.");
                     }
-                    else
-                    {
-                        redirect("./add-products.php", "Selling Price is not valid");
-                    }
-                }
-                else
-                {
-                    redirect("./add-products.php", "Original Price is not valid");
+
                 }
             }
-            else
-            {
-                redirect("./add-products.php", "Quantity must be 1 or more.");
-            }
-        
         }
-    }
-    }
-    else
-    {
+    } else {
         redirect("./add-products.php", "All Fields are Mandetory");
     }
 }

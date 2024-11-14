@@ -163,10 +163,10 @@ include('../Dashboard/middleware/authenticate.php');
 
     <section id="cart-add" class="section-p1">
       <div id="coupon">
-        <h3>Apply coupon</h3>
+        <h3>Commin Soon</h3>
         <div>
           <input type="text" placeholder="Enter Your coupon">
-          <button class="normal">Apply</button>
+          <button class="normal" disabled>Apply</button>
         </div>
       </div>
 

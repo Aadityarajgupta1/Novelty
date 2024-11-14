@@ -21,18 +21,18 @@ if(isset($_SESSION['auth']))
 
    <body>
 
-       <div id="banner" class="background" >
+      <div id="banner" class="background" >
 
-       <div class="navbar">
-      <a href="../Home/Index.php"><img src="./Images/logo.png" class="logo"></a>
-      <ul>
+        <div class="navbar">
+        <a href="../Home/Index.php"><img src="./Images/logo.png" class="logo"></a>
+        <ul>
         <li><a  href="../Home/Index.php">HOME</a></li>
         <li><a href="../Blog/Blog.php">BLOG</a></li>
         <li><a href="../Book/Book.php">BOOKS</a></li>
         <li><a href="../Contact/Contact.php">CONTACT</a></li>
         <li><a class="active" onclick="toggleMenu()"><i class="fa fa-user"></i></a>&nbsp;</li>
-      </ul>
-      <!-- <img src="Images/profile.png" class="user-pic" onclick="toggleMenu()"> -->
+        </ul>
+        <!-- <img src="Images/profile.png" class="user-pic" onclick="toggleMenu()"> -->
           <div class="sub-menu-wrap" id="subMenu">
             <div class="sub-menu">
               <div class="user-info">
@@ -106,13 +106,12 @@ if(isset($_SESSION['auth']))
            </div>
 
 
-           <script>
-    let subMenu = document.getElementById("subMenu");
-
-    function toggleMenu()
-    {
-      subMenu.classList.toggle("open-menu");
-    }
-  </script>
+          <script>
+            let subMenu = document.getElementById("subMenu");
+            function toggleMenu()
+            {
+              subMenu.classList.toggle("open-menu");
+            }
+          </script>
 </body>
 </html>

@@ -13,20 +13,20 @@ include('header.php');
                 <div class="card-body">
                     <form action="./code.php" method="POST" enctype="multipart/form-data">
                         <div class="col-md-12">
-                            <label class="mb-0" for="">Name</label>
+                            <label class="mb-0" for="">Name<span Style="color:red"> *</span></label>
                             <input type="text" name="name" class="form-control mb-2">
                         </div>
                         <div class="col-md-12">
-                            <label class="mb-0" for="">Upload Image</label>
+                            <label class="mb-0" for="">Upload Image<span Style="color:red"> *</span></label>
                             <input type="file" name="image" class="form-control mb-2">
                         </div>
                         <div class="col-md-12">
-                            <label class="mb-0" for="">Description</label>
+                            <label class="mb-0" for="">Description<span Style="color:red"> *</span></label>
                             <textarea rows="3" name="description" class="form-control mb-2"></textarea>
                         </div>
                         
                         <div class="col-md-3">
-                            <label class="mb-3" for="">Status</label>
+                            <label class="mb-3" for="">Status<span Style="color:red"> *</span></label>
                             <input type="checkbox" name="status">
                         </div>
                         

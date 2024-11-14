@@ -13,16 +13,16 @@ include('header.php');
                 <div class="card-body">
                     <form action="./code.php" method="POST" enctype="multipart/form-data">
                       <div class="row">
-                        <div class="col-md-6">
-                            <label for="">Name</label>
+                        <div class="col-md-12">
+                            <label for="">Name<span Style="color:red"> *</span></label>
                             <input type="text" name="name" class="form-control">
                         </div>
-                        <div class="col-md-6">
+                        <!-- <div class="col-md-6">
                             <label for="">Slug</label>
                             <input type="text" name="" class="form-control">
-                        </div>
+                        </div> -->
                         <div class="col-md-12">
-                            <label for="">Description</label>
+                            <label for="">Description<span Style="color:red"> *</span></label>
                             <textarea rows="3" name="description" class="form-control"></textarea>
                         </div>
                         <div class="col-md-12">
@@ -42,7 +42,7 @@ include('header.php');
                             <textarea rows="3" name="meta_keywords" class="form-control"></textarea>
                         </div>
                         <div class="col-md-6">
-                            <label for="">Status</label>
+                            <label for="">Status<span Style="color:red"> *</span></label>
                             <input type="checkbox" name="status">
                         </div>
                         <div class="col-md-6">

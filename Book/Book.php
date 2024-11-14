@@ -1,5 +1,33 @@
 <?php
-include('../Login/functions/userMyfunctions.php'); 
+include('../Login/functions/userMyfunctions.php');
+
+// Fetching all books from the database
+$query = "SELECT * FROM products WHERE status='0'";
+$query_run = mysqli_query($con, $query);
+$books = [];
+while ($row = mysqli_fetch_array($query_run)) {
+    $books[] = $row; // Store books in an array
+}
+
+$searchResults = $books; // Initialize with all books, so we show all books initially
+
+// Perform linear search when the form is submitted
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['query'])) {
+    $searchQuery = $_POST['query']; // Get the search query
+    
+    // Perform linear search: filter books that match the query in name, author, or ISBN
+    $searchResults = [];
+    foreach ($books as $book) {
+        if (
+            stripos($book['name'], $searchQuery) !== false || // Search by name
+            stripos($book['author'], $searchQuery) !== false || // Search by author
+            stripos($book['isbn'], $searchQuery) !== false // Search by ISBN
+        ) {
+            $searchResults[] = $book; // Add matching books to results
+        }
+    }
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -14,9 +42,17 @@ include('../Login/functions/userMyfunctions.php');
     <link rel="stylesheet" href="./Book.css">
     
 </head>
-<body>
+<>
 <div class="navbar">
       <a href="../Home/Index.php"><img src="./Images/logo.png" class="logo"></a>
+      <!-- <div>
+      <div class="box">
+        <input type="text" name="query" id="live_search" placeholder="Search..">
+        <button  type="submit"><i class="fa fa-search"></i></button>
+      </div>
+      <div id="searchresult"></div>
+      </div> -->
+
       <ul>
         <li><a  href="../Home/Index.php">HOME</a></li>
         <li><a href="../Blog/Blog.php">BLOG</a></li>
@@ -101,16 +137,21 @@ include('../Login/functions/userMyfunctions.php');
            </section>
            
           <!-- Categories -->
-           <div class="select-menu">
+            <div class="sear">
+              <form class="box" method="POST">
+              <input type="text" name="query" id="live_search" placeholder="Search..">
+              <button  type="submit"><i class="fa fa-search"></i></button>
+              </form>
+
+              <div class="select-menu">
                <div class="select-btn">
                   <span class="sBtn-text">Categories</span>
                   <i class="bx bx-chevron-down"></i>
-               </div>               
+               </div>            
+               <div>
                  <ul class="options">
-               
                  <?php
                   $categories = getAllActive("categories");
-
                   if(mysqli_num_rows($categories) > 0)
                   {
                      foreach($categories as $item)
@@ -131,50 +172,69 @@ include('../Login/functions/userMyfunctions.php');
                   }
                  ?>
                </ul>
-           </div>
-
+              </div>
+            </div>
+                  <!-- Price -->
+              <div class="select-menu1">
+               <div class="select-btn1">
+                  <span class="sBtn-text1">Preference</span>
+                  <i class="bx bx-chevron-down"></i>
+               </div>            
+               <div>
+                 
+                 <ul class="options1">
+                            
+                            <li class="option1">
+                            <i class="bx bx-book"></i>
+                            <span class="option-text  active">Low to High</span>
+                            </li>
+                            <li class="option1">
+                            <i class="bx bx-book"></i>
+                            <span class="option-text  active">High to Low</span>
+                            </li>
+                          </ul>
+                          </div>
+                          </div>
+                          </div>
+           
           <!-- All Book -->
           <section id="product1" class="section-p1">
             <div class="pro-container">
-              <?php
-              $query = "SELECT * FROM products WHERE status='0'";
-              $query_run = mysqli_query($con, $query);
-              $check_products = mysqli_num_rows($query_run) > 0;
-
-              if($check_products)
-              {
-                  while($row = mysqli_fetch_array($query_run))
-                  {
-                    ?>
-                    <a href="./sproduct.php?product=<?=$row['slug'];?>">
-                    <div class="pro">
-                      
-                    <img src="../Dashboard/main/uploads/<?= $row['image']; ?>" alt="All Images">
-                     <br>
-                    <div class="des">
-                        <span><?php echo $row['name']; ?></span>
-                        <h5><?php echo $row['author']; ?></h5>
-                        <div class="star">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                        </div>
-                        <h4>Rs.<?php echo $row['selling_price']; ?></h4>
-                    </div></a>
-                    <button class="addToCartBtn" value="<?=$row['id'];?>"><i class="fa fa-shopping-cart"></i></button>
-                </div>
-                  
-                    <?php
-                    
-                  }
+                  <?php 
+                    if(!empty($searchResults)) 
+                    {
+                      foreach ($searchResults as $book) 
+                    {
+                  ?>
+                    <a href="./sproduct.php?product=<?= $book['slug']; ?>">
+                      <div class="pro">
+                        <img src="../Dashboard/main/uploads/<?= $book['image']; ?>" alt="Book Image">
+                        <br>
+                        <div class="des">
+                          <span><?= $book['name']; ?></span>
+                          <h5><?= $book['author']; ?></h5>
+                          <div class="star">
+                                <i class="fa fa-book"></i>
+                                <i class="fa fa-book"></i>
+                                <i class="fa fa-book"></i>
+                                <i class="fa fa-book"></i>
+                                <i class="fa fa-book"></i>
+                          </div>
+                          <h4>Rs.<?= $book['selling_price']; ?></h4>
+                        
+                      </div>
+                    </a>
+                    <button class="addToCartBtn" value="<?= $book['id']; ?>"><i class="fa fa-shopping-cart"></i></button>
+                    </div>
+                  <?php
+                }
               }
               else
               {
-                echo "No Products Found";
+                echo "Search not found";
               }
               ?>
+              
             </div>
           </section>
                 
@@ -194,7 +254,7 @@ include('../Login/functions/userMyfunctions.php');
               </div>
               <form class="form" action="../Login/functions/newsLetter.php" method="POST">
               <input type="email" name="email" placeholder="Your Email Address">
-              <button type="submit" name="news_btn" class="normal">Sign up</button>
+              <button type="submit" name="news_btn" class="normal">Subscribe</button>
               </form>
         </section>
 
@@ -220,10 +280,10 @@ include('../Login/functions/userMyfunctions.php');
               <!-- Footer  -->
             <div class="col">
                 <h4>About</h4>
-                <a href="#">About us</a>
-                <a href="#">Delivery Information</a>
-                <a href="#">Privacy policy</a>
-                <a href="#">Terms & Conditions</a>
+                <a href="../About/about_us.php">About us</a>
+                <a href="../Cart/Checkout.php">Delivery Information</a>
+                <a href="../Privacy/Privacy.php">Privacy policy</a>
+                <!-- <a href="#">Terms & Conditions</a> -->
                 <a href="../Contact/Contact.php">Contact us</a>
             </div>
 
@@ -244,9 +304,9 @@ include('../Login/functions/userMyfunctions.php');
                 }
                 ?>
                 <a href="..\Cart\Cart.php">View cart</a>
-                <a href="#">My Wishlist</a>
+                <!-- <a href="#">My Wishlist</a> -->
                 <a href="../Cart/my-orders.php">Track my order</a>
-                <a href="#">Help</a>
+                <a href="../Help/Help.php">Help</a>
             </div>
 
             <div class="col install">
@@ -275,10 +335,37 @@ include('../Login/functions/userMyfunctions.php');
     }
   </script>
 
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="./script.js"></script>
         <script src="./Book.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+        <script type="text/javascript">
+          $(document).ready(function(){
+            $("#live_search").keyup(function(){
+                var input = $(this).val();
+                //alert(input);
+                if(input != "")
+                {
+                  $.ajax({
+                    url:"./livesearch.php",
+                    method: "POST",
+                    data:{input:input},
+
+                    success:function(data){
+                      $("#searchresult").html(data);
+                    }
+
+                  });
+                }
+                else
+                {
+                  $("#searchresult").css("display","none");
+                }
+            });
+          });
+        </script>
 
 </body>
 </html>

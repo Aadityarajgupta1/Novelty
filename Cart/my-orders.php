@@ -188,10 +188,10 @@ include('../Dashboard/middleware/authenticate.php');
 
             <div class="col">
                 <h4>About</h4>
-                <a href="#">About us</a>
-                <a href="#">Delivery Information</a>
-                <a href="#">Privacy policy</a>
-                <a href="#">Terms & Conditions</a>
+                <a href="../About/about_us.php">About us</a>
+                <a href="../Cart/Checkout.php">Delivery Information</a>
+                <a href="../Privacy/Privacy.php">Privacy policy</a>
+                <!-- <a href="#">Terms & Conditions</a> -->
                 <a href="../Contact/Contact.php">Contact us</a>
             </div>
 
@@ -212,9 +212,9 @@ include('../Dashboard/middleware/authenticate.php');
                 }
                 ?>
                 <a href="./Cart/Cart.php">View cart</a>
-                <a href="#">My Wishlist</a>
+                <!-- <a href="#">My Wishlist</a> -->
                 <a href="./my-orders.php">Track my order</a>
-                <a href="#">Help</a>
+                <a href="../Help/Help.php">Help</a>
             </div>
 
             <div class="col install">

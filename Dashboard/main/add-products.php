@@ -14,7 +14,7 @@ include('header.php');
                     <form action="./code.php" method="POST" enctype="multipart/form-data">
                       <div class="row">
                       <div class="col-md-12">
-                            <label class="mb-0" for="">Select Category</label>
+                            <label class="mb-0" for="">Select Category<span Style="color:red"> *</span></label>
                             <select name="category_id" class="form-select mb-2">
                             <option selected disabled> Select Category </option>
                                 <?php
@@ -37,11 +37,11 @@ include('header.php');
                             </select>
                         </div>
                         <div class="col-md-6">
-                            <label class="mb-0" for="">Name</label>
+                            <label class="mb-0" for="">Name<span Style="color:red"> *</span></label>
                             <input type="text" name="name" class="form-control mb-2">
                         </div>
                         <div class="col-md-6">
-                                <label class="mb-0" for="">Author</label>
+                                <label class="mb-0" for="">Author<span Style="color:red"> *</span></label>
                                 <input type="text" name="author" class="form-control mb-2">
                             </div>
                         <div class="col-md-12">
@@ -49,23 +49,23 @@ include('header.php');
                             <textarea rows="3" name="description" class="form-control mb-2"></textarea>
                         </div>
                         <div class="col-md-12">
-                            <label class="mb-0" for="">Description</label>
+                            <label class="mb-0" for="">Description<span Style="color:red"> *</span></label>
                             <textarea rows="3" name="small_description" class="form-control mb-2"></textarea>
                         </div>
                         <div class="col-md-6">
-                            <label class="mb-0" for="">Original Price</label>
+                            <label class="mb-0" for="">Original Price<span Style="color:red"> *</span></label>
                             <input type="text" name="original_price" class="form-control mb-2">
                         </div>
                         <div class="col-md-6">
-                            <label class="mb-0" for="">Selling Price</label>
+                            <label class="mb-0" for="">Selling Price<span Style="color:red"> *</span></label>
                             <input type="text" name="selling_price" class="form-control mb-2">
                         </div>
                         <div class="col-md-12">
-                            <label class="mb-0" for="">Upload Image</label>
+                            <label class="mb-0" for="">Upload Image<span Style="color:red"> *</span></label>
                             <input type="file" name="image" class="form-control mb-2">
                         </div>
                         <div class="col-md-3">
-                            <label class="mb-0" for="">Quantity</label>
+                            <label class="mb-0" for="">Quantity<span Style="color:red"> *</span></label>
                             <input type="number" name="qty" class="form-control mb-2">
                         </div>
                         <div class="col-md-3">
@@ -73,7 +73,7 @@ include('header.php');
                             <input type="text" name="" class="form-control mb-2">
                         </div>   
                         <div class="col-md-3">
-                            <label class="mb-0" for="">Status</label><br>
+                            <label class="mb-0" for="">Status<span Style="color:red"> *</span></label><br>
                             <input type="checkbox" name="status">
                         </div>
                         <div class="col-md-3">
@@ -81,19 +81,19 @@ include('header.php');
                             <input type="checkbox" name="trending">
                         </div>
                         <div class="col-md-3">
-                            <label class="mb-0" for="">Page Count</label>
+                            <label class="mb-0" for="">Page Count<span Style="color:red"> *</span></label>
                             <input type="text" name="page_count" class="form-control mb-2">
                         </div> 
                         <div class="col-md-3">
-                            <label class="mb-0" for="">Weight</label>
+                            <label class="mb-0" for="">Weight<span Style="color:red"> *</span></label>
                             <input type="text" name="weight" class="form-control mb-2">
                         </div> 
                         <div class="col-md-3">
-                            <label class="mb-0" for="">ISBN</label>
+                            <label class="mb-0" for="">ISBN<span Style="color:red"> *</span></label>
                             <input type="text" name="isbn" class="form-control mb-2">
                         </div> 
                         <div class="col-md-3">
-                            <label class="mb-0" for="">Language</label>
+                            <label class="mb-0" for="">Language<span Style="color:red"> *</span></label>
                             <input type="text" name="language" class="form-control mb-2">
                         </div>                      
                         
@@ -102,11 +102,11 @@ include('header.php');
                             <input type="text" name="meta_title" class="form-control mb-2">
                         </div>
                         <div class="col-md-12">
-                            <label class="mb-0" for="">Genres</label>
+                            <label class="mb-0" for="">Genres<span Style="color:red"> *</span></label>
                             <textarea rows="3" name="meta_description" class="form-control mb-2"></textarea>
                         </div>
                         <div class="col-md-12">
-                            <label class="mb-0" for="">Meta Keywords</label>
+                            <label class="mb-0" for="">Book Cover<span Style="color:red"> *</span></label>
                             <textarea rows="3" name="meta_keywords" class="form-control mb-2"></textarea>
                         </div>
                         

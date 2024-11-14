@@ -83,6 +83,64 @@ button.normal
     transition: 0.2s;
 }
 
+#searchresult
+{
+    margin-left: 440px ;
+    margin-top: 10px ;
+}
+
+
+.sear
+{
+    display: grid;
+    grid-template-columns: 1fr 1fr;  /* Centers the items vertically */
+    gap: 20px;  /* Adds space between the elements */
+}
+
+.sear .box
+{
+    margin-left: 350px;
+    margin-top: 50px;
+    height: 42px;
+    width: 450px;
+    display: flex;
+    cursor: pointer;
+    padding: 10px 20px;
+    border-radius: 10px;
+    align-items: center;
+    background-color: #fcfcfc;
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+    align-items: center;
+    position: absolute;
+}
+
+.sear .box input
+{
+    width: 2500px;
+    outline: none;
+    border: none;
+    font-weight: 500;
+    transition: 0.8s;
+    background: transparent;
+}
+
+.sear .box button
+{
+    background: transparent;
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
+
+.sear .box button .fa.fa-search
+{
+    color: #000;
+    font-size: 18px;
+    background: transparent;
+    outline: none;
+    border: none;
+}
+
 .navbar
 {
     width: 100%;
@@ -94,8 +152,7 @@ button.normal
     display: flex;
     align-items: center;
     justify-content: space-between;
-    /* background-color: #9aa5a5; */
-    background-color: #0d0e0e;
+    background-color: #000;
     height:15px;
     padding: 40px 10px;
     z-index: 999;
@@ -282,6 +339,7 @@ button.normal
     text-align: center;
     flex-direction: column;
     padding-top: 90px;
+    margin-bottom: 0px;
 }
 
 #page-header h2,
@@ -297,6 +355,7 @@ button.normal
     margin: 40px ;
     padding-left: 55px;
     padding-top: 10px;
+    
 }
 
 .select-menu .select-btn
@@ -369,6 +428,94 @@ button.normal
 }
 
 .option i
+{
+    font-size: 20px;
+    margin-right: 12px;
+    color: #614104;
+}
+
+/* Price */
+
+.select-menu1
+{
+    width: 280px;
+    margin: 40px ;
+    padding-left: 55px;
+    padding-top: 10px;
+    margin-left: 5px;
+    
+}
+
+.select-menu1 .select-btn1
+{
+    display: flex;
+    height: 40px;
+    background: #fcfcfc;
+    padding: 20px;
+    font-size: 18px;
+    font-weight: 400;
+    border-radius: 8px;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    box-shadow: 0 0 5px rgba(0,0,0,0.1);
+}
+
+.select-btn1 i
+{
+    font-size: 25px;
+    transition: 0.3s;
+}
+
+.select-menu1.active .select-btn1 i
+{
+   transform: rotate(-180deg);
+}
+
+.select-menu1 .options1
+{
+    position: relative;
+    margin-top: 10px;
+    border-radius: 8px;
+    background: #f5f8f8;
+    box-shadow: 0 0 3px rgba(0,0,0,0.1);
+    display: none;
+}
+
+.select-menu1 .options1 a
+{
+    text-decoration: none;
+    color: #0d0e0e;
+}
+
+.select-menu1.active .options1
+{
+   display: block;
+}
+
+.options1 .option1
+{
+    display: flex;
+    height: 45px;
+    cursor: pointer;
+    padding: 0 16px;
+    border-radius: 8px;
+    align-items: center;
+    background: #fafcfc;
+}
+
+.options1 .option1:hover::after
+{
+    width: 100%;
+}
+
+.options1 .option1:hover,
+.options1 .option1.active
+{
+    background: #f2f2f2;
+}
+
+.option1 i
 {
     font-size: 20px;
     margin-right: 12px;

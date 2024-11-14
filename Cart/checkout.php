@@ -14,61 +14,63 @@ if (isset($_POST['placeOrderBtn'])) {
     if ($name == "" || $email == "" || $phone == "" || $address == "" || $city == "") {
         $_SESSION['message'] = "All Fields are Mandetory";
         header('Location: ./checkout.php');
-        // exit(0);
     } 
     else {
         if (!validateFullName($name) || !validateCity($city) || !validateAddress($address)) {
             $_SESSION['message'] = "Please Enter Valid Information.";
             header('Location: ./checkout.php');
-           
         } else {
-        $userId = $_SESSION['auth_user']['user_id'];
-        $query = "SELECT c.id as cid, c.prod_id, c.prod_qty, p.id as pid, p.name, p.image, p.selling_price
-        FROM carts c, products p WHERE c.prod_id=p.id AND c.user_id='$userId' ORDER BY c.id DESC";
-        $query_run = mysqli_query($con, $query);
+            $userId = $_SESSION['auth_user']['user_id'];
+            $query = "SELECT c.id as cid, c.prod_id, c.prod_qty, p.id as pid, p.name, p.image, p.selling_price, p.category_id
+                      FROM carts c, products p WHERE c.prod_id=p.id AND c.user_id='$userId' ORDER BY c.id DESC";
+            $query_run = mysqli_query($con, $query);
 
-        $totalPrice = 0;
-        foreach ($query_run as $citem) {
-            $totalPrice +=  $citem['selling_price'] * $citem['prod_qty'];
-        }
-        $tracking_no = "aadi" . rand(1111, 9999) . substr($phone, 2);
-
-        $insert_query = "INSERT INTO orders (tracking_no, user_id,	name, email, phone,	address, city, total_price,
-        payment_mode, payment_id) VALUES ('$tracking_no', '$userId', '$name', '$email', '$phone', '$address',
-        '$city', '$totalPrice', '$payment_mode', '$payment_id')";
-
-        $insert_query_run = mysqli_query($con, $insert_query);
-
-        if ($insert_query_run) {
-            $order_id = mysqli_insert_id($con);
+            $totalPrice = 0;
             foreach ($query_run as $citem) {
-                $prod_id =  $citem['prod_id'];
-                $prod_qty =  $citem['prod_qty'];
-                $price =  $citem['selling_price'];
-
-                $insert_items_query = "INSERT INTO order_items (order_id, prod_id, qty, price) VALUES ('$order_id', '$prod_id', '$prod_qty', '$price') ";
-                $insert_items_query_run = mysqli_query($con, $insert_items_query);
-
-                $product_query = "SELECT * FROM products WHERE id='$prod_id'";
-                $product_query_run = mysqli_query($con, $product_query);
-                $productData = mysqli_fetch_assoc($product_query_run);
-
-                $current_qty = $productData['qty'];
-                $new_qty = $current_qty - $prod_qty;
-                $updateQty_query = "UPDATE products SET qty='$new_qty' WHERE id='$prod_id'";
-                $updateQty_query_run = mysqli_query($con, $updateQty_query);
+                $totalPrice +=  $citem['selling_price'] * $citem['prod_qty'];
             }
+            $tracking_no = "aadi" . rand(1111, 9999) . substr($phone, 2);
 
-            $deleteCartQuery = "DELETE FROM carts WHERE user_id = '$userId'";
-            $deleteCartQuery_run = mysqli_query($con, $deleteCartQuery);
+            $insert_query = "INSERT INTO orders (tracking_no, user_id, name, email, phone, address, city, total_price, payment_mode, payment_id) 
+                             VALUES ('$tracking_no', '$userId', '$name', '$email', '$phone', '$address', '$city', '$totalPrice', '$payment_mode', '$payment_id')";
+            $insert_query_run = mysqli_query($con, $insert_query);
 
-            $_SESSION['message'] = "Order placed successfully";
-            header('Location: ./my-orders.php');
-            die();
+            if ($insert_query_run) {
+                $order_id = mysqli_insert_id($con);
+                foreach ($query_run as $citem) {
+                    $prod_id = $citem['prod_id'];
+                    $prod_qty = $citem['prod_qty'];
+                    $price = $citem['selling_price'];
+                    $category_id = $citem['category_id'];  // Fetch category_id
+
+                    // Insert each item with category_id and user_id into order_items
+                    $insert_items_query = "INSERT INTO order_items (order_id, prod_id, qty, price, category_id, user_id) 
+                                           VALUES ('$order_id', '$prod_id', '$prod_qty', '$price', '$category_id', '$userId')";
+                    $insert_items_query_run = mysqli_query($con, $insert_items_query);
+
+                    // Update product quantity
+                    $product_query = "SELECT * FROM products WHERE id='$prod_id'";
+                    $product_query_run = mysqli_query($con, $product_query);
+                    $productData = mysqli_fetch_assoc($product_query_run);
+
+                    $current_qty = $productData['qty'];
+                    $new_qty = $current_qty - $prod_qty;
+                    $updateQty_query = "UPDATE products SET qty='$new_qty' WHERE id='$prod_id'";
+                    $updateQty_query_run = mysqli_query($con, $updateQty_query);
+                }
+
+                // Delete the cart items after order placement
+                $deleteCartQuery = "DELETE FROM carts WHERE user_id = '$userId'";
+                $deleteCartQuery_run = mysqli_query($con, $deleteCartQuery);
+
+                $_SESSION['message'] = "Order placed successfully";
+                header('Location: ./my-orders.php');
+                die();
+            }
         }
-    }
     }
 }
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -207,11 +209,11 @@ if (isset($_POST['placeOrderBtn'])) {
                 <form method="POST">
                     <div class="group">
                         <label for="name">Full Name</label>
-                        <input type="text" name="name" id="name" required>
+                        <input type="text" name="name" id="name" value="<?= isset($_SESSION['name']) ? $_SESSION['name'] : ''; ?>">
                     </div>
                     <div class="group">
                         <label for="email">Email</label>
-                        <input type="email" id="email" name="email" onInput="checkEmail()" required>
+                        <input type="email" id="email" name="email" onInput="checkEmail()" value="<?= isset($_SESSION['email']) ? $_SESSION['email'] : ''; ?>">
                     </div>
                     <div class="group">
                         <label for="address">Address</label>

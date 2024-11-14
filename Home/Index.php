@@ -190,17 +190,18 @@ require '../Dashboard/configer/dbcon.php';
                 <span><?php echo $row['name']; ?></span>
                 <h5><?php echo $row['author']; ?></h5>
                 <div class="star">
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
-                  <i class="fa fa-star"></i>
+                            <i class="fa fa-book"></i>
+                            <i class="fa fa-book"></i>
+                            <i class="fa fa-book"></i>
+                            <i class="fa fa-book"></i>
+                            <i class="fa fa-book"></i>
                 </div>
                 <h4>Rs.<?php echo $row['selling_price']; ?></h4>
               </div>
-          </a>
+              </a>
+              
           <button class="addToCartBtn" value="<?= $row['id']; ?>"><i class="fa fa-shopping-cart"></i></button>
-
+            
     </div>
 
 <?php
@@ -212,10 +213,88 @@ require '../Dashboard/configer/dbcon.php';
 </div>
   </section>
 
+  <?php
+  if(isset($_SESSION['auth']))
+  {
+$userId = $_SESSION['auth_user']['user_id'];
+
+// Check if the user has any purchase history
+$orderCheckQuery = "SELECT * FROM order_items WHERE user_id = '$userId' LIMIT 1";
+$orderCheckResult = mysqli_query($con, $orderCheckQuery);
+
+if (mysqli_num_rows($orderCheckResult) > 0) {
+?>
+
+<section id="product1" class="section-p1">
+    <div class="title-text">
+      <p>Recommendation</p>
+      <h1>Just for you</h1>
+    </div>
+    <div class="pro-container">
+
+      <?php
+      // Fetch the categories the user has purchased from the order items
+      $categoryQuery = "SELECT DISTINCT p.category_id FROM order_items oi 
+                        INNER JOIN products p ON oi.prod_id = p.id 
+                        WHERE oi.user_id = '$userId'";
+      $categoryResult = mysqli_query($con, $categoryQuery);
+
+      $categories = [];
+      while ($catRow = mysqli_fetch_assoc($categoryResult)) {
+          $categories[] = $catRow['category_id'];
+      }
+
+      // If user has purchased products in categories, fetch related products
+      if (!empty($categories)) {
+          $categoryList = implode(',', $categories);
+          $recommendationQuery = "SELECT * FROM products WHERE category_id IN ($categoryList) AND status='0' ORDER BY RAND() LIMIT 8";
+          $recommendationResult = mysqli_query($con, $recommendationQuery);
+
+          if (mysqli_num_rows($recommendationResult) > 0) {
+              while ($row = mysqli_fetch_assoc($recommendationResult)) {
+      ?>
+              <a href="../Book/sproduct.php?product=<?= $row['slug']; ?>">
+                <div class="pro">
+                  <img src="../Dashboard/main/uploads/<?= $row['image']; ?>" alt="All Images">
+                  <div class="des">
+                    <span><?php echo $row['name']; ?></span>
+                    <h5><?php echo $row['author']; ?></h5>
+                    <div class="star">
+                      <i class="fa fa-book"></i>
+                      <i class="fa fa-book"></i>
+                      <i class="fa fa-book"></i>
+                      <i class="fa fa-book"></i>
+                      <i class="fa fa-book"></i>
+                    </div>
+                    <h4>Rs.<?php echo $row['selling_price']; ?></h4>
+                  </div>
+                </a>
+                
+              <button class="addToCartBtn" value="<?= $row['id']; ?>"><i class="fa fa-shopping-cart"></i></button>
+            </div>
+      <?php
+              }
+          } else {
+              echo "No Recommended Products Found";
+          }
+      } else {
+          echo "No Purchase History Available";
+      }
+      ?>
+    </div>
+</section>
+
+
+<?php
+}
+} // End of order check
+?>
+
+
   <!-- Action -->
   <section id="banner1" class="section-m1">
     <h4>!!OFFER OFFER OFFER!!</h4>
-    <h2>Upto <span class="span3">50% Off</span> on all Business Books.</h2>
+    <h2>Upto <span class="span3">30% Off</span> on all Books.</h2>
     <a href="../Book/Book.php">
       <button class="normal">Explore More</button>
     </a>
@@ -274,9 +353,9 @@ require '../Dashboard/configer/dbcon.php';
     <div class="col">
       <h4>About</h4>
       <a href="../About/about_us.php">About us</a>
-      <a href="../Cart/view-order.php?t=<?= $row['tracking_no']; ?>">Delivery Information</a>
-      <a href="#">Privacy policy</a>
-      <a href="#">Terms & Conditions</a>
+      <a href="../Cart/checkout.php">Delivery Information</a>
+      <a href="../Privacy/Privacy.php">Privacy policy</a>
+      <!-- <a href="#">Terms & Conditions</a> -->
       <a href="../Contact/Contact.php">Contact us</a>
     </div>
 
@@ -294,9 +373,9 @@ require '../Dashboard/configer/dbcon.php';
       }
       ?>
       <a href="..\Cart\Cart.php">View cart</a>
-      <a href="#">My Wishlist</a>
+      <!-- <a href="#">My Wishlist</a> -->
       <a href="../Cart/my-orders.php">Track my order</a>
-      <a href="#">Help</a>
+      <a href="../Help/Help.php">Help</a>
     </div>
 
     <div class="col install">

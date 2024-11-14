@@ -97,7 +97,7 @@ else
             </div>
           </div>
               </div>
-              <div class="container">
+      <div class="container">
         <div class="checkoutLayout">
            
 
@@ -134,12 +134,21 @@ else
                             <input type="text" name="city" value="<?php echo $row['city']; ?>" id="city" required>
                         </div>
                     </div>
+                    <?php if(isset($_SESSION['message']))
+                    { 
+                    ?>
+                    <?= $_SESSION['message'];?>
+                    <?php
+                    unset($_SESSION['message']);
+                    } 
+                    ?>
                     <div class="return">
                         </div>
                         <button type="submit" class="buttonCheckout" name="updateUserBtn">Update</button>
                     </div>
                 </form>
             </div>
+
         </div>
     </div>
 

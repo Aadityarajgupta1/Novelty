@@ -9,6 +9,7 @@ if(isset($_GET['product']))
 
     if($product)
     {
+        $product_Category = $product['category_id'];
       ?>
       <!DOCTYPE html>
       <html lang="en">
@@ -184,7 +185,7 @@ if(isset($_GET['product']))
                  </section>
 
 
-               <!-- Recommendation -->
+               <!-- Recommendation // Content Based fieltering--> 
                  <section id="product1" class="section-p1">
                  <div class="title-text">
                 <p>BOOKS</p>
@@ -193,18 +194,23 @@ if(isset($_GET['product']))
             <div class="pro-container">
            
               <?php
-              $current_product_slug = $product['slug'];;
-              $query = "SELECT * FROM products WHERE status='0' ORDER BY id DESC LIMIT 8";
-              $query_run = mysqli_query($con, $query);
-              $check_products = mysqli_num_rows($query_run) > 0;
+              $current_product_id = $product['id'];
+              $product_category = $product['category_id'];
 
-              if($check_products)
-              {
-                  while($row = mysqli_fetch_array($query_run))
-                  {
-                    if ($row['slug'] !== $current_product_slug)
-                    {
-                    ?>
+              $query = "SELECT * FROM products WHERE category_id = '$product_category' AND id != '$current_product_id' AND status = '0'";
+              $query_run = mysqli_query($con, $query);
+
+              $products = [];
+              if (mysqli_num_rows($query_run) > 0) {
+              while ($row = mysqli_fetch_assoc($query_run)) {
+              $products[] = $row;
+              }
+
+      $display_limit = 8;
+              $count = 0;
+              foreach ($products as $row) {
+                  if ($count >= $display_limit) break; // Stop after 8 products
+                  ?>
                     <a href="./sproduct.php?product=<?=$row['slug'];?>">
                     <div class="pro">
                     <img src="../Dashboard/main/uploads/<?= $row['image']; ?>" alt="All Images">
@@ -212,11 +218,11 @@ if(isset($_GET['product']))
                         <span><?php echo $row['name']; ?></span>
                         <h5><?php echo $row['author']; ?></h5>
                         <div class="star">
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
-                            <i class="fa fa-star"></i>
+                            <i class="fa fa-book"></i>
+                            <i class="fa fa-book"></i>
+                            <i class="fa fa-book"></i>
+                            <i class="fa fa-book"></i>
+                            <i class="fa fa-book"></i>
                         </div>
                         <h4>Rs.<?php echo $row['selling_price']; ?></h4>
                     </div></a>
@@ -225,7 +231,7 @@ if(isset($_GET['product']))
                   
                     <?php
                     
-                  }
+                  
                 }
               }
               else
@@ -272,10 +278,10 @@ if(isset($_GET['product']))
                     <!-- Footer  -->
                   <div class="col">
                       <h4>About</h4>
-                      <a href="#">About us</a>
-                      <a href="#">Delivery Information</a>
-                      <a href="#">Privacy policy</a>
-                      <a href="#">Terms & Conditions</a>
+                      <a href="../About/about_us.php">About us</a>
+                      <a href="../Cart/Checkout.php">Delivery Information</a>
+                      <a href="../Privacy/Privacy.php">Privacy policy</a>
+                      <!-- <a href="#">Terms & Conditions</a> -->
                       <a href="../Contact/Contact.php">Contact us</a>
                   </div>
       
@@ -296,9 +302,9 @@ if(isset($_GET['product']))
                       }
                       ?>
                       <a href="..\Cart\Cart.php">View cart</a>
-                      <a href="#">My Wishlist</a>
+                      <!-- <a href="#">My Wishlist</a> -->
                       <a href="../Cart/my-orders.php">Track my order</a>
-                      <a href="#">Help</a>
+                      <a href="../Help/Help.php">Help</a>
                   </div>
       
                   <div class="col install">
@@ -332,14 +338,14 @@ else
 ?>
 
         <script>
-        let subMenu = document.getElementById("subMenu");
+            let subMenu = document.getElementById("subMenu");
 
-          function toggleMenu()
-           {
-          console.log("Function called");
-             subMenu.classList.toggle("open-menu");
-          }
-          </script>
+            function toggleMenu()
+            {
+                console.log("Function called");
+                subMenu.classList.toggle("open-menu");
+            }
+        </script>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <script src="./sbook.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
