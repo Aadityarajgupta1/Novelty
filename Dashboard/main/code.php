@@ -150,7 +150,7 @@ elseif(isset($_POST['delete_category_btn']))
         redirect("./category.php", "Something went Wrong");
 
     }
-} elseif (isset($_POST['add_product_btn'])) {
+}elseif (isset($_POST['add_product_btn'])) {
     $category_id = $_POST['category_id'];
     $name = $_POST['name'];
     $small_description = mysqli_real_escape_string($con, $_POST['small_description']);
@@ -198,10 +198,10 @@ elseif(isset($_POST['delete_category_btn']))
                             if ($selling_price >= $original_price) {
                                 if ($weight >= 1) {
                                     $product_query = "INSERT INTO products (category_id, name, slug, small_description, description, original_price,
-                             selling_price, qty, author, page_count, weight, isbn, language,meta_title, meta_description, meta_keywords, status, trending, image) 
-                             VALUES ('$category_id', '$name', '$slug', '$small_description', '$description', '$original_price', '$selling_price',
-                             '$qty','$author','$page_count','$weight','$isbn','$language','$meta_title', '$meta_description', '$meta_keywords', '$status',
-                             '$trending', '$filename')";
+                                    selling_price, qty, author, page_count, weight, isbn, language,meta_title, meta_description, meta_keywords, status, trending, image) 
+                                    VALUES ('$category_id', '$name', '$slug', '$small_description', '$description', '$original_price', '$selling_price',
+                                    '$qty','$author','$page_count','$weight','$isbn','$language','$meta_title', '$meta_description', '$meta_keywords', '$status',
+                                    '$trending', '$filename')";
 
                                     $product_query_run = mysqli_query($con, $product_query);
 
@@ -223,7 +223,6 @@ elseif(isset($_POST['delete_category_btn']))
                     } else {
                         redirect("./add-products.php", "Quantity must be 1 or more.");
                     }
-
                 }
             }
         }

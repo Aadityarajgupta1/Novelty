@@ -195,7 +195,7 @@ require '../Dashboard/configer/dbcon.php';
                 <i class="fa fa-book"></i>
                 <i class="fa fa-book"></i>
                 <i class="fa fa-book"></i>
-                <i class="fa fa-paw"></i>
+                <i class="fa fa-book"></i>
               </div>
               <h4>Rs.<?php echo $row['selling_price']; ?></h4>
             </div>
@@ -218,88 +218,125 @@ require '../Dashboard/configer/dbcon.php';
   </div>
 </section>
 
-  <?php
-  if(isset($_SESSION['auth']))
-  {
-$userId = $_SESSION['auth_user']['user_id'];
-
-// Check if the user has any purchase history
-$orderCheckQuery = "SELECT * FROM order_items WHERE user_id = '$userId' LIMIT 1";
-$orderCheckResult = mysqli_query($con, $orderCheckQuery);
-
-if (mysqli_num_rows($orderCheckResult) > 0) {
-?>
-
-<section id="product1" class="section-p1">
-    <div class="title-text">
-      <p>Recommendation</p>
-      <h1>Just for you</h1>
-    </div>
-    <div class="pro-container">
-
-      <?php
-      // Fetch the categories the user has purchased from the order items
-      $categoryQuery = "SELECT DISTINCT p.category_id FROM order_items oi 
-                        INNER JOIN products p ON oi.prod_id = p.id 
-                        WHERE oi.user_id = '$userId'";
-      $categoryResult = mysqli_query($con, $categoryQuery);
-
-      $categories = [];
-      while ($catRow = mysqli_fetch_assoc($categoryResult)) {
-          $categories[] = $catRow['category_id'];
-      }
-
-      // If user has purchased products in categories, fetch related products
-      if (!empty($categories)) {
-          $categoryList = implode(',', $categories);
-          $recommendationQuery = "SELECT * FROM products WHERE category_id IN ($categoryList) AND status='0' ORDER BY RAND() LIMIT 8";
-          $recommendationResult = mysqli_query($con, $recommendationQuery);
-
-          if (mysqli_num_rows($recommendationResult) > 0) {
-              while ($row = mysqli_fetch_assoc($recommendationResult)) {
-                $isInStock = isset($row['qty']) && $row['qty'] > 0;
-      ?>
-              <a href="../Book/sproduct.php?product=<?= $row['slug']; ?>">
-                <div class="pro">
-                  <img src="../Dashboard/main/uploads/<?= $row['image']; ?>" alt="All Images">
-                  <div class="des">
-                    <span><?php echo $row['name']; ?></span>
-                    <h5><?php echo $row['author']; ?></h5>
-                    <div class="star">
-                      <i class="fa fa-book"></i>
-                      <i class="fa fa-book"></i>
-                      <i class="fa fa-book"></i>
-                      <i class="fa fa-book"></i>
-                      <i class="fa fa-book"></i>
-                    </div>
-                    <h4>Rs.<?php echo $row['selling_price']; ?></h4>
-                  </div>
-                  <?php if (!$isInStock) { ?>
-              <span class="out-of-stock-label">Out of Stock</span>
-            <?php } ?>
-        </a>
-        <?php if ($isInStock) { ?>
-          <button class="addToCartBtn" value="<?= $row['id']; ?>"><i class="fa fa-shopping-cart"></i></button>
-        <?php } ?>
-            </div>
-      <?php
-              }
-          } else {
-              echo "No Recommended Products Found";
-          }
-      } else {
-          echo "No Purchase History Available";
-      }
-      ?>
-    </div>
-</section>
-
-
 <?php
+if (isset($_SESSION['auth'])) {
+    $userId = $_SESSION['auth_user']['user_id'];
+
+    // Fetch purchased books
+    $purchasedBooksQuery = "SELECT p.id, p.name, p.author FROM order_items oi
+                            INNER JOIN products p ON oi.prod_id = p.id 
+                            WHERE oi.user_id = '$userId' AND p.status = '0'";
+    $purchasedBooksResult = mysqli_query($con, $purchasedBooksQuery);
+
+    $purchasedBooks = [];
+    while ($row = mysqli_fetch_assoc($purchasedBooksResult)) {
+        $purchasedBooks[] = $row;
+    }
+
+    // Extract authors
+    $authors = [];
+    foreach ($purchasedBooks as $book) {
+        $authors[] = $book['author'];
+    }
+    $authors = array_unique($authors);
+
+    // Recommend books
+    $recommendations = [];
+    foreach ($authors as $author) {
+        $authorBooksQuery = "SELECT * FROM products WHERE author = '$author' AND status = '0'";
+        $authorBooksResult = mysqli_query($con, $authorBooksQuery);
+
+        while ($book = mysqli_fetch_assoc($authorBooksResult)) {
+            if (!in_array($book['id'], array_column($purchasedBooks, 'id'))) {
+                $similarityScore = calculateCosineSimilarity($purchasedBooks, $book);
+                $recommendations[] = [
+                    'book' => $book,
+                    'similarity' => $similarityScore
+                ];
+            }
+        }
+    }
+
+    // Sort recommendations
+    usort($recommendations, function ($a, $b) {
+        return $b['similarity'] <=> $a['similarity'];
+    });
+
+    // Display recommendations
+    if (count($recommendations) > 0) {
+        ?>
+        <section id="product1" class="section-p1">
+            <div class="title-text">
+                <p>Recommendation</p>
+                <h1>Just for You</h1>
+            </div>
+            <div class="pro-container">
+                <?php
+                foreach ($recommendations as $rec) {
+                    $book = $rec['book'];
+                    $isInStock = isset($book['qty']) && $book['qty'] > 0; // Check if the book is in stock
+                    ?>
+                    <div class="pro">
+                        <a href="../Book/sproduct.php?product=<?= htmlspecialchars($book['slug']); ?>">
+                            <img src="../Dashboard/main/uploads/<?= htmlspecialchars($book['image']); ?>" alt="Book Image">
+                            <div class="des">
+                                <span><?= htmlspecialchars($book['name']); ?></span>
+                                <h5><?= htmlspecialchars($book['author']); ?></h5>
+                                <div class="star">
+                                    <i class="fa fa-book"></i>
+                                    <i class="fa fa-book"></i>
+                                    <i class="fa fa-book"></i>
+                                    <i class="fa fa-book"></i>
+                                    <i class="fa fa-book"></i>
+                                </div>
+                                <h4>Rs. <?= htmlspecialchars($book['selling_price']); ?></h4>
+                            </div>
+                        </a>
+                        <?php if (!$isInStock) { ?>
+                            <span class="out-of-stock-label">Out of Stock</span>
+                        <?php } else { ?>
+                            <button class="addToCartBtn" value="<?= $book['id']; ?>"><i class="fa fa-shopping-cart"></i></button>
+                        <?php } ?>
+                    </div>
+                    <?php
+                }
+                ?>
+            </div>
+        </section>
+        <?php
+    } else {
+        echo "<p>No Recommended Books Found</p>";
+    }
 }
-} // End of order check
+
+// Function to calculate cosine similarity
+function calculateCosineSimilarity($purchasedBooks, $book) {
+    $userProfileVector = [];
+
+    foreach ($purchasedBooks as $purchasedBook) {
+        $userProfileVector[] = $purchasedBook['author'];
+        $userProfileVector[] = $purchasedBook['name'];
+    }
+
+    $bookVector = [$book['author'], $book['name']];
+
+    $dotProduct = 0;
+    $userMagnitude = count($userProfileVector);
+    $bookMagnitude = count($bookVector);
+
+    foreach ($userProfileVector as $key => $value) {
+        $dotProduct += (isset($bookVector[$key]) && $value === $bookVector[$key]) ? 1 : 0;
+    }
+
+    $userMagnitude = sqrt($userMagnitude);
+    $bookMagnitude = sqrt($bookMagnitude);
+
+    return ($userMagnitude == 0 || $bookMagnitude == 0) ? 0 : $dotProduct / ($userMagnitude * $bookMagnitude);
+}
 ?>
 
+
+ 
 
   <!-- Action -->
   <section id="banner1" class="section-m1">

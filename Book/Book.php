@@ -228,6 +228,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </div>
         <div>
             <ul class="options1">
+            <li class="option1">
+                    <button type="submit" name="sortOrder" value="popularity">
+                        <i class="bx bx-book"></i>
+                        <span class="option-text active">Popularity</span>
+                    </button>
+                </li>
                 <li class="option1">
                     <button type="submit" name="sortOrder" value="lowToHigh">
                         <i class="bx bx-book"></i>

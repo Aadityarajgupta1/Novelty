@@ -54,7 +54,7 @@ function validateFullName($name) {
 }
 
 function validateAuthor($author) {    
-    $pattern = '/^[a-zA-Z][a-zA-Z\s.\'-]*$/';
+    $pattern = '/^[\p{L}\p{M}][\p{L}\p{M}\s.\'-]*$/u';
     return preg_match($pattern, $author);
 }
 
