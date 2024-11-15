@@ -1,18 +1,37 @@
 $(document).ready(function () {
 
-   $('.increment-btn').click(function (e) {
-         e.preventDefault();
+   // $('.increment-btn').click(function (e) {
+   //       e.preventDefault();
 
-         var qty = $(this).closest('.product_data').find('.input-qty').val();
+   //       var qty = $(this).closest('.product_data').find('.input-qty').val();
          
-         var value = parseInt(qty, 10);
-         value = isNaN(value) ? 0 : value;
-         if(value < 20)
-         {
-            value++;
-            $(this).closest('.product_data').find('.input-qty').val(value);
-         }
-   });
+   //       var value = parseInt(qty, 10);
+   //       value = isNaN(value) ? 0 : value;
+   //       if(value < 20)
+   //       {
+   //          value++;
+   //          $(this).closest('.product_data').find('.input-qty').val(value);
+   //       }
+   // });
+
+// Increment button event
+$('.increment-btn').click(function (e) {
+   e.preventDefault();
+
+   var qty = $(this).closest('.product_data').find('.input-qty').val();
+   var availableQty = parseInt($(this).closest('.product_data').find('.addToCartBtn').attr('data-qty'), 10);
+
+   var value = parseInt(qty, 10);
+   value = isNaN(value) ? 0 : value;
+   
+   // Increment only if the current value is less than availableQty
+   if (value < availableQty) {
+       value++;
+       $(this).closest('.product_data').find('.input-qty').val(value);
+   } else {
+      //  alert("Cannot add more than available quantity");
+   }
+});
 
    $('.decrement-btn').click(function (e) {
         e.preventDefault();

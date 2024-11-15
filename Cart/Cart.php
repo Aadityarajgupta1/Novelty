@@ -134,6 +134,7 @@ include('../Dashboard/middleware/authenticate.php');
                 $product = "Select * from products where id =".$citem['prod_id'];
                 $result = mysqli_query($con, $product);
                 $row = mysqli_fetch_assoc($result);
+                $availableQty = $row['qty'];
                 ?>
                 <td><a href="../Book/sproduct.php?product=<?= $row['slug']; ?>"><?= $citem['name'] ?></a></td>
                 <td><a href="../Book/sproduct.php?product=<?= $row['slug']; ?>"><img src="../Dashboard/main/uploads/<?= $citem['image'] ?>" alt="Image"></a></td>
@@ -141,10 +142,17 @@ include('../Dashboard/middleware/authenticate.php');
                   <input type="hidden" class="prodId" value="<?= $citem['prod_id'] ?>">
                 </td>
                 <td>
+                  <!-- <div class="row1">
+                    <button class="minus decrement-btn updateQty"><i class="bx bx-chevron-left"></i></button>
+                    <input type="text" class="input-qty" value="<?= $citem['prod_qty'] ?>" disabled>
+                    <button class="plus increment-btn updateQty"><i class="bx bx-chevron-right"></i></button>
+                  </div> -->
+
                   <div class="row1">
                     <button class="minus decrement-btn updateQty"><i class="bx bx-chevron-left"></i></button>
                     <input type="text" class="input-qty" value="<?= $citem['prod_qty'] ?>" disabled>
                     <button class="plus increment-btn updateQty"><i class="bx bx-chevron-right"></i></button>
+                    <a type="text" class="addToCartBtn" data-qty="<?= $availableQty ?>" disabled>
                   </div>
                 </td>
 

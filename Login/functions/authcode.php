@@ -105,6 +105,7 @@ if (isset($_POST['log_btn'])) {
         $userid = $userdata['id'];
         $username = $userdata['name'];
         $useremail = $userdata['email'];
+        $phone = $userdata['phone'];
         $role_as = $userdata['role_as'];
         $stored_password = $userdata['password'];
 
@@ -120,7 +121,9 @@ if (isset($_POST['log_btn'])) {
         if ($password_valid) {
             $_SESSION['auth'] = true;
             $_SESSION['name'] = $username;
+            $_SESSION['email'] = $useremail;
             $_SESSION['id'] = $userid;
+            $_SESSION['phone'] = $phone;
             $_SESSION['auth_user'] = [
                 'user_id' => $userid,
                 'name' => $username,

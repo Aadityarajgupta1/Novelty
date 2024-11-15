@@ -209,20 +209,20 @@ if (isset($_POST['placeOrderBtn'])) {
                 <form method="POST">
                     <div class="group">
                         <label for="name">Full Name</label>
-                        <input type="text" name="name" id="name" value="<?= isset($_SESSION['name']) ? $_SESSION['name'] : ''; ?>">
+                        <input type="text" name="name" id="name" required value="<?= isset($_SESSION['name']) ? $_SESSION['name'] : ''; ?>">
                     </div>
                     <div class="group">
                         <label for="email">Email</label>
-                        <input type="email" id="email" name="email" onInput="checkEmail()" value="<?= isset($_SESSION['email']) ? $_SESSION['email'] : ''; ?>">
+                        <input type="email" id="email" name="email" required onInput="checkEmail()" value="<?= isset($_SESSION['email']) ? $_SESSION['email'] : ''; ?>">
                     </div>
                     <div class="group">
                         <label for="address">Address</label>
-                        <input type="text" name="address" id="address">
+                        <input type="text" name="address" id="address" required>
                     </div>
                     <div class="sahii">
                         <div class="group">
                             <label for="phone">Phone</label>
-                            <input type="number" name="phone" id="phone" required>
+                            <input type="number" name="phone" id="phone" required value="<?= isset($_SESSION['phone']) ? $_SESSION['phone'] : ''; ?>">
                         </div>
 
                         <div class="group">

@@ -175,43 +175,48 @@ require '../Dashboard/configer/dbcon.php';
     </div>
     <div class="pro-container">
 
-      <?php
-      $query = "SELECT * FROM products WHERE status='0' ORDER BY id DESC LIMIT 8 ";
-      $query_run = mysqli_query($con, $query);
-      $check_products = mysqli_num_rows($query_run) > 0;
+    <?php
+    $query = "SELECT * FROM products WHERE status='0' ORDER BY id DESC LIMIT 8";
+    $query_run = mysqli_query($con, $query);
+    $check_products = mysqli_num_rows($query_run) > 0;
 
-      if ($check_products) {
-        while ($row = mysqli_fetch_array($query_run)) {
-      ?>
-          <a href="../Book/sproduct.php?product=<?= $row['slug']; ?>">
-            <div class="pro">
-              <img src="../Dashboard/main/uploads/<?= $row['image']; ?>" alt="All Images">
-              <div class="des">
-                <span><?php echo $row['name']; ?></span>
-                <h5><?php echo $row['author']; ?></h5>
-                <div class="star">
-                            <i class="fa fa-book"></i>
-                            <i class="fa fa-book"></i>
-                            <i class="fa fa-book"></i>
-                            <i class="fa fa-book"></i>
-                            <i class="fa fa-book"></i>
-                </div>
-                <h4>Rs.<?php echo $row['selling_price']; ?></h4>
+    if ($check_products) {
+      while ($row = mysqli_fetch_array($query_run)) {
+        $isInStock = isset($row['qty']) && $row['qty'] > 0;
+    ?>
+        <a href="../Book/sproduct.php?product=<?= $row['slug']; ?>">
+          <div class="pro">
+            <img src="../Dashboard/main/uploads/<?= $row['image']; ?>" alt="All Images">
+            <div class="des">
+              <span><?php echo $row['name']; ?></span>
+              <h5><?php echo $row['author']; ?></h5>
+              <div class="star">
+                <i class="fa fa-book"></i>
+                <i class="fa fa-book"></i>
+                <i class="fa fa-book"></i>
+                <i class="fa fa-book"></i>
+                <i class="fa fa-paw"></i>
               </div>
-              </a>
-              
+              <h4>Rs.<?php echo $row['selling_price']; ?></h4>
+            </div>
+            <?php if (!$isInStock) { ?>
+              <span class="out-of-stock-label">Out of Stock</span>
+            <?php } ?>
+        </a>
+        <?php if ($isInStock) { ?>
           <button class="addToCartBtn" value="<?= $row['id']; ?>"><i class="fa fa-shopping-cart"></i></button>
-            
-    </div>
+        <?php } ?>
 
-<?php
-        }
-      } else {
-        echo "No Products Found";
+      </div>
+
+    <?php
       }
-?>
-</div>
-  </section>
+    } else {
+      echo "No Products Found";
+    }
+    ?>
+  </div>
+</section>
 
   <?php
   if(isset($_SESSION['auth']))
@@ -252,6 +257,7 @@ if (mysqli_num_rows($orderCheckResult) > 0) {
 
           if (mysqli_num_rows($recommendationResult) > 0) {
               while ($row = mysqli_fetch_assoc($recommendationResult)) {
+                $isInStock = isset($row['qty']) && $row['qty'] > 0;
       ?>
               <a href="../Book/sproduct.php?product=<?= $row['slug']; ?>">
                 <div class="pro">
@@ -268,9 +274,13 @@ if (mysqli_num_rows($orderCheckResult) > 0) {
                     </div>
                     <h4>Rs.<?php echo $row['selling_price']; ?></h4>
                   </div>
-                </a>
-                
-              <button class="addToCartBtn" value="<?= $row['id']; ?>"><i class="fa fa-shopping-cart"></i></button>
+                  <?php if (!$isInStock) { ?>
+              <span class="out-of-stock-label">Out of Stock</span>
+            <?php } ?>
+        </a>
+        <?php if ($isInStock) { ?>
+          <button class="addToCartBtn" value="<?= $row['id']; ?>"><i class="fa fa-shopping-cart"></i></button>
+        <?php } ?>
             </div>
       <?php
               }

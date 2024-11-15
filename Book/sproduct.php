@@ -10,6 +10,7 @@ if(isset($_GET['product']))
     if($product)
     {
         $product_Category = $product['category_id'];
+        $availableQty = $product['qty'];
       ?>
       <!DOCTYPE html>
       <html lang="en">
@@ -118,13 +119,28 @@ if(isset($_GET['product']))
                       
                       <h3>Rs.<?= $product['selling_price'] ?></h3>
 
-                      <div class="row1">
+                      <!-- <div class="row1">
                       <button class="minus decrement-btn"><i class="bx bx-chevron-left data"></i></button>
                       <input type="text" class="input-qty" value="1" disabled>
                       <button class="plus increment-btn"><i class="bx bx-chevron-right data"></i></button>
-                      </div>
+                      </div> -->
+                      <!-- Quantity control with data-available-qty attribute -->
+                    <div class="row1">
+                        <button class="minus decrement-btn"><i class="bx bx-chevron-left data"></i></button>
+                        <input type="text" class="input-qty" value="1" data-available-qty="<?= $availableQty; ?>" disabled>
+                        <button class="plus increment-btn"><i class="bx bx-chevron-right data"></i></button>
+                    </div>
 
-                      <button class="normal addToCartBtn" value="<?=$product['id'];?>"><i class="fa fa-shopping-cart"></i>Add To Cart</button>
+                    <!-- Add to cart button with quantity check -->
+                    <?php if ($availableQty > 0) { ?>
+                        <button class="normal addToCartBtn" value="<?= $product['id']; ?>" data-qty="<?= $availableQty; ?>"><i class="fa fa-shopping-cart"></i> Add To Cart</button>
+                    <?php } else { ?>
+                        <button class="normal" disabled><i class=""></i> Out of Stock</button>
+                    <?php } ?>
+
+
+
+                      <!-- <button class="normal addToCartBtn" value="<?=$product['id'];?>"><i class="fa fa-shopping-cart"></i>Add To Cart</button> -->
                       <!-- <button class="normal addToWishBtn" value="<?=$product['id'];?>"><i class="fa fa-heart"></i>Add To Wishlist</button> -->
                       <h4>About the Book</h4>
                       <span><?= $product['description'] ?></span>
@@ -203,6 +219,7 @@ if(isset($_GET['product']))
               $products = [];
               if (mysqli_num_rows($query_run) > 0) {
               while ($row = mysqli_fetch_assoc($query_run)) {
+              
               $products[] = $row;
               }
 
@@ -225,12 +242,17 @@ if(isset($_GET['product']))
                             <i class="fa fa-book"></i>
                         </div>
                         <h4>Rs.<?php echo $row['selling_price']; ?></h4>
-                    </div></a>
-                    <button class="addToCartBtn" value="<?=$row['id'];?>"><i class="fa fa-shopping-cart"></i></button>
-                </div>
+                    </div> 
+                    </a>
+                    <?php if ($row['qty'] > 0) { ?>
+                      <button class="addToCartBtn" value="<?=$row['id'];?>"><i class="fa fa-shopping-cart"></i></button>
+                      <?php } else {?>
+                        <span class = "out-of-stock">Out of Stock</span>
+                        <?php } ?>
+                          </div>
                   
                     <?php
-                    
+                    $count++;
                   
                 }
               }
