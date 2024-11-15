@@ -511,6 +511,17 @@ button.normal
     border: none;
     outline: none;
     padding: 5px;
+    cursor: pointer;
+}
+
+
+.options1 .option1 option
+{
+    background-color: transparent;
+    border-color: none;
+    border: none;
+    outline: none;
+    padding: 5px;
 }
 
 .options1 .option1:hover::after
@@ -525,6 +536,13 @@ button.normal
 }
 
 .option1 i
+{
+    font-size: 20px;
+    margin-right: 12px;
+    color: #614104;
+}
+
+.option1 option i
 {
     font-size: 20px;
     margin-right: 12px;

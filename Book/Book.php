@@ -27,6 +27,7 @@ function mergeSort($array, $order = 'asc') {
     return merge($left, $right, $order);
 }
 
+
 function merge($left, $right, $order) {
     $result = [];
     while (count($left) > 0 && count($right) > 0) {
@@ -42,6 +43,36 @@ function merge($left, $right, $order) {
     return array_merge($result, $left, $right);
 }
 
+// Function to get popularity-based books
+function getPopularBooks($con) {
+  // Query to get prod_id and their purchase count from order_item
+  $query = "SELECT prod_id, COUNT(DISTINCT user_id) AS purchase_count 
+            FROM order_items 
+            GROUP BY prod_id 
+            ORDER BY purchase_count DESC";
+  
+  $result = mysqli_query($con, $query);
+  
+  if (!$result) {
+      // Add error logging if the query fails
+      die('Error: ' . mysqli_error($con));
+  }
+
+  $popularBooks = [];
+  while ($row = mysqli_fetch_assoc($result)) {
+      // Get the book details for the prod_id
+      $productQuery = "SELECT * FROM products WHERE id = " . $row['prod_id'];
+      $productResult = mysqli_query($con, $productQuery);
+      
+      if ($productRow = mysqli_fetch_assoc($productResult)) {
+          // Add product info along with purchase count
+          $productRow['purchase_count'] = $row['purchase_count'];
+          $popularBooks[] = $productRow;
+      }
+  }
+
+  return $popularBooks;
+}
 // Perform search and sorting when the form is submitted
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Search functionality
@@ -63,14 +94,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Sorting functionality
     if (isset($_POST['sortOrder'])) {
-        $sortOrder = $_POST['sortOrder']; // Get the sorting preference
-        if ($sortOrder === 'lowToHigh') {
-            $searchResults = mergeSort($searchResults, 'asc');
-        } elseif ($sortOrder === 'highToLow') {
-            $searchResults = mergeSort($searchResults, 'desc');
+      $sortOrder = $_POST['sortOrder']; // Get the sorting preference
+      if ($sortOrder === 'lowToHigh') {
+          $searchResults = mergeSort($searchResults, 'asc');
+      } elseif ($sortOrder === 'highToLow') {
+          $searchResults = mergeSort($searchResults, 'desc');
+      } elseif ($sortOrder === 'popularity') {
+          // Fetch the popular books
+          $searchResults = getPopularBooks($con);
+          if (empty($searchResults)) {
+            echo "Search not found";  // If no popular books found
+        } else {
+            // Display the popular books
+            // foreach ($searchResults as $book) {
+            //     // Render the book details, for example:
+            //     echo "<div>{$book['name']} - {$book['purchase_count']} purchases</div>";
+            }
         }
-    }
-}
+      }
+  }
+
 
 ?>
 
