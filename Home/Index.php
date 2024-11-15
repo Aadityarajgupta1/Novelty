@@ -262,6 +262,9 @@ if (isset($_SESSION['auth'])) {
         return $b['similarity'] <=> $a['similarity'];
     });
 
+    shuffle($recommendations);
+    $recommendations = array_slice($recommendations, 0, 8);
+
     // Display recommendations
     if (count($recommendations) > 0) {
         ?>
