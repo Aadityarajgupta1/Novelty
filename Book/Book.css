@@ -504,6 +504,15 @@ button.normal
     background: #fafcfc;
 }
 
+.options1 .option1 button
+{
+    background-color: transparent;
+    border-color: none;
+    border: none;
+    outline: none;
+    padding: 5px;
+}
+
 .options1 .option1:hover::after
 {
     width: 100%;

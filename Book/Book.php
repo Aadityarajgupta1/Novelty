@@ -11,24 +11,69 @@ while ($row = mysqli_fetch_array($query_run)) {
 
 $searchResults = $books; // Initialize with all books, so we show all books initially
 
-// Perform linear search when the form is submitted
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['query'])) {
-    $searchQuery = $_POST['query']; // Get the search query
-    
-    // Perform linear search: filter books that match the query in name, author, or ISBN
-    $searchResults = [];
-    foreach ($books as $book) {
+// Merge Sort function to sort books by price
+function mergeSort($array, $order = 'asc') {
+    if (count($array) <= 1) {
+        return $array;
+    }
+
+    $middle = floor(count($array) / 2);
+    $left = array_slice($array, 0, $middle);
+    $right = array_slice($array, $middle);
+
+    $left = mergeSort($left, $order);
+    $right = mergeSort($right, $order);
+
+    return merge($left, $right, $order);
+}
+
+function merge($left, $right, $order) {
+    $result = [];
+    while (count($left) > 0 && count($right) > 0) {
         if (
-            stripos($book['name'], $searchQuery) !== false || // Search by name
-            stripos($book['author'], $searchQuery) !== false || // Search by author
-            stripos($book['isbn'], $searchQuery) !== false // Search by ISBN
+            ($order === 'asc' && $left[0]['selling_price'] <= $right[0]['selling_price']) ||
+            ($order === 'desc' && $left[0]['selling_price'] > $right[0]['selling_price'])
         ) {
-            $searchResults[] = $book; // Add matching books to results
+            $result[] = array_shift($left);
+        } else {
+            $result[] = array_shift($right);
+        }
+    }
+    return array_merge($result, $left, $right);
+}
+
+// Perform search and sorting when the form is submitted
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    // Search functionality
+    if (isset($_POST['query'])) {
+        $searchQuery = $_POST['query']; // Get the search query
+        
+        // Perform linear search: filter books that match the query in name, author, or ISBN
+        $searchResults = [];
+        foreach ($books as $book) {
+            if (
+                stripos($book['name'], $searchQuery) !== false || // Search by name
+                stripos($book['author'], $searchQuery) !== false || // Search by author
+                stripos($book['isbn'], $searchQuery) !== false // Search by ISBN
+            ) {
+                $searchResults[] = $book; // Add matching books to results
+            }
+        }
+    }
+
+    // Sorting functionality
+    if (isset($_POST['sortOrder'])) {
+        $sortOrder = $_POST['sortOrder']; // Get the sorting preference
+        if ($sortOrder === 'lowToHigh') {
+            $searchResults = mergeSort($searchResults, 'asc');
+        } elseif ($sortOrder === 'highToLow') {
+            $searchResults = mergeSort($searchResults, 'desc');
         }
     }
 }
 
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -175,27 +220,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['query'])) {
               </div>
             </div>
                   <!-- Price -->
-              <div class="select-menu1">
-               <div class="select-btn1">
-                  <span class="sBtn-text1">Preference</span>
-                  <i class="bx bx-chevron-down"></i>
-               </div>            
-               <div>
-                 
-                 <ul class="options1">
-                            
-                            <li class="option1">
-                            <i class="bx bx-book"></i>
-                            <span class="option-text  active">Low to High</span>
-                            </li>
-                            <li class="option1">
-                            <i class="bx bx-book"></i>
-                            <span class="option-text  active">High to Low</span>
-                            </li>
-                          </ul>
-                          </div>
-                          </div>
-                          </div>
+                  <div class="select-menu1">
+    <form method="POST">
+        <div class="select-btn1">
+            <span class="sBtn-text1">Preference</span>
+            <i class="bx bx-chevron-down"></i>
+        </div>
+        <div>
+            <ul class="options1">
+                <li class="option1">
+                    <button type="submit" name="sortOrder" value="lowToHigh">
+                        <i class="bx bx-book"></i>
+                        <span class="option-text active">Low to High</span>
+                    </button>
+                </li>
+                <li class="option1">
+                    <button type="submit" name="sortOrder" value="highToLow">
+                        <i class="bx bx-book"></i>
+                        <span class="option-text active">High to Low</span>
+                    </button>
+                </li>
+            </ul>
+        </div>
+    </form>
+</div>
+</div>
            
           <!-- All Book -->
           <section id="product1" class="section-p1">
