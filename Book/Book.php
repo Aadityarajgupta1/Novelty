@@ -43,6 +43,44 @@ function merge($left, $right, $order) {
 }
 
 // Function to get popularity-based books with heuristic adjustments
+// Check if the user is logged in
+if (isset($_SESSION['id'])) {
+  $userId = $_SESSION['id']; // Use session user ID
+} else {
+  die('Invalid user ID');
+}
+
+// Fetch the IDs of books the user has purchased
+$query = "SELECT DISTINCT prod_id 
+        FROM order_items 
+        WHERE user_id = $userId";
+$query_result = mysqli_query($con, $query);
+
+if (!$query_result) {
+  die('Error: ' . mysqli_error($con));
+}
+
+$purchasedBookIds = [];
+while ($row = mysqli_fetch_assoc($query_result)) {
+  $purchasedBookIds[] = $row['prod_id']; // Store the product IDs of the purchased books
+}
+
+// Fetch the authors of the books the user has purchased
+$authors = [];
+foreach ($purchasedBookIds as $bookId) {
+  $authorQuery = "SELECT author FROM products WHERE id = $bookId";
+  $authorResult = mysqli_query($con, $authorQuery);
+  
+  if ($authorRow = mysqli_fetch_assoc($authorResult)) {
+      $authors[] = $authorRow['author']; // Add the author to the list
+  }
+}
+
+// Filter the books by the user's past purchases (authors they bought books from)
+$uniqueAuthors = array_unique($authors); // Remove duplicates
+$userPreferences = ['preferred_authors' => $uniqueAuthors]; // User preferences based on past authors
+
+// Function to get popular books based on purchase count and user preferences
 function getPopularBooksWithHeuristic($con, $userPreferences) {
   // Query to get the count of each product purchase from the order_items table
   $query = "SELECT prod_id, COUNT(*) AS purchase_count 
@@ -52,7 +90,7 @@ function getPopularBooksWithHeuristic($con, $userPreferences) {
   $result = mysqli_query($con, $query);
 
   if (!$result) {
-      die('Error: ' . mysqli_error($con)); // Add error handling if query fails
+      die('Error: ' . mysqli_error($con)); // Handle query failure
   }
 
   $popularBooks = [];
@@ -70,7 +108,7 @@ function getPopularBooksWithHeuristic($con, $userPreferences) {
               $heuristicScore += 5; // Boost score for preferred authors
           }
 
-          // Optionally, you can add more adjustments (e.g., high ratings)
+          // Add the heuristic score to the product row
           $productRow['heuristic_score'] = $heuristicScore;
           $popularBooks[] = $productRow;
       }
@@ -83,6 +121,15 @@ function getPopularBooksWithHeuristic($con, $userPreferences) {
 
   return $popularBooks;
 }
+
+// Fetch the popular books with heuristic
+$popularBooks = getPopularBooksWithHeuristic($con, $userPreferences);
+
+// Display the sorted popular books
+foreach ($popularBooks as $book) {
+  // echo 'Book Name: ' . $book['name'] . ' - Author: ' . $book['author'] . ' - Heuristic Score: ' . $book['heuristic_score'] . '<br>';
+}
+
 
 
 // Perform search and sorting when the form is submitted
