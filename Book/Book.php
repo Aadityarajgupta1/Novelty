@@ -44,43 +44,6 @@ function merge($left, $right, $order) {
 
 // Function to get popularity-based books with heuristic adjustments
 // Check if the user is logged in
-if (isset($_SESSION['id'])) {
-  $userId = $_SESSION['id']; // Use session user ID
-} else {
-  die('Invalid user ID');
-}
-
-// Fetch the IDs of books the user has purchased
-$query = "SELECT DISTINCT prod_id 
-        FROM order_items 
-        WHERE user_id = $userId";
-$query_result = mysqli_query($con, $query);
-
-if (!$query_result) {
-  die('Error: ' . mysqli_error($con));
-}
-
-$purchasedBookIds = [];
-while ($row = mysqli_fetch_assoc($query_result)) {
-  $purchasedBookIds[] = $row['prod_id']; // Store the product IDs of the purchased books
-}
-
-// Fetch the authors of the books the user has purchased
-$authors = [];
-foreach ($purchasedBookIds as $bookId) {
-  $authorQuery = "SELECT author FROM products WHERE id = $bookId";
-  $authorResult = mysqli_query($con, $authorQuery);
-  
-  if ($authorRow = mysqli_fetch_assoc($authorResult)) {
-      $authors[] = $authorRow['author']; // Add the author to the list
-  }
-}
-
-// Filter the books by the user's past purchases (authors they bought books from)
-$uniqueAuthors = array_unique($authors); // Remove duplicates
-$userPreferences = ['preferred_authors' => $uniqueAuthors]; // User preferences based on past authors
-
-// Function to get popular books based on purchase count and user preferences
 function getPopularBooksWithHeuristic($con, $userPreferences) {
   // Query to get the count of each product purchase from the order_items table
   $query = "SELECT prod_id, COUNT(*) AS purchase_count 
@@ -122,12 +85,88 @@ function getPopularBooksWithHeuristic($con, $userPreferences) {
   return $popularBooks;
 }
 
-// Fetch the popular books with heuristic
-$popularBooks = getPopularBooksWithHeuristic($con, $userPreferences);
+// Function to get popular books without user preferences (just by popularity)
+function getPopularBooksWithoutPreferences($con) {
+  // Query to get the count of each product purchase from the order_items table
+  $query = "SELECT prod_id, COUNT(*) AS purchase_count 
+            FROM order_items 
+            GROUP BY prod_id 
+            ORDER BY purchase_count DESC";
+  $result = mysqli_query($con, $query);
+
+  if (!$result) {
+      die('Error: ' . mysqli_error($con)); // Handle query failure
+  }
+
+  $popularBooks = [];
+  while ($row = mysqli_fetch_assoc($result)) {
+      // Get the book details for the prod_id
+      $productQuery = "SELECT * FROM products WHERE id = " . $row['prod_id'];
+      $productResult = mysqli_query($con, $productQuery);
+
+      if ($productRow = mysqli_fetch_assoc($productResult)) {
+          // Calculate the popularity score for this product based on purchase count
+          $popularityScore = $row['purchase_count'];
+
+          // Add the popularity score to the product row
+          $productRow['popularity_score'] = $popularityScore;
+          $popularBooks[] = $productRow;
+      }
+  }
+
+  // Sort books based on popularity score (higher score is better)
+  usort($popularBooks, function ($a, $b) {
+      return $b['popularity_score'] <=> $a['popularity_score'];
+  });
+
+  return $popularBooks;
+}
+
+// Check if the user is logged in
+if (isset($_SESSION['id'])) {
+  $userId = $_SESSION['id']; // Use session user ID
+
+  // Fetch purchased books
+  $query = "SELECT DISTINCT prod_id 
+            FROM order_items 
+            WHERE user_id = $userId";
+  $query_result = mysqli_query($con, $query);
+
+  if (!$query_result) {
+    die('Error: ' . mysqli_error($con));
+  }
+
+  $purchasedBookIds = [];
+  while ($row = mysqli_fetch_assoc($query_result)) {
+    $purchasedBookIds[] = $row['prod_id']; // Store the product IDs of the purchased books
+  }
+
+  // Fetch the authors of the books the user has purchased
+  $authors = [];
+  foreach ($purchasedBookIds as $bookId) {
+    $authorQuery = "SELECT author FROM products WHERE id = $bookId";
+    $authorResult = mysqli_query($con, $authorQuery);
+
+    if ($authorRow = mysqli_fetch_assoc($authorResult)) {
+        $authors[] = $authorRow['author']; // Add the author to the list
+    }
+  }
+
+  // Filter the books by the user's past purchases (authors they bought books from)
+  $uniqueAuthors = array_unique($authors); // Remove duplicates
+  $userPreferences = ['preferred_authors' => $uniqueAuthors]; // User preferences based on past authors
+
+  // Fetch the popular books with user preferences (heuristic-based)
+  $popularBooks = getPopularBooksWithHeuristic($con, $userPreferences);
+} else {
+  // If user is not logged in, fetch popular books without user preferences
+  $popularBooks = getPopularBooksWithoutPreferences($con);
+}
 
 // Display the sorted popular books
 foreach ($popularBooks as $book) {
-  // echo 'Book Name: ' . $book['name'] . ' - Author: ' . $book['author'] . ' - Heuristic Score: ' . $book['heuristic_score'] . '<br>';
+    // Example of displaying book details
+    // echo 'Book Name: ' . $book['name'] . ' - Author: ' . $book['author'] . ' - Heuristic Score: ' . $book['heuristic_score'] . '<br>';
 }
 
 
