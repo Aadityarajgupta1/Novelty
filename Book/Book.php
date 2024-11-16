@@ -27,7 +27,6 @@ function mergeSort($array, $order = 'asc') {
     return merge($left, $right, $order);
 }
 
-
 function merge($left, $right, $order) {
     $result = [];
     while (count($left) > 0 && count($right) > 0) {
@@ -43,19 +42,17 @@ function merge($left, $right, $order) {
     return array_merge($result, $left, $right);
 }
 
-// Function to get popularity-based books
-function getPopularBooks($con) {
-  // Query to get prod_id and their purchase count from order_item
-  $query = "SELECT prod_id, COUNT(DISTINCT user_id) AS purchase_count 
+// Function to get popularity-based books with heuristic adjustments
+function getPopularBooksWithHeuristic($con, $userPreferences) {
+  // Query to get the count of each product purchase from the order_items table
+  $query = "SELECT prod_id, COUNT(*) AS purchase_count 
             FROM order_items 
             GROUP BY prod_id 
             ORDER BY purchase_count DESC";
-  
   $result = mysqli_query($con, $query);
-  
+
   if (!$result) {
-      // Add error logging if the query fails
-      die('Error: ' . mysqli_error($con));
+      die('Error: ' . mysqli_error($con)); // Add error handling if query fails
   }
 
   $popularBooks = [];
@@ -63,16 +60,31 @@ function getPopularBooks($con) {
       // Get the book details for the prod_id
       $productQuery = "SELECT * FROM products WHERE id = " . $row['prod_id'];
       $productResult = mysqli_query($con, $productQuery);
-      
+
       if ($productRow = mysqli_fetch_assoc($productResult)) {
-          // Add product info along with purchase count
-          $productRow['purchase_count'] = $row['purchase_count'];
+          // Calculate the heuristic score for this product based on purchase count
+          $heuristicScore = $row['purchase_count'];
+
+          // Adjust the score based on user preferences (e.g., preferred authors)
+          if (in_array($productRow['author'], $userPreferences['preferred_authors'])) {
+              $heuristicScore += 5; // Boost score for preferred authors
+          }
+
+          // Optionally, you can add more adjustments (e.g., high ratings)
+          $productRow['heuristic_score'] = $heuristicScore;
           $popularBooks[] = $productRow;
       }
   }
 
+  // Sort books based on heuristic score (higher score is better)
+  usort($popularBooks, function ($a, $b) {
+      return $b['heuristic_score'] <=> $a['heuristic_score'];
+  });
+
   return $popularBooks;
 }
+
+
 // Perform search and sorting when the form is submitted
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Search functionality
@@ -94,27 +106,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     // Sorting functionality
     if (isset($_POST['sortOrder'])) {
-      $sortOrder = $_POST['sortOrder']; // Get the sorting preference
-      if ($sortOrder === 'lowToHigh') {
-          $searchResults = mergeSort($searchResults, 'asc');
-      } elseif ($sortOrder === 'highToLow') {
-          $searchResults = mergeSort($searchResults, 'desc');
-      } elseif ($sortOrder === 'popularity') {
-          // Fetch the popular books
-          $searchResults = getPopularBooks($con);
-          if (empty($searchResults)) {
-            echo "Search not found";  // If no popular books found
-        } else {
-            // Display the popular books
-            // foreach ($searchResults as $book) {
-            //     // Render the book details, for example:
-            //     echo "<div>{$book['name']} - {$book['purchase_count']} purchases</div>";
-            }
+        $sortOrder = $_POST['sortOrder']; // Get the sorting preference
+        if ($sortOrder === 'lowToHigh') {
+            $searchResults = mergeSort($searchResults, 'asc');
+        } elseif ($sortOrder === 'highToLow') {
+            $searchResults = mergeSort($searchResults, 'desc');
+        } elseif ($sortOrder === 'popularity') {
+            // Example user preferences (this can come from the session or user profile)
+            $userPreferences = [
+                'preferred_authors' => ['Author1', 'Author2'], // Example preferred authors
+            ];
+            
+            // Fetch the popular books based on heuristic score
+            $searchResults = getPopularBooksWithHeuristic($con, $userPreferences);
         }
-      }
-  }
-
-
+    }
+}
 ?>
 
 
@@ -322,7 +329,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         
                       </div>
                     </a>
-                    <button class="addToCartBtn" value="<?= $book['id']; ?>"><i class="fa fa-shopping-cart"></i></button>
+                    <!-- <button class="addToCartBtn" value="<?= $book['id']; ?>"><i class="fa fa-shopping-cart"></i></button> -->
+                    <?php if ($book['qty'] > 0) { ?>
+                        <button class="addToCartBtn" value="<?=$book['id'];?>"><i class="fa fa-shopping-cart"></i></button>
+                    <?php } else { ?>
+                        <span class="out-of-stock">Out of Stock</span>
+                    <?php } ?>
                     </div>
                   <?php
                 }

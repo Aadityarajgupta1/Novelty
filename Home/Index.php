@@ -308,7 +308,7 @@ if (isset($_SESSION['auth'])) {
         </section>
         <?php
     } else {
-        echo "<p>No Recommended Books Found</p>";
+        // echo "<p>No Recommended Books Found</p>";
     }
 }
 
